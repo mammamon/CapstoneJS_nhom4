@@ -63,4 +63,41 @@ h6 {
 
 p {
   color: #333;
+}
+
+/*COMPONENTS*/
+.logo img {
+  max-width: 200px;
+  max-height: 75px;
+}
+
+/*ADMIN PAGE*/
+.admin__sidebar {
+  max-width: 250px;
+  height: 100vh;
+  background-color: #e8e8e8;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  font-weight: 600;
+}
+.menu a {
+  font-family: "Open Sans", san-serif;
+  font-size: 1rem;
+}
+.menu i {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 4px;
+}
+
+.admin__main {
+  margin-left: 250px;
 }/*# sourceMappingURL=style.css.map */

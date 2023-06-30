@@ -60,3 +60,7 @@
     text-decoration: none;
     color: inherit;
   }
+
+@mixin box-shadow($x, $y, $blur, $spread, $color) {
+    box-shadow: $x $y $blur $spread $color;
+  }

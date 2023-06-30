@@ -1,0 +1,32 @@
+/*ADMIN PAGE*/
+$admin-sidebar-width: 250px;
+
+.admin__sidebar {
+    max-width: $admin-sidebar-width;
+    height: 100vh;
+    background-color: $grey;
+    @include box-shadow(0px, 0px, 10px, 0px, rgba(0, 0, 0, 0.3));
+}
+
+    .img-container {
+        @include center;
+    }
+    .menu {
+        font-weight: 600;
+        a {
+            font-family: $primaryFont;
+            font-size: 1rem
+        }
+        i {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 4px;
+        }
+    }
+    
+
+
+
+.admin__main {
+    margin-left: $admin-sidebar-width;
+}

@@ -11,13 +11,15 @@
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
     <!-- FONT AWESOME V6.4.0 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- BOOTSTRAP V5.2.3 -->
-    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
     <!-- SWIPER v9.3.1 -->
     <link rel="stylesheet" href="./asset/css/swiper-bundle.min.css">
     <!-- FANCYBOX v4.0.31 -->
@@ -29,13 +31,22 @@
 </head>
 
 <body>
-    <h1>HEADING 1</h1>
-    <h2>HEADING 2</h2>
-    <h3>HEADING 3</h3>
-    <h4>HEADING 4</h4>
-    <h5>HEADING 5</h5>
-    <h6>HEADING 6</h6>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis reiciendis, porro est iste iure fugiat? á ă à</p>
+    <section class=admin__sidebar>
+        <div class="img-container logo mx-auto py-2">
+            <img src="./asset/img/logo.png" alt="logo">
+        </div>
+        <div class="menu">
+            <ul>
+                <li class="my-2"><i class="fas fa-chart-line"></i><a href="#">Dashboard</a></li>
+                <li class="my-2"><i class="fas fa-cog"></i><a href="#">Setting</a></li>
+                <li class="my-2"><i class="fa-solid fa-boxes-stacked"></i><a href="#">Product Management</a></li>
+                <li class="my-2"><i class="fas fa-envelope"></i><a href="#">Mailbox</a></li>
+              </ul>
+        </div>
+    </section>
+    <section class="admin__main">
+        <div class="container"></div>
+    </section>
     <!-- IMPORT SCRIPTS -->
     <!-- JQUERY V3.6.4 -->
     <script src="./asset/js/jquery-3.6.4.min.js"></script>

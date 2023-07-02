@@ -1,32 +1,54 @@
 /*ADMIN PAGE*/
-$admin-sidebar-width: 250px;
+$admin-header-height: 60px;
+$admin-sidebar-width: 50px;
 
-.admin__sidebar {
-    max-width: $admin-sidebar-width;
-    height: 100vh;
+body {
     background-color: $grey;
-    @include box-shadow(0px, 0px, 10px, 0px, rgba(0, 0, 0, 0.3));
 }
 
-    .img-container {
-        @include center;
-    }
-    .menu {
-        font-weight: 600;
-        a {
-            font-family: $primaryFont;
-            font-size: 1rem
-        }
-        i {
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-right: 4px;
-        }
-    }
-    
+.admin__header {
+    height: $admin-header-height;
+    background-color: $secondaryColor;
 
+    .logo {
+        width: 200px;
+        background-color: $secondaryColor;
 
+        &>* {
+            color: #fff
+        }
+
+        ;
+    }
+
+    @include box-shadow(0px, 0px, 10px, 1px, #888);
+}
+
+.admin__sidebar {
+    background-color: #fff;
+    width: $admin-sidebar-width;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    @include center;
+
+    a {
+        width: $admin-sidebar-width * 0.8;
+        background-color: $primaryColor;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0 10px 0;
+        color: #333;
+        @include center
+    }
+    i {
+        font-size: 20px;
+    }
+
+}
 
 .admin__main {
-    margin-left: $admin-sidebar-width;
+    background-color: #333;
+    width: 100%;
+    margin-left: 80px;
 }

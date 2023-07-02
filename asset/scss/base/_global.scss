@@ -4,7 +4,7 @@
     line-height: 1.5;
     box-sizing: border-box;
     @include spacing-0;
-    @include transition(all ease .3s);
+    @include transition(all ease .5s);
 }
 
 html {
@@ -35,4 +35,7 @@ li {
 p {
     @extend h4;
     color: #333;
+}
+ol, ul {
+    padding-left: 0;
 }

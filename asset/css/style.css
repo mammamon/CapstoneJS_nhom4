@@ -75,6 +75,11 @@ ol, ul {
   padding-left: 0;
 }
 
+/*BOOSTRAP CUSTOMIZES*/
+.table {
+  margin-bottom: 0;
+}
+
 /*COMPONENTS*/
 .logo img {
   max-width: 250px;
@@ -86,10 +91,14 @@ body {
   background-color: #e8e8e8;
 }
 
-.admin__header {
-  height: 60px;
+.admin__header__wrapper {
   background-color: #1f1f1f;
   box-shadow: 0px 0px 10px 1px #888;
+}
+
+.admin__header {
+  height: 60px;
+  background-color: inherit;
 }
 .admin__header .logo {
   width: 200px;
@@ -124,8 +133,14 @@ body {
   font-size: 20px;
 }
 
-.admin__main {
-  background-color: #333;
+.admin__main .table-responsive {
+  background-color: #fff;
   width: 100%;
-  margin-left: 80px;
+}
+.admin__main .table-responsive img {
+  width: 60px;
+  height: 40px;
+}
+.admin__main .table-responsive i {
+  color: #ad343e;
 }/*# sourceMappingURL=style.css.map */

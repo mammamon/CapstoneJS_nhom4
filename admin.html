@@ -40,74 +40,172 @@
 </head>
 
 <body>
-  <div class="admin">
-    <div class="admin__header__wrapper container-fluid">
-      <div class="admin__header d-flex container">
-        <div class="logo">
-          <h3>GIA THINH</h3>
-          <h4>Admin</h4>
-        </div>
-      </div>
-    </div>
-    <div class="admin__main container-fluid">
-      <div class="admin__sidebar">
-        <ul class="py-5">
-          <li><a href=""><i class="fa fa-tachometer-alt"></i></a></li>
-          <li><a href=""><i class="fa fa-cubes"></i></a></li>
-          <li><a href=""><i class="fa fa-envelope"></i></a></li>
-          <li><a href=""><i class="fa fa-cog"></i></a></li>
-        </ul>
-      </div>
-      <!-- TABLE -->
-      <div class="container py-4">
-        <div class="table-responsive">
-          <table class="table table-hover table-nowrap">
-            <thead class="table-dark text-center">
-              <tr>
-                <th class="col-1">Chọn</th>
-                <th class="col-2">Sản phẩm</th>
-                <th class="col-3 text-start">Thông tin chi tiết</th>
-                <th class="col-5">Mô tả</th>
-                <th class="col-2">Quản lý</th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  <h4>BP-50C26</h4>
-                  <img class="my-2" src="./asset/img/BP-50C26.png" alt="">
-                  <h4 style="color:red;font-weight: 500;">12.000.000 VNĐ</h4>
-
-                </td>
-                <td class="text-start">
-                  <div class="col-6">
-                    <h4>Tốc độ in: 50ppm</h4>
-                    <h4>Hãng: Ricoh</h4>
-                    <h4>Loại: </h4>
-                    <h4>Màu In: </h4>
-                    <h4>Khổ giấy: </h4>
-                  </div>
-                  <div class="col-6">
-
-                  </div>
-                </td>
-                <td>asdadfafdfsdnopfhsdifgsdifgweufgu</td>
-                <td>
-                  <a href=""><i class="fa-solid fa-pencil"></i></a>
-                  <a href=""><i class="fa-solid fa-trash"></i></a>
-                </td>
-
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
+  <div class="admin__header__wrapper container-fluid">
+    <div class="admin__header d-flex container align-items-center">
+      <div class="logo">
+        <h3>GIA THINH COPIER</h3>
+        <h4>|Admin|</h4>
       </div>
     </div>
   </div>
-  </div>
-  </div>
+  <div class="admin__main container-fluid">
+    <div class="admin__sidebar d-flex justify-content-center">
+      <ul class="">
+        <li><a href=""><i class="fa fa-chart-line"></i></a></li>
+        <li><a href=""><i class="fa fa-cubes"></i></a></li>
+        <li><a href=""><i class="fa fa-envelope"></i></a></li>
+        <li><a href=""><i class="fa fa-cog"></i></a></li>
+      </ul>
+    </div>
+    <!-- PRODUCT TABLE -->
+    <div class="container py-4">
+      <div class="table-responsive">
+        <div class="table-title d-flex align-items-center p-2">
+          <h3>QUẢN LÝ SẢN PHẨM</h3>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-modal"><i class="fa fa-plus"></i>
+            thêm sản phẩm</button>
+        </div>
+        <table class="table table-hover table-nowrap">
+          <thead class="table-dark text-center">
+            <tr>
+              <th class="col-1">Chọn</th>
+              <th class="col-2">Sản phẩm</th>
+              <th class="col-3 text-start">Thông tin chi tiết</th>
+              <th class="col-5">Mô tả</th>
+              <th class="col-2">Quản lý</th>
+            </tr>
+          </thead>
+          <tbody id="product-table-admin" class="text-center">
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <h4>BP-50C26</h4>
+                <img class="my-2" src="./asset/img/BP-50C26.png" alt="">
+                <h4 style="color:red;font-weight: 500;">12.000.000 VNĐ</h4>
+
+              </td>
+              <td class="text-start">
+                <div class="col-6">
+                  <h4>Tốc độ in: 50ppm</h4>
+                  <h4>Hãng: Ricoh</h4>
+                  <h4>Loại: </h4>
+                  <h4>Màu In: </h4>
+                  <h4>Khổ giấy: </h4>
+                </div>
+                <div class="col-6">
+
+                </div>
+              </td>
+              <td>asdadfafdfsdnopfhsdifgsdifgweufgu</td>
+              <td>
+                <a href=""><i class="fa-solid fa-pencil"></i></a>
+                <a href=""><i class="fa-solid fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- MODAL -->
+    <div class="modal fade" id="product-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <header class="head-form mb-0">
+            <h2 id="header-title">THÔNG TIN SẢN PHẨM</h2>
+          </header>
+          <div class="modal-body">
+            <form id ="form" role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                  </div>
+                  <input type="text" id="userName" class="form-control input-sm"
+                    placeholder="Mã sản phẩm">
+                </div>
+                <span class="check" id="check-name"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-copy"></i></span>
+                  </div>
+                  <input type="email" id="email" class="form-control input-sm"
+                    placeholder="khổ giấy">
+                </div>
+                <span class="check" id="check-paper"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-bolt"></i></span>
+                  </div>
+                  <input type="number" id="password" class="form-control input-sm"
+                    placeholder="tốc độ in (PPM)">
+                </div>
+                <span class="check" id="check-password"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-money-bill" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="number" id="wage" class="form-control input-sm no-spinner"
+                    placeholder="Giá">
+                </div>
+                <span class="check" id="check-price"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                  </div>
+                  <select class="form-control" id="position">
+                    <option>Chọn hãng</option>
+                    <option>SHARP</option>
+                    <option>RICOH</option>
+                    <option>SOLUTION</option>
+                  </select>
+                </div>
+                <span class="check" id="check-branch"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-print"></i></span>
+                  </div>
+                  <select class="form-control" id="position">
+                    <option>Loại</option>
+                    <option>Printer</option>
+                    <option>Copy</option>
+                  </select>
+                </div>
+                <span class="check" id="check-type"></span>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-print"></i></span>
+                  </div>
+                  <select class="form-control" id="position">
+                    <option>In màu</option>
+                    <option>Có</option>
+                    <option>Không</option>
+                  </select>
+                </div>
+                <span class="check" id="check-type"></span>
+              </div>
+            </form>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer" id="modal-footer">
+            <button id="btnThemNV" type="button" class="btn btn-primary">Thêm sản phẩm</button>
+            <button id="btnCapNhat" type="button" class="btn btn-success">Cập nhật sản phẩm</button>
+            <button id="btnDong" type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- IMPORT SCRIPTS -->
   <!-- JQUERY V3.6.4 -->
@@ -115,7 +213,8 @@
   <!-- BOOTSTRAP V5.3.0 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script> <!-- WAYPOINT V4.0.1 -->
+    crossorigin="anonymous"></script>
+  <!-- WAYPOINT V4.0.1 -->
   <script src="./asset/js/jquery.waypoints.min.js"></script>
   <!-- SWIPER v9.3.1 -->
   <script src="./asset/js/swiper-bundle.min.js"></script>
@@ -126,6 +225,13 @@
   <script>
     new WOW().init();
   </script>
+  <!-- ADMIN MODEL & VIEW -->
+  <script src="./admin/model/products-admin.js"></script>
+  <script src="./admin/view/view-admin.js"></script>
+  <!-- AXIOS LIBRARY -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- ADMIN JS -->
+  <script src="./admin/controller/admin.js"></script>
   <!-- MAIN JS -->
   <script src="./asset/js/main.js"></script>
 </body>

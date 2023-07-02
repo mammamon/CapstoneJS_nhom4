@@ -2,13 +2,13 @@
 $admin-header-height: 60px;
 $admin-sidebar-width: 50px;
 
-body {
+.admin {
     background-color: $grey;
 }
 
 .admin__header__wrapper {
     background-color: $secondaryColor;
-    @include box-shadow(0px, 0px, 10px, 1px, #888);
+    box-shadow: $box-shadow-normal;
 
 }
 
@@ -35,7 +35,6 @@ body {
     height: 100vh;
     position: fixed;
     left: 0;
-    @include center;
 
     a {
         width: $admin-sidebar-width * 0.8;
@@ -44,11 +43,12 @@ body {
         padding: 10px;
         margin: 10px 0 10px 0;
         color: #333;
-        @include center
+        @include center;
+
     }
 
     i {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
 }
@@ -56,15 +56,25 @@ body {
 .admin__main {
 
     .table-responsive {
+        border-radius: 8px;
         background-color: #fff;
+
         width: 100%;
+
+        .table-title {
+            background-color: $blue;
+            justify-content: space-between;
+
+            h3 {
+                font-family: $primaryFont;
+                color: #fff;
+            }
+        }
 
         img {
             width: 60px;
             height: 40px;
         }
-        i {
-            color: $red;
-        }
+
     }
 }

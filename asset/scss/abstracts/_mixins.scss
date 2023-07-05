@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+@mixin square ($square) {
+    width: $square;
+    height: $square;
+}
+
 @mixin transform($property) {
     -webkit-transform: $property;
     -ms-transform: $property;

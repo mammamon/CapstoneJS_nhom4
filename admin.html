@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="./asset/css/style.css">
 </head>
 
-<body>
+<body style="background-color: #e8e8e8;">
   <div class="admin__header__wrapper container-fluid">
     <div class="admin__header d-flex container align-items-center">
       <div class="logo">
@@ -62,7 +62,8 @@
       <div class="table-responsive">
         <div class="table-title d-flex align-items-center p-2">
           <h3>QUẢN LÝ SẢN PHẨM</h3>
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-modal"><i class="fa fa-plus"></i>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-modal"><i
+              class="fa fa-plus"></i>
             thêm sản phẩm</button>
         </div>
         <table class="table table-hover table-nowrap">
@@ -80,7 +81,7 @@
               <td><input type="checkbox"></td>
               <td>
                 <h4>BP-50C26</h4>
-                <img class="my-2" src="./asset/img/BP-50C26.png" alt="">
+                <img class="product-img my-2" src="./asset/img/RICOH/MP-3055SP.jpg">
                 <h4 style="color:red;font-weight: 500;">12.000.000 VNĐ</h4>
 
               </td>
@@ -99,104 +100,207 @@
               <td>asdadfafdfsdnopfhsdifgsdifgweufgu</td>
               <td>
                 <a href=""><i class="fa-solid fa-pencil"></i></a>
-                <a href=""><i class="fa-solid fa-trash"></i></a>
+                <a data-bs-toggle="modal" data-bs-target="#product-modal-delete" href=""><i
+                    class="fa-solid fa-trash"></i></a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <!-- MODAL -->
+    <!-- PRODUCT MODAL -->
     <div class="modal fade" id="product-modal">
       <div class="modal-dialog">
         <div class="modal-content">
-          <header class="head-form my-2 text-center">
-            <h2 id="header-title">THÔNG TIN SẢN PHẨM</h2>
+          <header class="head-form mt-3 text-center">
+            <h3 id="header-title">THÔNG TIN SẢN PHẨM</h3>
           </header>
           <div class="modal-body">
-            <form id ="form" role="form">
+            <form id="product-form" role="form">
+              <!-- MÃ SẢN PHẨM -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-key"></i></span>
                   </div>
-                  <input type="text" id="userName" class="form-control input-sm"
-                    placeholder="Mã sản phẩm">
+                  <input type="text" id="name" class="form-control input-sm" placeholder="Mã sản phẩm">
                 </div>
                 <span class="check" id="check-name"></span>
               </div>
+              <!-- LINK HÌNH ẢNH -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-copy"></i></span>
+                    <span class="input-group-text"><i class="fa fa-image"></i></span>
                   </div>
-                  <input type="email" id="email" class="form-control input-sm"
-                    placeholder="khổ giấy">
+                  <input type="text" id="image" class="form-control input-sm" placeholder="Link hình ảnh sản phẩm">
                 </div>
-                <span class="check" id="check-paper"></span>
+                <span class="check" id="check-image"></span>
               </div>
+              <!-- GIÁ -->
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="number" id="price" class="form-control input-sm no-spinner" placeholder="Giá">
+                </div>
+                <span class="check" id="check-price"></span>
+              </div>
+              <!-- TỐC ĐỘ IN -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-bolt"></i></span>
                   </div>
-                  <input type="number" id="password" class="form-control input-sm"
-                    placeholder="tốc độ in (PPM)">
+                  <input type="number" id="speed" class="form-control input-sm no-spinner"
+                    placeholder="Tốc độ in (PPM)">
                 </div>
-                <span class="check" id="check-password"></span>
+                <span class="check" id="check-speed"></span>
               </div>
+              <!-- HÃNG -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa-solid fa-money-bill" aria-hidden="true"></i></span>
+                    <span class="input-group-text justify-content-start" style="width:80px"><i
+                        class="fa fa-building mx-2"></i><label for="branch">Hãng</label></span>
                   </div>
-                  <input type="number" id="wage" class="form-control input-sm no-spinner"
-                    placeholder="Giá">
-                </div>
-                <span class="check" id="check-price"></span>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                  <div class="form-control">
+                    <input type="radio" class="branch" id="branch_sharp" name="branch" value="SHARP" checked>
+                    <label for="printer" class="me-4">SHARP</label>
+                    <input type="radio" class="branch" id="branch_ricoh" name="branch" value="RICOH">
+                    <label for="copier" class="me-4">RICOH</label>
+                    <input type="radio" class="branch" id="branch_hp" name="branch" value="HP">
+                    <label for="copier" class="me-4">HP</label>
+                    <div class="form-control">
+                    <input type="text" id="branch_other" name="branch" class="form-control input-sm"
+                    placeholder="Khác (nhập tên hãng)" onclick='document.querySelectorAll(".branch").forEach((branch) => branch.checked = false)';>
+                    </div>
                   </div>
-                  <select class="form-control" id="position">
-                    <option>Chọn hãng</option>
-                    <option>SHARP</option>
-                    <option>RICOH</option>
-                    <option>SOLUTION</option>
-                  </select>
                 </div>
                 <span class="check" id="check-branch"></span>
               </div>
+              <!-- LOẠI -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-print"></i></span>
+                    <span class="input-group-text justify-content-start" style="width:80px"><i
+                        class="fa-solid fa-print mx-2"></i><label for="type">Loại</label></span>
                   </div>
-                  <select class="form-control" id="position">
-                    <option>Loại</option>
-                    <option>Printer</option>
-                    <option>Copy</option>
-                  </select>
+                  <div class="form-control">
+                    <input type="radio" class="type" id="type_printer" name="type" value="printer" checked>
+                    <label for="printer" class="pe-4">Máy in</label>
+                    <input type="radio" class="type" id="type_copier" name="type" value="copier">
+                    <label for="copier">Máy photocopy</label>
+                  </div>
                 </div>
                 <span class="check" id="check-type"></span>
               </div>
+              <!-- IN MÀU -->
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-print"></i></span>
+                    <span class="input-group-text justify-content-start" style="width:80px"><i
+                        class="fa-solid fa-droplet mx-2"></i><label for="paper">Màu</label></span>
                   </div>
-                  <select class="form-control" id="position">
-                    <option>In màu</option>
-                    <option>Có</option>
-                    <option>Không</option>
-                  </select>
+                  <div class="form-control">
+                    <input type="radio" class="color" id="color_no" name="color" value="bw" checked>
+                    <label for="printer" class="pe-4">Trắng đen</label>
+                    <input type="radio" class="color" id="color_yes" name="color" value="color">
+                    <label for="copier">Màu</label>
+                  </div>
                 </div>
-                <span class="check" id="check-type"></span>
+                <span class="check" id="check-color"></span>
+              </div>
+              <!-- KHỔ GIẤY -->
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text justify-content-start" style="width:105px"><i
+                        class="fa-solid fa-sticky-note mx-2"></i><label for="paper">Khổ giấy</label></span>
+                  </div>
+                  <div class="form-control">
+                    <input type="radio" class="paper" id="type_printer" name="paper" value="a3" checked>
+                    <label for="a3" class="pe-4">Tối đa A3</label>
+                    <input type="radio" class="paper" id="type_copier" name="paper" value="a4">
+                    <label for="a4">Tối đa A4</label>
+                  </div>
+                </div>
+                <span class="check" id="check-paper"></span>
+              </div>
+              <!-- THÔNG SỐ KỸ THUẬT -->
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend" style="width: 110px;">
+                    <span class="input-group-text justify-content-start mb-1" style="width: inherit; border-radius: 6px;"><i class ="fa-solid fa-pen-ruler mx-2"></i>Thông số</span>
+                  </div>
+                  <div class="d-flex"> 
+                  <div class="pe-1">
+                  <input type="number" id="spec_RAM" class="spec form-control ontrol input-sm no-spinner mb-1" placeholder="RAM">
+                  <input type="number" id="spec_HDD" class="spec form-control input-sm no-spinner mb-1" placeholder="HDD">
+                  <input type="number" id="spec_DPI" class="spec form-control input-sm no-spinner" placeholder="DPI">
+                  </div>
+                  <div class="ps-1">
+                    <input type="number" id="spec_tray" class="spec form-control input-sm no-spinner mb-1" placeholder="Khay">
+                    <input type="number" id="spec_warmUpTime" class="spec form-control input-sm no-spinner" placeholder="Thời gian khởi động">
+                  </div>
+                </div>
+                </div>
+                <span class="check" id="check-spec"></span>
+              </div>
+               <!-- TÙY CHỌN -->
+               <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend" style="width: 110px;">
+                    <span class="input-group-text justify-content-start mb-1" style="width: inherit; border-radius: 6px;"><i class ="fa-solid fa-circle-plus mx-2"></i>Tùy chọn</span>
+                  </div>
+                  <div class="d-flex">
+                  <div class="pe-1">
+                  <input type="text" id="option_DSPF" class="option form-control input-sm  mb-1" placeholder="DSPF">
+                  <input type="text" id="option_RSPF" class="option form-control input-sm  mb-1" placeholder="RSPF">
+                  <input type="text" id="option_finisher" class="option form-control input-sm  mb-1" placeholder="Finisher">
+                  <input type="text" id="option_fax" class="option form-control input-sm" placeholder="Fax">
+                  </div>
+                  <div class="pe-1">
+                    <input type="text" id="option_solution" class="option form-control input-sm  mb-1" placeholder="Solution">
+                    <input type="text" id="option_addHdd" class="option form-control input-sm  mb-1" placeholder="Thêm Hdd">
+                    <input type="text" id="option_addRAM" class="option form-control input-sm  mb-1" placeholder="Thêm RAM">
+                    <input type="text" id="option_addStand" class="option form-control input-sm" placeholder="Thêm stand">
+                  </div>
+                </div>
+                </div>
+                <span class="check" id="check-option"></span>
+              </div>
+              <!-- MÔ TẢ -->
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text justify-content-start mb-1" style="width:100px;border-radius: 6px;"><i
+                        class="fa-solid fa-message mx-2"></i><label for="description">Mô tả</label></span>
+                  </div>
+                  <textarea id="description" name="description" rows="4" cols="44"></textarea>
+                  <span class="check" id="check-description"></span>
+                </div>
               </div>
             </form>
+
           </div>
+          <!-- Modal footer -->
+          <div class="modal-footer" id="modal-footer">
+            <button id="btnAdd" type="button" class="btn btn-primary">Thêm sản phẩm</button>
+            <button id="btnUpdate" type="button" class="btn btn-success">Cập nhật sản phẩm</button>
+            <button id="btnClose" type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CONFIRM DELETE MODAL -->
+    <div class="modal fade" id="product-modal-delete">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <header class="head-form mt-3 text-center">
+            <h3 id="header-title">XÁC NHẬN XÓA SẢN PHẨM</h3>
+          </header>
           <!-- Modal footer -->
           <div class="modal-footer" id="modal-footer">
             <button id="btnThemNV" type="button" class="btn btn-primary">Thêm sản phẩm</button>
@@ -226,14 +330,15 @@
     new WOW().init();
   </script>
   <!-- ADMIN MODEL & VIEW -->
-  <script src="./admin/model/products-admin.js"></script>
-  <script src="./admin/view/view-admin.js"></script>
+  <script src="./admin/model/admin-product.js"></script>
+  <script src="./admin/view/admin-view.js"></script>
   <!-- AXIOS LIBRARY -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- ADMIN JS -->
   <script src="./admin/controller/admin.js"></script>
   <!-- MAIN JS -->
   <script src="./asset/js/main.js"></script>
+
 </body>
 
 </html>

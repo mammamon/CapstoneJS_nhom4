@@ -2,10 +2,6 @@
 $admin-header-height: 60px;
 $admin-sidebar-width: 50px;
 
-.admin {
-    background-color: $grey;
-}
-
 .admin__header__wrapper {
     background-color: $secondaryColor;
     box-shadow: $box-shadow-normal;
@@ -76,5 +72,13 @@ $admin-sidebar-width: 50px;
             height: 40px;
         }
 
+    }
+
+    #product-form {
+        background-color: $grey;
+    }
+
+    #product-delete-form {
+        background-color: $grey;
     }
 }

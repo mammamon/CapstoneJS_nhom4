@@ -17,17 +17,19 @@ document.getElementById('btnAdd').onclick = function() {
     let spec = {};
     let option = {};
     let description = document.getElementById("description").value;
-    let specCheckboxes = document.querySelectorAll(".spec:checked");
-    for (let i = 0; i < specCheckboxes.length; i++) {
-        let idParts = specCheckboxes[i].id.split("_");
-        spec[idParts[1]] = idParts[2];
-    }
-
-    let optionCheckboxes = document.querySelectorAll(".option:checked");
-    for (let i = 0; i < optionCheckboxes.length; i++) {
-        let idParts = optionCheckboxes[i].id.split("_");
-        option[idParts[1]] = idParts[2];
-    }
+    spec["RAM"] = document.getElementById("spec_RAM").value;
+    spec["HDD"] = document.getElementById("spec_HDD").value;
+    spec["DPI"] = document.getElementById("spec_DPI").value;
+    spec["tray"] = document.getElementById("spec_tray").value;
+    spec["warmUpTime"] = document.getElementById("spec_warmUpTime").value;
+    option["DSPF"] = document.getElementById("option_DSPF").value;
+    option["RSPF"] = document.getElementById("option_RSPF").value;
+    option["finisher"] = document.getElementById("option_finisher").value;
+    option["fax"] = document.getElementById("option_fax").value;
+    option["solution"] = document.getElementById("option_solution").value;
+    option["addHDD"] = document.getElementById("option_addHdd").value;
+    option["addRam"] = document.getElementById("option_addRam").value;
+    option["addStand"] = document.getElementById("option_addStand").value;
     let product = new Product(name, image, price, speed, branch, type, color, paper, spec, option, description);
     console.log(product);
 }

@@ -1,5 +1,6 @@
-function Product(_name, _image, _price, _speed, _branch, _type, _color, _paper, _spec, _option, _description) {
+function Product(_name, _title, _image, _price, _speed, _branch, _type, _color, _paper, _spec, _option, _description) {
     this.name = _name;
+    this.title = _title;
     this.image = _image;
     this.price = _price;
     this.speed = _speed;

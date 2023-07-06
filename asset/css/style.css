@@ -139,7 +139,7 @@ form {
 
 .check {
   font-size: 0.8rem;
-  color: #ad343e;
+  color: #ff0000;
 }
 
 /*COMPONENTS*/
@@ -207,6 +207,9 @@ form {
   font-size: 1.25rem;
 }
 
+.admin__main #product-table-admin tr, .admin__main #product-table-admin td {
+  height: 140px;
+}
 .admin__main .table-responsive {
   border-radius: 8px;
   background-color: #fff;
@@ -229,4 +232,18 @@ form {
 }
 .admin__main #product-delete-form {
   background-color: #e8e8e8;
+}
+.admin__main .product-group-manage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin__main .product-group-manage #btnEdit {
+  color: #e8c400;
+}
+.admin__main .product-group-manage #btnDelete {
+  color: red;
+}
+.admin__main .product-group-manage i {
+  font-size: 1.25rem;
 }/*# sourceMappingURL=style.css.map */

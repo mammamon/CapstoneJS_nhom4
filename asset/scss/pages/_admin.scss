@@ -50,7 +50,11 @@ $admin-sidebar-width: 50px;
 }
 
 .admin__main {
-
+    #product-table-admin {
+        tr, td {
+            height: 140px;
+        }
+    }
     .table-responsive {
         border-radius: 8px;
         background-color: #fff;
@@ -80,5 +84,17 @@ $admin-sidebar-width: 50px;
 
     #product-delete-form {
         background-color: $grey;
+    }
+    .product-group-manage {
+        @include center;
+        #btnEdit {
+            color: $primaryColor;
+        }
+        #btnDelete {
+            color: red;
+        }
+        i {
+            font-size: 1.25rem;
+        }
     }
 }

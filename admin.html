@@ -62,48 +62,44 @@
       <div class="table-responsive">
         <div class="table-title d-flex align-items-center p-2">
           <h3>QUẢN LÝ SẢN PHẨM</h3>
-          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-modal"><i
+          <button id="btn-modal" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-modal"><i
               class="fa fa-plus"></i>
             thêm sản phẩm</button>
         </div>
         <table class="table table-hover table-nowrap">
           <thead class="table-dark text-center">
             <tr>
-              <th class="col-1">Chọn</th>
               <th class="col-2">Sản phẩm</th>
               <th class="col-3 text-start">Thông tin chi tiết</th>
-              <th class="col-5">Mô tả</th>
-              <th class="col-2">Quản lý</th>
+              <th class="col-6">Mô tả</th>
+              <th class="col-1">Quản lý</th>
             </tr>
           </thead>
           <tbody id="product-table-admin" class="text-center">
             <tr>
-              <td><input type="checkbox"></td>
-              <td>
-                <h4>BP-50C26</h4>
-                <img class="product-img my-2" src="./asset/img/RICOH/MP-3055SP.jpg">
-                <h4 style="color:red;font-weight: 500;">12.000.000 VNĐ</h4>
-
+              <td class="product-group-avatar">
+                <h4 style="font-weight: 700;">BP-50C26</h4>
+                <img class="product-img my-2" src="./asset/img/RICOH/MPC2004SP-300x300.jpg">
+                <h4 style="color: red; font-weight: 600;"><span>999999999</span> VNĐ</h4>
               </td>
-              <td class="text-start">
-                <div class="col-6">
-                  <h4>Tốc độ in: 50ppm</h4>
-                  <h4>Hãng: Ricoh</h4>
-                  <h4>Loại: </h4>
-                  <h4>Màu In: </h4>
-                  <h4>Khổ giấy: </h4>
-                </div>
-                <div class="col-6">
-
-                </div>
+              <td class="product-group-detail text-start">
+                  <h4>Hãng: <span>RICOH</span></h4>
+                  <h4>Tốc độ in: <span>35</span> ppm</h4>
+                  <h4>Loại: <span>copier</span></h4>
+                  <h4>Màu In: <span>màu</span></h4>
+                  <h4>Khổ giấy: <span>A3</span></h4>
               </td>
-              <td>asdadfafdfsdnopfhsdifgsdifgweufgu</td>
-              <td>
-                <a href=""><i class="fa-solid fa-pencil"></i></a>
-                <a data-bs-toggle="modal" data-bs-target="#product-modal-delete" href=""><i
+              <td class="product-group-desc">
+                <h4 style="color:red;font-weight: 600;"><span>Máy in RICOH A350-2377</span></h4>
+                <h4><span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus provident praesentium earum dolores quae voluptatem culpa exercitationem harum architecto ad.</span></h4>
+              </td>
+              <td class="product-group-manage">
+                <a id="btnEdit" class="me-4" data-bs-toggle="modal" data-bs-target="#product-modal" href=""><i class="fa-solid fa-pencil"></i></a>
+                <a id="btnDelete" data-bs-toggle="modal" data-bs-target="#product-modal-delete" href=""><i
                     class="fa-solid fa-trash"></i></a>
               </td>
             </tr>
+            
           </tbody>
         </table>
       </div>
@@ -126,6 +122,16 @@
                   <input type="text" id="name" class="form-control input-sm" placeholder="Mã sản phẩm">
                 </div>
                 <span class="check" id="check-name"></span>
+              </div>
+               <!-- TIÊU ĐỀ -->
+               <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-t"></i></span>
+                  </div>
+                  <input type="text" id="title" class="form-control input-sm" placeholder="Tiêu đề">
+                </div>
+                <span class="check" id="check-title"></span>
               </div>
               <!-- LINK HÌNH ẢNH -->
               <div class="form-group">
@@ -159,8 +165,8 @@
                 <span class="check" id="check-speed"></span>
               </div>
               <!-- HÃNG -->
-              <div class="form-group">
-                <div class="input-group">
+              <div class="form-group" style="padding-bottom: 1rem;">
+                <div class="input-group pb-5">
                   <div class="input-group-prepend">
                     <span class="input-group-text justify-content-start" style="width:80px"><i
                         class="fa fa-building mx-2"></i><label for="branch">Hãng</label></span>
@@ -172,10 +178,10 @@
                     <label for="copier" class="me-4">RICOH</label>
                     <input type="radio" class="branch" id="branch_hp" name="branch" value="HP">
                     <label for="copier" class="me-4">HP</label>
-                    <div class="form-control">
-                    <input type="text" id="branch_other" name="branch" class="form-control input-sm"
-                    placeholder="Khác (nhập tên hãng)" onclick='document.querySelectorAll(".branch").forEach((branch) => branch.checked = false)';>
-                    </div>
+                    <div class="input-group" style="width: 103.8%;">
+                    <input type="text" id="branch_other" name="branch" class="form-control input-sm mt-2"
+                    placeholder="Khác (nhập tên hãng)">
+                    </div>   
                   </div>
                 </div>
                 <span class="check" id="check-branch"></span>
@@ -184,7 +190,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text justify-content-start" style="width:80px"><i
+                    <span class="input-group-text" style="width:80px"><i
                         class="fa-solid fa-print mx-2"></i><label for="type">Loại</label></span>
                   </div>
                   <div class="form-control">
@@ -204,7 +210,7 @@
                         class="fa-solid fa-droplet mx-2"></i><label for="paper">Màu</label></span>
                   </div>
                   <div class="form-control">
-                    <input type="radio" class="color" id="color_no" name="color" value="bw" checked>
+                    <input type="radio" class="color" id="color_no" name="color" value="b&w" checked>
                     <label for="printer" class="pe-4">Trắng đen</label>
                     <input type="radio" class="color" id="color_yes" name="color" value="color">
                     <label for="copier">Màu</label>
@@ -334,8 +340,10 @@
   <script src="./admin/view/admin-view.js"></script>
   <!-- AXIOS LIBRARY -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- ADMIN VALIDATION -->
+  <script src="./admin/controller/admin-validation.js"></script>
   <!-- ADMIN JS -->
-  <script src="./admin/controller/admin.js"></script>
+  <script src="./admin/controller/admin-main.js"></script>
   <!-- MAIN JS -->
   <script src="./asset/js/main.js"></script>
 

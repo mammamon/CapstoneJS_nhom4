@@ -7,14 +7,3 @@ window.addEventListener('scroll', function () {
         backToTop.style.display = 'none';
     }
 });
-
-//TRIGGER NO-IMAGE
-function noProductImg() {
-    const productImgs = document.querySelectorAll('.product-img');
-    productImgs.forEach(function (img) {
-        productImgs.onerror = function () {
-            productImgs.src = './asset/img/no-img.jpg';
-        }
-    });
-}
-noProductImg();

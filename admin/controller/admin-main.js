@@ -49,9 +49,7 @@ document.getElementById('btnAdd').onclick = function () {
   option["addRam"] = document.getElementById("option_addRam").value;
   option["addStand"] = document.getElementById("option_addStand").value;
   // check valid có kiểm tra trùng name
-  if (validateProduct(name, title, image, price, speed, branch, type, color, paper, spec, option, description, true)) {
-    let product = new Product(name, title, image, price, speed, branch, type, color, paper, spec, option, description)
-  };
+  let product = new Product(name, title, image, price, speed, branch, type, color, paper, spec, option, description)
   console.log(product);
   return product;
 }

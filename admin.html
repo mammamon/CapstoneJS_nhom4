@@ -40,7 +40,7 @@
 </head>
 
 <body style="background-color: #e8e8e8;">
-  <div class="admin__header__wrapper container-fluid">
+  <div class="admin__header__wrapper container-fluid sticky-top">
     <div class="admin__header d-flex container align-items-center">
       <div class="logo">
         <h3>GIA THINH COPIER</h3>
@@ -305,13 +305,12 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <header class="head-form mt-3 text-center">
-            <h3 id="header-title">XÁC NHẬN XÓA SẢN PHẨM</h3>
+            <h3 id="header-title" class="mb-3">XÁC NHẬN XÓA SẢN PHẨM</h3>
           </header>
           <!-- Modal footer -->
-          <div class="modal-footer" id="modal-footer">
-            <button id="btnThemNV" type="button" class="btn btn-primary">Thêm sản phẩm</button>
-            <button id="btnCapNhat" type="button" class="btn btn-success">Cập nhật sản phẩm</button>
-            <button id="btnDong" type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+          <div class="modal-footer justify-content-center" id="modal-footer">
+            <button id="btnCapNhat" type="button" class="btn btn-danger">Xóa</button>
+            <button id="btnDong" type="button" class="btn btn-success" data-bs-dismiss="modal">Hủy</button>
           </div>
         </div>
       </div>

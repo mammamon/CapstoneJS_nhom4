@@ -69,6 +69,7 @@ document.querySelector('#btnAdd').onclick = async function () {
       .then(function () {
         getProductList();
         alert('Tạo sản phẩm thành công');
+        document.querySelector('#product-modal').style.display = 'none';
       })
       .catch(function () {
         alert('Tạo sản phẩm thất bại');
@@ -91,6 +92,8 @@ function deleteProduct(productName) {
       .catch(function () {
         alert('Xóa sản phẩm thất bại')
       })
+  } else {
+    event.preventDefault();
   }
 };
 
@@ -109,6 +112,7 @@ document.querySelector('#btnEdit').onclick = async function () {
       .then(function () {
         getProductList();
         alert('Cập nhật sản phẩm thành công');
+        document.querySelector('#product-modal').style.display = 'none';
       })
       .catch(function () {
         alert('Cập nhật sản phẩm thất bại');
@@ -129,7 +133,6 @@ function editProduct(name) {
     .then(function (result) {
       const data = result.data;
       document.querySelector('#name').value = data.name;
-      document.querySelector('#name').disabled = true;
       document.querySelector('#title').value = data.title;
       document.querySelector('#image').value = data.image;
       document.querySelector('#price').value = data.price;
@@ -158,6 +161,7 @@ function editProduct(name) {
       document.querySelector("#option_addHdd").value = data.option.addHDD;
       document.querySelector("#option_addRam").value = data.option.addRam;
       document.querySelector("#option_addStand").value = data.option.addStand;
+      document.querySelector("#form").reset();
     })
     .catch(function () {
       alert('Lỗi lấy thông tin sản phẩm');

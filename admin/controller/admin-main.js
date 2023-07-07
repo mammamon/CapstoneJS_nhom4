@@ -7,7 +7,7 @@ function getProductList() {
   promise
     .then(function (result) {
       console.log('result: ', result.data)
-      renderProducts(result)
+      renderProductList(result)
     })
     .catch(function (error) {
       console.log(error)
@@ -15,8 +15,9 @@ function getProductList() {
 }
 getProductList();
 
+
 //lấy thông tin Product
-document.getElementById('btnAdd').onclick = function () {
+function getInput() {
   let name = document.getElementById("name").value;
   let title = document.getElementById("title").value;
   let image = document.getElementById("image").value;
@@ -48,10 +49,119 @@ document.getElementById('btnAdd').onclick = function () {
   option["addHDD"] = document.getElementById("option_addHdd").value;
   option["addRam"] = document.getElementById("option_addRam").value;
   option["addStand"] = document.getElementById("option_addStand").value;
-  // check valid có kiểm tra trùng name
   let product = new Product(name, title, image, price, speed, branch, type, color, paper, spec, option, description)
   console.log(product);
   return product;
+}
+
+// Thêm sản phẩm
+document.querySelector('#btnAdd').onclick = async function () {
+  // Lấy thông tin product
+  let product = getInput();
+  const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, product.type, product.color, product.paper, product.description, true);
+  if (isValid) {
+    let promise = axios({
+      url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
+      method: 'POST',
+      data: product,
+    })
+    promise
+      .then(function () {
+        getProductList();
+        alert('Tạo sản phẩm thành công');
+      })
+      .catch(function () {
+        alert('Tạo sản phẩm thất bại');
+      })
+  } else {
+    alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
+  }
+};
+// Xóa sản phẩm
+function deleteProduct(productName) {
+  if (confirm(`Xác nhận xóa sản phẩm ${productName}?`)) {
+    let promise = axios({
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${productName}`,
+      method: 'DELETE',
+    })
+    promise
+      .then(function () {
+        getProductList();
+      })
+      .catch(function () {
+        alert('Xóa sản phẩm thất bại')
+      })
+  }
+};
+
+//sửa sản phẩm
+document.querySelector('#btnEdit').onclick = async function () {
+  // Lấy thông tin product
+  let product = getInput();
+  const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, false);
+  if (isValid) {
+    let promise = axios({
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${product.name}`,
+      method: 'PUT',
+      data: product
+    })
+    promise
+      .then(function () {
+        getProductList();
+        alert('Cập nhật sản phẩm thành công');
+      })
+      .catch(function () {
+        alert('Cập nhật sản phẩm thất bại');
+      })
+  } else {
+    alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
+  }
+};
+
+function editProduct(name) {
+  // Ẩn nút thêm hiện nút cập nhật
+  document.querySelector("#btnEdit").style.display = "inline-block";
+  document.querySelector("#btnAdd").style.display = "none";
+  axios({
+    url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${name}`,
+    method: 'GET',
+  })
+    .then(function (result) {
+      const data = result.data;
+      document.querySelector('#name').value = data.name;
+      document.querySelector('#name').disabled = true;
+      document.querySelector('#title').value = data.title;
+      document.querySelector('#image').value = data.image;
+      document.querySelector('#price').value = data.price;
+      document.querySelector('#speed').value = data.speed;
+      let branchRadios = document.querySelectorAll(".branch:checked");
+      if (branchRadios.length > 0) {
+        branch = branchRadios[0].value;
+      } else {
+        branch = document.getElementById("branch_other").value;
+      }
+      document.querySelector('#branch').value = branch;
+      document.querySelector('.type[value="' + data.type + '"]').checked = true;
+      document.querySelector('.color[value="' + data.color + '"]').checked = true;
+      document.querySelector('.paper[value="' + data.paper + '"]').checked = true;
+      document.querySelector('#description').value = data.description;
+      document.querySelector("#spec_RAM").value = data.spec.RAM;
+      document.querySelector("#spec_HDD").value = data.spec.HDD;
+      document.querySelector("#spec_DPI").value = data.spec.DPI;
+      document.querySelector("#spec_tray").value = data.spec.tray;
+      document.querySelector("#spec_warmUpTime").value = data.spec.warmUpTime;
+      document.querySelector("#option_DSPF").value = data.option.DSPF;
+      document.querySelector("#option_RSPF").value = data.option.RSPF;
+      document.querySelector("#option_finisher").value = data.option.finisher;
+      document.querySelector("#option_fax").value = data.option.fax;
+      document.querySelector("#option_solution").value = data.option.solution;
+      document.querySelector("#option_addHdd").value = data.option.addHDD;
+      document.querySelector("#option_addRam").value = data.option.addRam;
+      document.querySelector("#option_addStand").value = data.option.addStand;
+    })
+    .catch(function () {
+      alert('Lỗi lấy thông tin sản phẩm');
+    })
 }
 
 
@@ -70,6 +180,22 @@ branchOtherInput.addEventListener('click', () => {
 });
 // ẩn nút cập nhật hiện nút thêm
 document.getElementById('btn-modal').onclick = function () {
-  document.getElementById('btnAdd').style.display = 'block';
-  document.getElementById('btnUpdate').style.display = 'none';
+  document.getElementById('btnAdd').style.display = 'inline-block';
+  document.getElementById('btnEdit').style.display = 'none';
 };
+
+// reset các đoạn text thông báo mỗi khi đóng modal
+var modal = document.getElementById("product-modal");
+var observer = new MutationObserver(function (mutations) {
+  for (var i = 0; i < mutations.length; i++) {
+    var mutation = mutations[i];
+    if (mutation.attributeName === "style" && modal.style.display === "none") {
+      var checks = modal.querySelectorAll(".check");
+      for (var j = 0; j < checks.length; j++) {
+        var check = checks[j];
+        check.innerHTML = "";
+      }
+    }
+  }
+});
+observer.observe(modal, { attributes: true });

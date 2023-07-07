@@ -87,7 +87,7 @@ $admin-sidebar-width: 50px;
     }
     .product-group-manage {
         @include center;
-        #btnEdit {
+        #btn-modal-edit {
             color: $primaryColor;
         }
         #btnDelete {

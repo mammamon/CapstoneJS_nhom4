@@ -238,7 +238,7 @@ form {
   justify-content: center;
   align-items: center;
 }
-.admin__main .product-group-manage #btnEdit {
+.admin__main .product-group-manage #btn-modal-edit {
   color: #e8c400;
 }
 .admin__main .product-group-manage #btnDelete {

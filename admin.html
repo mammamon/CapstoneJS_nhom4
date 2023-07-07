@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="./asset/css/style.css">
 </head>
 
-<body style="background-color: #e8e8e8;">
-  <div class="admin__header__wrapper container-fluid sticky-top">
+<body style="background-color: #e8e8e8;" class="pe-0 overflow-visible">
+  <div class="admin__header__wrapper container-fluid sticky-top me-0 pe-0">
     <div class="admin__header d-flex container align-items-center">
       <div class="logo">
         <h3>GIA THINH COPIER</h3>
@@ -76,30 +76,6 @@
             </tr>
           </thead>
           <tbody id="product-table-admin" class="text-center">
-            <tr>
-              <td class="product-group-avatar">
-                <h4 style="font-weight: 700;">BP-50C26</h4>
-                <img class="product-img my-2" src="./asset/img/RICOH/MPC2004SP-300x300.jpg">
-                <h4 style="color: red; font-weight: 600;"><span>999999999</span> VNĐ</h4>
-              </td>
-              <td class="product-group-detail text-start">
-                  <h4>Hãng: <span>RICOH</span></h4>
-                  <h4>Tốc độ in: <span>35</span> ppm</h4>
-                  <h4>Loại: <span>copier</span></h4>
-                  <h4>Màu In: <span>màu</span></h4>
-                  <h4>Khổ giấy: <span>A3</span></h4>
-              </td>
-              <td class="product-group-desc">
-                <h4 style="color:red;font-weight: 600;"><span>Máy in RICOH A350-2377</span></h4>
-                <h4><span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus provident praesentium earum dolores quae voluptatem culpa exercitationem harum architecto ad.</span></h4>
-              </td>
-              <td class="product-group-manage">
-                <a id="btnEdit" class="me-4" data-bs-toggle="modal" data-bs-target="#product-modal" href=""><i class="fa-solid fa-pencil"></i></a>
-                <a id="btnDelete" data-bs-toggle="modal" data-bs-target="#product-modal-delete" href=""><i
-                    class="fa-solid fa-trash"></i></a>
-              </td>
-            </tr>
-            
           </tbody>
         </table>
       </div>
@@ -123,8 +99,8 @@
                 </div>
                 <span class="check" id="check-name"></span>
               </div>
-               <!-- TIÊU ĐỀ -->
-               <div class="form-group">
+              <!-- TIÊU ĐỀ -->
+              <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-t"></i></span>
@@ -173,15 +149,15 @@
                   </div>
                   <div class="form-control">
                     <input type="radio" class="branch" id="branch_sharp" name="branch" value="SHARP" checked>
-                    <label for="printer" class="me-4">SHARP</label>
+                    <label class="me-4">SHARP</label>
                     <input type="radio" class="branch" id="branch_ricoh" name="branch" value="RICOH">
-                    <label for="copier" class="me-4">RICOH</label>
+                    <label class="me-4">RICOH</label>
                     <input type="radio" class="branch" id="branch_hp" name="branch" value="HP">
-                    <label for="copier" class="me-4">HP</label>
+                    <label class="me-4">HP</label>
                     <div class="input-group" style="width: 103.8%;">
-                    <input type="text" id="branch_other" name="branch" class="form-control input-sm mt-2"
-                    placeholder="Khác (nhập tên hãng)">
-                    </div>   
+                      <input type="text" id="branch_other" name="branch" class="form-control input-sm mt-2"
+                        placeholder="Khác (nhập tên hãng)">
+                    </div>
                   </div>
                 </div>
                 <span class="check" id="check-branch"></span>
@@ -190,13 +166,13 @@
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" style="width:80px"><i
-                        class="fa-solid fa-print mx-2"></i><label for="type">Loại</label></span>
+                    <span class="input-group-text" style="width:80px"><i class="fa-solid fa-print mx-2"></i><label
+                        for="type">Loại</label></span>
                   </div>
                   <div class="form-control">
-                    <input type="radio" class="type" id="type_printer" name="type" value="printer" checked>
+                    <input type="radio" class="type" id="type_printer" name="type" value="máy in" checked>
                     <label for="printer" class="pe-4">Máy in</label>
-                    <input type="radio" class="type" id="type_copier" name="type" value="copier">
+                    <input type="radio" class="type" id="type_copier" name="type" value="máy photocopy">
                     <label for="copier">Máy photocopy</label>
                   </div>
                 </div>
@@ -238,42 +214,52 @@
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend" style="width: 110px;">
-                    <span class="input-group-text justify-content-start mb-1" style="width: inherit; border-radius: 6px;"><i class ="fa-solid fa-pen-ruler mx-2"></i>Thông số</span>
+                    <span class="input-group-text justify-content-start mb-1"
+                      style="width: inherit; border-radius: 6px;"><i class="fa-solid fa-pen-ruler mx-2"></i>Thông
+                      số</span>
                   </div>
-                  <div class="d-flex"> 
-                  <div class="pe-1">
-                  <input type="text" id="spec_RAM" class="spec form-control ontrol input-sm mb-1" placeholder="RAM">
-                  <input type="text" id="spec_HDD" class="spec form-control input-sm mb-1" placeholder="HDD">
-                  <input type="text" id="spec_DPI" class="spec form-control input-sm" placeholder="DPI">
+                  <div class="d-flex">
+                    <div class="pe-1">
+                      <input type="text" id="spec_RAM" class="spec form-control ontrol input-sm mb-1" placeholder="RAM">
+                      <input type="text" id="spec_HDD" class="spec form-control input-sm mb-1" placeholder="HDD">
+                      <input type="text" id="spec_DPI" class="spec form-control input-sm" placeholder="DPI">
+                    </div>
+                    <div class="ps-1">
+                      <input type="text" id="spec_tray" class="spec form-control input-sm mb-1" placeholder="Khay">
+                      <input type="text" id="spec_warmUpTime" class="spec form-control input-sm"
+                        placeholder="Thời gian khởi động">
+                    </div>
                   </div>
-                  <div class="ps-1">
-                    <input type="text" id="spec_tray" class="spec form-control input-sm mb-1" placeholder="Khay">
-                    <input type="text" id="spec_warmUpTime" class="spec form-control input-sm" placeholder="Thời gian khởi động">
-                  </div>
-                </div>
                 </div>
                 <span class="check" id="check-spec"></span>
               </div>
-               <!-- TÙY CHỌN -->
-               <div class="form-group">
+              <!-- TÙY CHỌN -->
+              <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend" style="width: 110px;">
-                    <span class="input-group-text justify-content-start mb-1" style="width: inherit; border-radius: 6px;"><i class ="fa-solid fa-circle-plus mx-2"></i>Tùy chọn</span>
+                    <span class="input-group-text justify-content-start mb-1"
+                      style="width: inherit; border-radius: 6px;"><i class="fa-solid fa-circle-plus mx-2"></i>Tùy
+                      chọn</span>
                   </div>
                   <div class="d-flex">
-                  <div class="pe-1">
-                  <input type="text" id="option_DSPF" class="option form-control input-sm  mb-1" placeholder="DSPF">
-                  <input type="text" id="option_RSPF" class="option form-control input-sm  mb-1" placeholder="RSPF">
-                  <input type="text" id="option_finisher" class="option form-control input-sm  mb-1" placeholder="Finisher">
-                  <input type="text" id="option_fax" class="option form-control input-sm" placeholder="Fax">
+                    <div class="pe-1">
+                      <input type="text" id="option_DSPF" class="option form-control input-sm  mb-1" placeholder="DSPF">
+                      <input type="text" id="option_RSPF" class="option form-control input-sm  mb-1" placeholder="RSPF">
+                      <input type="text" id="option_finisher" class="option form-control input-sm  mb-1"
+                        placeholder="Finisher">
+                      <input type="text" id="option_fax" class="option form-control input-sm" placeholder="Fax">
+                    </div>
+                    <div class="pe-1">
+                      <input type="text" id="option_solution" class="option form-control input-sm  mb-1"
+                        placeholder="Solution">
+                      <input type="text" id="option_addHdd" class="option form-control input-sm  mb-1"
+                        placeholder="Thêm Hdd">
+                      <input type="text" id="option_addRam" class="option form-control input-sm  mb-1"
+                        placeholder="Thêm RAM">
+                      <input type="text" id="option_addStand" class="option form-control input-sm"
+                        placeholder="Thêm stand">
+                    </div>
                   </div>
-                  <div class="pe-1">
-                    <input type="text" id="option_solution" class="option form-control input-sm  mb-1" placeholder="Solution">
-                    <input type="text" id="option_addHdd" class="option form-control input-sm  mb-1" placeholder="Thêm Hdd">
-                    <input type="text" id="option_addRam" class="option form-control input-sm  mb-1" placeholder="Thêm RAM">
-                    <input type="text" id="option_addStand" class="option form-control input-sm" placeholder="Thêm stand">
-                  </div>
-                </div>
                 </div>
                 <span class="check" id="check-option"></span>
               </div>
@@ -284,7 +270,7 @@
                     <span class="input-group-text justify-content-start mb-1" style="width:100px;border-radius: 6px;"><i
                         class="fa-solid fa-message mx-2"></i><label for="description">Mô tả</label></span>
                   </div>
-                  <textarea id="description" name="description" rows="4" cols="44"></textarea>
+                  <textarea id="description" name="description" rows="4" class="w-100"></textarea>
                   <span class="check" id="check-description"></span>
                 </div>
               </div>
@@ -294,23 +280,8 @@
           <!-- Modal footer -->
           <div class="modal-footer" id="modal-footer">
             <button id="btnAdd" type="button" class="btn btn-primary">Thêm sản phẩm</button>
-            <button id="btnUpdate" type="button" class="btn btn-success">Cập nhật sản phẩm</button>
+            <button id="btnEdit" type="button" class="btn btn-success">Cập nhật sản phẩm</button>
             <button id="btnClose" type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- CONFIRM DELETE MODAL -->
-    <div class="modal fade" id="product-modal-delete">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <header class="head-form mt-3 text-center">
-            <h3 id="header-title" class="mb-3">XÁC NHẬN XÓA SẢN PHẨM</h3>
-          </header>
-          <!-- Modal footer -->
-          <div class="modal-footer justify-content-center" id="modal-footer">
-            <button id="btnCapNhat" type="button" class="btn btn-danger">Xóa</button>
-            <button id="btnDong" type="button" class="btn btn-success" data-bs-dismiss="modal">Hủy</button>
           </div>
         </div>
       </div>
@@ -345,6 +316,7 @@
   <script src="./admin/controller/admin-main.js"></script>
   <!-- MAIN JS -->
   <script src="./asset/js/main.js"></script>
+
 
 </body>
 

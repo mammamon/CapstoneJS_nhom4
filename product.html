@@ -40,14 +40,12 @@
 </head>
 
 <body>
-    <h1>HEADING 1</h1>
-    <h2>HEADING 2</h2>
-    <h3>HEADING 3</h3>
-    <h4>HEADING 4</h4>
-    <h5>HEADING 5</h5>
-    <h6>HEADING 6</h6>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis reiciendis, porro est iste iure fugiat? á ă
-        à</p>
+    <div id="productInfo">
+        <h2 id="productName"></h2>
+        <p id="productDescription"></p>
+        <p id="productPrice"></p>
+        <!-- Add more elements to display other product details -->
+      </div>
     <!-- IMPORT SCRIPTS -->
     <!-- JQUERY V3.6.4 -->
     <script src="./asset/js/jquery-3.6.4.min.js"></script>
@@ -68,6 +66,29 @@
     </script>
     <!-- MAIN JS -->
     <script src="./asset/js/main.js"></script>
+    <!-- Product Script -->
+    <script>
+        // Fetch product data
+        const productId = getProductIdFromURL(); // Implement this function to retrieve the product ID from the URL parameters
+        fetchProductData(productId);
+    
+        function fetchProductData(productId) {
+          // Make a GET request to fetch the product data from the API
+          fetch(`https://649d36a19bac4a8e669d62a2.mockapi.io/product/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+              // Populate the page with product data
+              document.getElementById("productName").innerText = product.name;
+              document.getElementById("productDescription").innerText = product.description;
+              document.getElementById("productPrice").innerText = `Price: ${product.price}`;
+              // Update other elements with the remaining product details
+            })
+            .catch(error => {
+              console.log(error);
+              alert('Failed to fetch product data');
+            });
+        }
+      </script>
 </body>
 
 </html>

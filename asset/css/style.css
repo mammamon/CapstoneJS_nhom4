@@ -247,4 +247,7 @@ form {
 }
 .admin__main .product-group-manage i {
   font-size: 1.25rem;
+}
+.admin__main .product-group-manage #btnUrl {
+  color: #0cb1ee;
 }/*# sourceMappingURL=style.css.map */

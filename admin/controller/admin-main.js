@@ -1,4 +1,5 @@
 //get product data từ mockAPI
+let idProduct;
 function getProductList() {
   let promise = axios({
     url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
@@ -18,74 +19,77 @@ getProductList();
 
 //lấy thông tin Product
 function getInput() {
-  let name = document.getElementById("name").value;
-  let title = document.getElementById("title").value;
-  let image = document.getElementById("image").value;
-  let price = +document.getElementById("price").value;
-  let speed = +document.getElementById("speed").value;
+  let id = "";
+  let name = $("#name").val();
+  let title = $("#title").val();
+  let image = $("#image").val();
+  let price = +$("#price").val();
+  let speed = +$("#speed").val();
   let branch = "";
-  let branchRadios = document.querySelectorAll(".branch:checked");
+  let branchRadios = $(".branch:checked");
   if (branchRadios.length > 0) {
-    branch = branchRadios[0].value;
+    branch = branchRadios.first().val();
   } else {
-    branch = document.getElementById("branch_other").value;
+    branch = $("#branch_other").val();
   }
-  let type = document.querySelector(".type:checked").value;
-  let color = document.querySelector(".color:checked").value;
-  let paper = document.querySelector(".paper:checked").value;
+  let type = $(".type:checked").val();
+  let color = $(".color:checked").val();
+  let paper = $(".paper:checked").val();
   let spec = {};
   let option = {};
-  let description = document.getElementById("description").value;
-  spec["RAM"] = document.getElementById("spec_RAM").value;
-  spec["HDD"] = document.getElementById("spec_HDD").value;
-  spec["DPI"] = document.getElementById("spec_DPI").value;
-  spec["tray"] = document.getElementById("spec_tray").value;
-  spec["warmUpTime"] = document.getElementById("spec_warmUpTime").value;
-  option["DSPF"] = document.getElementById("option_DSPF").value;
-  option["RSPF"] = document.getElementById("option_RSPF").value;
-  option["finisher"] = document.getElementById("option_finisher").value;
-  option["fax"] = document.getElementById("option_fax").value;
-  option["solution"] = document.getElementById("option_solution").value;
-  option["addHDD"] = document.getElementById("option_addHdd").value;
-  option["addRam"] = document.getElementById("option_addRam").value;
-  option["addStand"] = document.getElementById("option_addStand").value;
-  let product = new Product(name, title, image, price, speed, branch, type, color, paper, spec, option, description)
+  let description = $("#description").val();
+  spec["RAM"] = $("#spec_RAM").val();
+  spec["HDD"] = $("#spec_HDD").val();
+  spec["DPI"] = $("#spec_DPI").val();
+  spec["tray"] = $("#spec_tray").val();
+  spec["warmUpTime"] = $("#spec_warmUpTime").val();
+  option["DSPF"] = $("#option_DSPF").val();
+  option["RSPF"] = $("#option_RSPF").val();
+  option["finisher"] = $("#option_finisher").val();
+  option["fax"] = $("#option_fax").val();
+  option["solution"] = $("#option_solution").val();
+  option["addHDD"] = $("#option_addHdd").val();
+  option["addRam"] = $("#option_addRam").val();
+  option["addStand"] = $("#option_addStand").val();
+  let product = new Product(name, title, image, price, speed, branch, type, color, paper, spec, option, description, id);
   console.log(product);
   return product;
 }
 
 // Tạo sản phẩm
 document.querySelector('#btnAdd').onclick = async function () {
-  // Lấy thông tin product
   let product = getInput();
-  const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, product.type, product.color, product.paper, product.description, true);
-  if (isValid){
+  const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, true);
+  console.log(isValid);
+  if (isValid) {
     let promise = axios({
       url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
       method: 'POST',
       data: product,
-    })
-    console.log(isValid);
+    });
     promise
-      .then(function () {
+      .then(function (result) {
+        let createdProduct = result.data;
+        console.log(createdProduct);
         getProductList();
         alert('Tạo sản phẩm thành công');
         document.querySelector('#btnClose').click();
       })
       .catch(function () {
         alert('Tạo sản phẩm thất bại');
-      })
+      });
   } else {
     alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
   }
-};
+}
+
 // Xóa sản phẩm
 function deleteProduct(id) {
   if (confirm(`Xác nhận xóa sản phẩm ${id}?`)) {
     let promise = axios({
-      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}`,
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Date.now()}`,
       method: 'DELETE',
-    })
+    });
     promise
       .then(function () {
         getProductList();
@@ -105,7 +109,7 @@ document.querySelector('#btnEdit').onclick = async function () {
   const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, false);
   if (isValid) {
     let promise = axios({
-      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${product.name}`,
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${product.id}`,
       method: 'PUT',
       data: product
     })
@@ -123,46 +127,49 @@ document.querySelector('#btnEdit').onclick = async function () {
   }
 };
 
-function editProduct(name) {
+//lấy lại thông tin sản phẩm để hiện trên modal 
+function editProduct(id) {
   // Ẩn nút thêm hiện nút cập nhật
   document.querySelector("#btnEdit").style.display = "inline-block";
   document.querySelector("#btnAdd").style.display = "none";
-  axios({
-    url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${name}`,
+  let promise = axios({
+    url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}`,
     method: 'GET',
   })
+  promise
     .then(function (result) {
-      const data = result.data;
-      document.querySelector('#name').value = data.name;
-      document.querySelector('#title').value = data.title;
-      document.querySelector('#image').value = data.image;
-      document.querySelector('#price').value = data.price;
-      document.querySelector('#speed').value = data.speed;
+      const product = result.data;
+      idProduct = product.id;
+      document.querySelector('#name').value = product.name;
+      document.querySelector('#title').value = product.title;
+      document.querySelector('#image').value = product.image;
+      document.querySelector('#price').value = product.price;
+      document.querySelector('#speed').value = product.speed;
       let branchRadios = document.querySelectorAll(".branch:checked");
+      let branch;
       if (branchRadios.length > 0) {
         branch = branchRadios[0].value;
       } else {
         branch = document.getElementById("branch_other").value;
       }
       document.querySelector('#branch').value = branch;
-      document.querySelector('.type[value="' + data.type + '"]').checked = true;
-      document.querySelector('.color[value="' + data.color + '"]').checked = true;
-      document.querySelector('.paper[value="' + data.paper + '"]').checked = true;
-      document.querySelector('#description').value = data.description;
-      document.querySelector("#spec_RAM").value = data.spec.RAM;
-      document.querySelector("#spec_HDD").value = data.spec.HDD;
-      document.querySelector("#spec_DPI").value = data.spec.DPI;
-      document.querySelector("#spec_tray").value = data.spec.tray;
-      document.querySelector("#spec_warmUpTime").value = data.spec.warmUpTime;
-      document.querySelector("#option_DSPF").value = data.option.DSPF;
-      document.querySelector("#option_RSPF").value = data.option.RSPF;
-      document.querySelector("#option_finisher").value = data.option.finisher;
-      document.querySelector("#option_fax").value = data.option.fax;
-      document.querySelector("#option_solution").value = data.option.solution;
-      document.querySelector("#option_addHdd").value = data.option.addHDD;
-      document.querySelector("#option_addRam").value = data.option.addRam;
-      document.querySelector("#option_addStand").value = data.option.addStand;
-      document.querySelector("#form").reset();
+      document.querySelector('.type[value="' + product.type + '"]').checked = true;
+      document.querySelector('.color[value="' + product.color + '"]').checked = true;
+      document.querySelector('.paper[value="' + product.paper + '"]').checked = true;
+      document.querySelector('#description').value = product.description;
+      document.querySelector("#spec_RAM").value = product.spec.RAM;
+      document.querySelector("#spec_HDD").value = product.spec.HDD;
+      document.querySelector("#spec_DPI").value = product.spec.DPI;
+      document.querySelector("#spec_tray").value = product.spec.tray;
+      document.querySelector("#spec_warmUpTime").value = product.spec.warmUpTime;
+      document.querySelector("#option_DSPF").value = product.option.DSPF;
+      document.querySelector("#option_RSPF").value = product.option.RSPF;
+      document.querySelector("#option_finisher").value = product.option.finisher;
+      document.querySelector("#option_fax").value = product.option.fax;
+      document.querySelector("#option_solution").value = product.option.solution;
+      document.querySelector("#option_addHdd").value = product.option.addHDD;
+      document.querySelector("#option_addRam").value = product.option.addRam;
+      document.querySelector("#option_addStand").value = product.option.addStand;
     })
     .catch(function () {
       alert('Lỗi lấy thông tin sản phẩm');
@@ -189,7 +196,6 @@ document.getElementById('btn-modal').onclick = function () {
   document.getElementById('btnEdit').style.display = 'none';
 };
 
-//ẩn modal
 
 // reset các đoạn text thông báo mỗi khi đóng modal
 var modal = document.getElementById("product-modal");

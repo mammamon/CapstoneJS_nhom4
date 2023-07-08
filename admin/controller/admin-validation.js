@@ -4,7 +4,7 @@ async function validateInput(name, title, image, price, speed, branch, duplicate
         document.getElementById("check-name").innerHTML = "Không được để trống mã sản phẩm.";
         isValid = false;
     } else {
-        const nameRegex = /^[a-zA-Z0-9-]+$/;
+        const nameRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*-)[a-zA-Z\d-]+$/;
         if (!nameRegex.test(name)) {
             document.getElementById("check-name").innerHTML = "Mã sản phẩm phải bao gồm chữ, số và dấu gạch nối.";
             isValid = false;
@@ -27,7 +27,7 @@ async function validateInput(name, title, image, price, speed, branch, duplicate
         document.getElementById("check-image").innerHTML = "Không được để trống url hình ảnh.";
         isValid = false;
     } else {
-        const imageRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+        const imageRegex = /(http(s?):)([/|.|\w|\s|-])*\/*(\?\S*)?$/g;
         if (!imageRegex.test(image)) {
             document.getElementById("check-image").innerHTML = "Vui lòng nhập url hợp lệ";
             isValid = false;

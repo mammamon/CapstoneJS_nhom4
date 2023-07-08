@@ -54,22 +54,23 @@ function getInput() {
   return product;
 }
 
-// Thêm sản phẩm
+// Tạo sản phẩm
 document.querySelector('#btnAdd').onclick = async function () {
   // Lấy thông tin product
   let product = getInput();
   const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, product.type, product.color, product.paper, product.description, true);
-  if (isValid) {
+  if (isValid){
     let promise = axios({
       url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
       method: 'POST',
       data: product,
     })
+    console.log(isValid);
     promise
       .then(function () {
         getProductList();
         alert('Tạo sản phẩm thành công');
-        document.querySelector('#product-modal').style.display = 'none';
+        document.querySelector('#btnClose').click();
       })
       .catch(function () {
         alert('Tạo sản phẩm thất bại');
@@ -79,10 +80,10 @@ document.querySelector('#btnAdd').onclick = async function () {
   }
 };
 // Xóa sản phẩm
-function deleteProduct(productName) {
-  if (confirm(`Xác nhận xóa sản phẩm ${productName}?`)) {
+function deleteProduct(id) {
+  if (confirm(`Xác nhận xóa sản phẩm ${id}?`)) {
     let promise = axios({
-      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${productName}`,
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}`,
       method: 'DELETE',
     })
     promise
@@ -112,7 +113,7 @@ document.querySelector('#btnEdit').onclick = async function () {
       .then(function () {
         getProductList();
         alert('Cập nhật sản phẩm thành công');
-        document.querySelector('#product-modal').style.display = 'none';
+        document.querySelector('#btnClose').click();
       })
       .catch(function () {
         alert('Cập nhật sản phẩm thất bại');
@@ -187,6 +188,8 @@ document.getElementById('btn-modal').onclick = function () {
   document.getElementById('btnAdd').style.display = 'inline-block';
   document.getElementById('btnEdit').style.display = 'none';
 };
+
+//ẩn modal
 
 // reset các đoạn text thông báo mỗi khi đóng modal
 var modal = document.getElementById("product-modal");

@@ -6,6 +6,7 @@ function renderProductList(result) {
         content += `
         <tr>
         <td class="product-group-avatar">
+          <h4 style="font-weight: 700;">${product.id}</h4>
           <h4 style="font-weight: 700;">${product.name}</h4>
           <img class="product-img my-2" src=${product.image}>
           <h4 style="color: red; font-weight: 600;"><span>${formattedPrice}</span> VNĐ</h4>
@@ -22,8 +23,8 @@ function renderProductList(result) {
           <h4><span>${product.description}</span></h4>
         </td>
         <td class="product-group-manage">
-        <a onclick ="editProduct('${product.name}')" id="btn-modal-edit" class="me-4" data-bs-toggle="modal" data-bs-target="#product-modal" href=""><i class="fa-solid fa-pencil"></i></a>
-        <a onclick ="deleteProduct('${product.name}')" id="btnDelete" href=""><i class="fa-solid fa-trash"></i></a>
+        <a onclick ="editProduct('${product.id}')" id="btn-modal-edit" class="me-4" data-bs-toggle="modal" data-bs-target="#product-modal" href="" alt="sửa"><i class="fa-solid fa-pencil"></i></a>
+        <a onclick ="deleteProduct('${product.id}')" id="btnDelete" href="" alt="xóa"><i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
     `

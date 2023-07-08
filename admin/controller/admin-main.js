@@ -213,28 +213,25 @@ document.getElementById('btn-modal').onclick = function () {
 };
 
 
-// reset các đoạn text thông báo mỗi khi đóng modal
-var modal = document.getElementById("product-modal");
-var observer = new MutationObserver(function (mutations) {
-  for (var i = 0; i < mutations.length; i++) {
-    var mutation = mutations[i];
-    if (mutation.attributeName === "style" && modal.style.display === "none") {
-      var checks = modal.querySelectorAll(".check");
-      for (var j = 0; j < checks.length; j++) {
-        var check = checks[j];
-        check.innerHTML = "";
-      }
+// reset các đoạn text thông báo và valid text mỗi khi đóng modal
+const modal = $("#product-modal")[0];
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.attributeName === "style" && $(modal).css("display") === "none") {
+      $(".check", modal).html("");
+      $("input", modal).val("");
     }
-  }
+  });
 });
 observer.observe(modal, { attributes: true });
 
+
 //tìm kiếm thông tin sản phẩm
 $("#searchTool").on("input", function() {
-  var searchName = $("#searchTool").val().toLowerCase();
-  var tableRows = $("tr");
-  for (var i = 0; i < tableRows.length; i++) {
-    var productInfo = $(tableRows[i]).text().toLowerCase();
+  let searchName = $("#searchTool").val().toLowerCase();
+  let tableRows = $("tbody tr");
+  for (let i = 0; i < tableRows.length; i++) {
+    let productInfo = $(tableRows[i]).text().toLowerCase();
     if (productInfo.includes(searchName)) {
       $(tableRows[i]).show();
     } else {

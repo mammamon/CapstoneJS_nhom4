@@ -1,4 +1,4 @@
-//get product data từ mockAPI
+//lấy data từ mockAPI
 let idProduct;
 function getProductList() {
   let promise = axios({
@@ -17,7 +17,7 @@ function getProductList() {
 getProductList();
 
 
-//lấy thông tin Product
+//lấy thông tin từ người dùng
 function getInput() {
   let id = "";
   let name = $("#name").val();
@@ -56,8 +56,9 @@ function getInput() {
   return product;
 }
 
+
 // Tạo sản phẩm
-document.querySelector('#btnAdd').onclick = async function () {
+$('#btnAdd').on('click', async function () {
   let product = getInput();
   const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, true);
   console.log(isValid);
@@ -73,7 +74,7 @@ document.querySelector('#btnAdd').onclick = async function () {
         console.log(createdProduct);
         getProductList();
         alert('Tạo sản phẩm thành công');
-        document.querySelector('#btnClose').click();
+        $('#btnClose').click();
       })
       .catch(function () {
         alert('Tạo sản phẩm thất bại');
@@ -81,10 +82,11 @@ document.querySelector('#btnAdd').onclick = async function () {
   } else {
     alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
   }
-}
+})
+
 
 // Xóa sản phẩm
-function deleteProduct(id,name) {
+function deleteProduct(id, name) {
   if (confirm(`Xác nhận xóa sản phẩm ${name}?`)) {
     let promise = axios({
       url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Math.random()}`,
@@ -102,8 +104,9 @@ function deleteProduct(id,name) {
   }
 };
 
+
 //sửa sản phẩm
-document.querySelector('#btnEdit').onclick = async function() {
+$('#btnEdit').on('click', async function () {
   // Lấy thông tin product
   let product = getInput();
   const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, false);
@@ -116,18 +119,18 @@ document.querySelector('#btnEdit').onclick = async function() {
       data: product
     });
     promise
-      .then(function() {
+      .then(function () {
         getProductList();
         alert('Cập nhật sản phẩm thành công');
-        document.querySelector('#btnClose').click();
+        $('#btnClose').click();
       })
-      .catch(function() {
+      .catch(function () {
         alert('Cập nhật sản phẩm thất bại');
       });
   } else {
     alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
   }
-};
+});
 
 
 //lấy lại thông tin sản phẩm để hiện trên modal 
@@ -140,7 +143,7 @@ function editProduct(id) {
     method: 'GET',
   });
   promise
-    .then(function(result) {
+    .then(function (result) {
       const product = result.data;
       idProduct = product.id;
       $("#name").val(product.name);
@@ -151,7 +154,7 @@ function editProduct(id) {
       let branchRadios = $(".branch");
       let branch = product.branch;
       let isOtherBranch = true;
-      branchRadios.each(function() {
+      branchRadios.each(function () {
         if ($(this).val() === branch) {
           $(this).prop("checked", true);
           isOtherBranch = false;
@@ -184,50 +187,40 @@ function editProduct(id) {
       $("#option_addRam").val(product.option.addRam);
       $("#option_addStand").val(product.option.addStand);
     })
-    .catch(function() {
+    .catch(function () {
       alert('Lỗi lấy thông tin sản phẩm');
     });
 }
 
 
-
-
-
-// chỉnh branch input
-const branchRadios = document.querySelectorAll('.branch');
-const branchOtherInput = document.querySelector('#branch_other');
-branchRadios.forEach(radio => {
-  radio.addEventListener('click', () => {
-    branchOtherInput.value = '';
-  });
+// điều chỉnh các input value của branch
+$('.branch').on('click', function () {
+  $('#branch_other').val('');
 });
-branchOtherInput.addEventListener('click', () => {
-  branchRadios.forEach(radio => {
-    radio.checked = false;
-  });
+$('#branch_other').on('click', function () {
+  $('.branch').prop('checked', false);
 });
+
 // ẩn nút cập nhật hiện nút thêm
-document.getElementById('btn-modal').onclick = function () {
-  document.getElementById('btnAdd').style.display = 'inline-block';
-  document.getElementById('btnEdit').style.display = 'none';
-};
+$('#btn-modal').on('click', function () {
+  $('#btnAdd').css('display', 'inline-block');
+  $('#btnEdit').css('display', 'none');
+});
 
-
-// reset các đoạn text thông báo và valid text mỗi khi đóng modal
+// reset các đoạn text thông báo và input value mỗi khi đóng modal
 const modal = $("#product-modal")[0];
-const observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
+const observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
     if (mutation.attributeName === "style" && $(modal).css("display") === "none") {
       $(".check", modal).html("");
-      $("input", modal).val("");
+      $("input[type='text'], input[type='number'], textarea", modal).val("");
     }
   });
 });
 observer.observe(modal, { attributes: true });
 
-
 //tìm kiếm thông tin sản phẩm
-$("#searchTool").on("input", function() {
+$("#searchTool").on("input", function () {
   let searchName = $("#searchTool").val().toLowerCase();
   let tableRows = $("tbody tr");
   for (let i = 0; i < tableRows.length; i++) {

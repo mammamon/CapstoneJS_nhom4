@@ -72,6 +72,13 @@ $admin-sidebar-width: 50px;
     .table-responsive {
         background-color: #fff;
         width: 100%;
+        h4 {
+            font-weight: 600;
+        }
+        h4 span {
+            font-weight: 500;
+            color: red;
+        }
 
         .table-title {
             background-color: #fff;

@@ -223,6 +223,13 @@ form {
   background-color: #fff;
   width: 100%;
 }
+.admin__main .table-responsive h4, .admin__main .table-responsive p {
+  font-weight: 600;
+}
+.admin__main .table-responsive h4 span, .admin__main .table-responsive p span {
+  font-weight: 500;
+  color: red;
+}
 .admin__main .table-responsive .table-title {
   background-color: #fff;
   justify-content: space-between;

@@ -84,8 +84,8 @@ document.querySelector('#btnAdd').onclick = async function () {
 }
 
 // Xóa sản phẩm
-function deleteProduct(id) {
-  if (confirm(`Xác nhận xóa sản phẩm ${id}?`)) {
+function deleteProduct(id,name) {
+  if (confirm(`Xác nhận xóa sản phẩm ${name}?`)) {
     let promise = axios({
       url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Math.random()}`,
       method: 'DELETE',

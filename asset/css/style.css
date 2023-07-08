@@ -185,6 +185,13 @@ form {
 .admin__header .logo > * {
   color: #fff;
 }
+.admin__header .searchbox {
+  padding: 6px;
+  width: 60vw;
+}
+.admin__header .searchbox input::placeholder {
+  opacity: 1;
+}
 
 .admin__sidebar {
   background-color: #eee;
@@ -208,25 +215,26 @@ form {
   font-size: 1.25rem;
 }
 
-.admin__main #product-table-admin tr, .admin__main #product-table-admin td {
+.admin__main #product-table-admin tr,
+.admin__main #product-table-admin td {
   height: 140px;
 }
 .admin__main .table-responsive {
-  border-radius: 8px;
   background-color: #fff;
   width: 100%;
 }
 .admin__main .table-responsive .table-title {
-  background-color: #0cb1ee;
+  background-color: #fff;
   justify-content: space-between;
 }
 .admin__main .table-responsive .table-title h3 {
   font-family: "Open Sans", san-serif;
-  color: #fff;
+  color: #1f1f1f;
+  font-weight: 700;
 }
 .admin__main .table-responsive img {
-  width: 60px;
-  height: 40px;
+  width: 80px;
+  height: 60px;
 }
 .admin__main #product-form {
   background-color: #e8e8e8;

@@ -39,34 +39,40 @@
   <link rel="stylesheet" href="./asset/css/style.css">
 </head>
 
-<body style="background-color: #e8e8e8;" class="pe-0 overflow-visible">
-  <div class="admin__header__wrapper container-fluid sticky-top me-0 pe-0">
+<body style="background-color: #e8e8e8;" class="px-0 overflow-visible">
+  <div class="admin__header__wrapper container-fluid sticky-top me-0 px-0">
     <div class="admin__header d-flex container align-items-center">
       <div class="logo">
-        <h3>GIA THINH COPIER</h3>
+        <h3><a href="#">GIA THINH COPIER</a></h3>
         <h4>|Admin|</h4>
       </div>
+      <div class="searchbox">
+        <form class="form-inline d-flex">
+          <input class="form-control rounded-0" id="searchTool" type="text" placeholder="Tìm kiếm sản phẩm (nhập tên, model, giá, hãng,...)" aria-label="Search">
+        </form>
+      </div>
       <div class="switch text-white">
-        <a href="./index.html">Trang chủ</a>
+        <a href="./index.html">Về trang chủ</a>
       </div>
     </div>
   </div>
-  <div class="admin__main container-fluid">
+
+  <div class="admin__main container-fluid px-0">
     <div class="admin__sidebar d-flex justify-content-center">
       <ul class="">
-        <li><a href=""><i class="fa fa-chart-line"></i></a></li>
-        <li><a href=""><i class="fa fa-cubes"></i></a></li>
-        <li><a href=""><i class="fa fa-envelope"></i></a></li>
-        <li><a href=""><i class="fa fa-cog"></i></a></li>
+        <li><a href="" title="Dashboard"><i class="fa fa-chart-line"></i></a></li>
+        <li><a href="" title="Quản lý sản phẩm" style="filter:contrast(1.5)"><i class="fa fa-cubes"></i></a></li>
+        <li><a href="" title="Hộp thư"><i class="fa fa-envelope"></i></a></li>
+        <li><a href="" title="Cài đặt"><i class="fa fa-cog"></i></a></li>
       </ul>
     </div>
     <!-- PRODUCT TABLE -->
     <div class="container py-4">
       <div class="table-responsive">
-        <div class="table-title d-flex align-items-center p-2">
+        <div class="table-title d-flex align-items-center px-3 py-2">
           <h3>QUẢN LÝ SẢN PHẨM</h3>
-          <button id="btn-modal" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-modal"><i
-              class="fa fa-plus"></i>
+          <button id="btn-modal" class="btn" data-bs-toggle="modal" data-bs-target="#product-modal"><i
+              class="fa fa-plus me-1"></i>
             thêm sản phẩm</button>
         </div>
         <table class="table table-hover table-nowrap">
@@ -205,9 +211,9 @@
                         class="fa-solid fa-sticky-note mx-2"></i><label for="paper">Khổ giấy</label></span>
                   </div>
                   <div class="form-control">
-                    <input type="radio" class="paper" id="type_printer" name="paper" value="a3" checked>
+                    <input type="radio" class="paper" id="type_printer" name="paper" value="Tối đa A3" checked>
                     <label for="a3" class="pe-4">Tối đa A3</label>
-                    <input type="radio" class="paper" id="type_copier" name="paper" value="a4">
+                    <input type="radio" class="paper" id="type_copier" name="paper" value="Tối đa A4">
                     <label for="a4">Tối đa A4</label>
                   </div>
                 </div>

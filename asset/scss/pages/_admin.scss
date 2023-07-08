@@ -24,6 +24,16 @@ $admin-sidebar-width: 50px;
         ;
     }
 
+    .searchbox {
+        padding: 6px;
+        width: 60vw;
+    }
+
+    .searchbox input::placeholder {
+        opacity: 1;
+    }
+
+
 }
 
 .admin__sidebar {
@@ -52,29 +62,31 @@ $admin-sidebar-width: 50px;
 
 .admin__main {
     #product-table-admin {
-        tr, td {
+
+        tr,
+        td {
             height: 140px;
         }
     }
-    .table-responsive {
-        border-radius: 8px;
-        background-color: #fff;
 
+    .table-responsive {
+        background-color: #fff;
         width: 100%;
 
         .table-title {
-            background-color: $blue;
+            background-color: #fff;
             justify-content: space-between;
 
             h3 {
                 font-family: $primaryFont;
-                color: #fff;
+                color: $secondaryColor;
+                font-weight: 700;
             }
         }
 
         img {
-            width: 60px;
-            height: 40px;
+            width: 80px;
+            height: 60px;
         }
 
     }
@@ -86,17 +98,22 @@ $admin-sidebar-width: 50px;
     #product-delete-form {
         background-color: $grey;
     }
+
     .product-group-manage {
         @include center;
+
         #btn-modal-edit {
             color: $primaryColor;
         }
+
         #btnDelete {
             color: red;
         }
+
         i {
             font-size: 1.25rem;
         }
+
         #btnUrl {
             color: $blue;
         }

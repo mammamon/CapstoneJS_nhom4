@@ -13,7 +13,7 @@ html {
 
 a,
 a:hover {
-    @include reset-link
+    @include reset-link;
 }
 
 li {

@@ -228,3 +228,17 @@ var observer = new MutationObserver(function (mutations) {
   }
 });
 observer.observe(modal, { attributes: true });
+
+//tìm kiếm thông tin sản phẩm
+$("#searchTool").on("input", function() {
+  var searchName = $("#searchTool").val().toLowerCase();
+  var tableRows = $("tr");
+  for (var i = 0; i < tableRows.length; i++) {
+    var productInfo = $(tableRows[i]).text().toLowerCase();
+    if (productInfo.includes(searchName)) {
+      $(tableRows[i]).show();
+    } else {
+      $(tableRows[i]).hide();
+    }
+  }
+});

@@ -87,7 +87,7 @@ document.querySelector('#btnAdd').onclick = async function () {
 function deleteProduct(id) {
   if (confirm(`Xác nhận xóa sản phẩm ${id}?`)) {
     let promise = axios({
-      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Date.now()}`,
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Math.random()}`,
       method: 'DELETE',
     });
     promise
@@ -103,78 +103,94 @@ function deleteProduct(id) {
 };
 
 //sửa sản phẩm
-document.querySelector('#btnEdit').onclick = async function () {
+document.querySelector('#btnEdit').onclick = async function() {
   // Lấy thông tin product
   let product = getInput();
   const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, false);
+  console.log(isValid)
   if (isValid) {
+    product.id = idProduct;
     let promise = axios({
       url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${product.id}`,
       method: 'PUT',
       data: product
-    })
+    });
     promise
-      .then(function () {
+      .then(function() {
         getProductList();
         alert('Cập nhật sản phẩm thành công');
         document.querySelector('#btnClose').click();
       })
-      .catch(function () {
+      .catch(function() {
         alert('Cập nhật sản phẩm thất bại');
-      })
+      });
   } else {
     alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
   }
 };
 
+
 //lấy lại thông tin sản phẩm để hiện trên modal 
 function editProduct(id) {
   // Ẩn nút thêm hiện nút cập nhật
-  document.querySelector("#btnEdit").style.display = "inline-block";
-  document.querySelector("#btnAdd").style.display = "none";
+  $("#btnEdit").css("display", "inline-block");
+  $("#btnAdd").css("display", "none");
   let promise = axios({
-    url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}`,
+    url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Math.random()}`,
     method: 'GET',
-  })
+  });
   promise
-    .then(function (result) {
+    .then(function(result) {
       const product = result.data;
       idProduct = product.id;
-      document.querySelector('#name').value = product.name;
-      document.querySelector('#title').value = product.title;
-      document.querySelector('#image').value = product.image;
-      document.querySelector('#price').value = product.price;
-      document.querySelector('#speed').value = product.speed;
-      let branchRadios = document.querySelectorAll(".branch:checked");
-      let branch;
-      if (branchRadios.length > 0) {
-        branch = branchRadios[0].value;
+      $("#name").val(product.name);
+      $("#title").val(product.title);
+      $("#image").val(product.image);
+      $("#price").val(product.price);
+      $("#speed").val(product.speed);
+      let branchRadios = $(".branch");
+      let branch = product.branch;
+      let isOtherBranch = true;
+      branchRadios.each(function() {
+        if ($(this).val() === branch) {
+          $(this).prop("checked", true);
+          isOtherBranch = false;
+        } else {
+          $(this).prop("checked", false);
+        }
+      });
+      if (isOtherBranch) {
+        $("#branch_other").val(branch);
+        $("#branch_other").prop("checked", true);
       } else {
-        branch = document.getElementById("branch_other").value;
+        $("#branch_other").val("");
+        $("#branch_other").prop("checked", false);
       }
-      document.querySelector('#branch').value = branch;
-      document.querySelector('.type[value="' + product.type + '"]').checked = true;
-      document.querySelector('.color[value="' + product.color + '"]').checked = true;
-      document.querySelector('.paper[value="' + product.paper + '"]').checked = true;
-      document.querySelector('#description').value = product.description;
-      document.querySelector("#spec_RAM").value = product.spec.RAM;
-      document.querySelector("#spec_HDD").value = product.spec.HDD;
-      document.querySelector("#spec_DPI").value = product.spec.DPI;
-      document.querySelector("#spec_tray").value = product.spec.tray;
-      document.querySelector("#spec_warmUpTime").value = product.spec.warmUpTime;
-      document.querySelector("#option_DSPF").value = product.option.DSPF;
-      document.querySelector("#option_RSPF").value = product.option.RSPF;
-      document.querySelector("#option_finisher").value = product.option.finisher;
-      document.querySelector("#option_fax").value = product.option.fax;
-      document.querySelector("#option_solution").value = product.option.solution;
-      document.querySelector("#option_addHdd").value = product.option.addHDD;
-      document.querySelector("#option_addRam").value = product.option.addRam;
-      document.querySelector("#option_addStand").value = product.option.addStand;
+      $(".type[value='" + product.type + "']").prop("checked", true);
+      $(".color[value='" + product.color + "']").prop("checked", true);
+      $(".paper[value='" + product.paper + "']").prop("checked", true);
+      $("#description").val(product.description);
+      $("#spec_RAM").val(product.spec.RAM);
+      $("#spec_HDD").val(product.spec.HDD);
+      $("#spec_DPI").val(product.spec.DPI);
+      $("#spec_tray").val(product.spec.tray);
+      $("#spec_warmUpTime").val(product.spec.warmUpTime);
+      $("#option_DSPF").val(product.option.DSPF);
+      $("#option_RSPF").val(product.option.RSPF);
+      $("#option_finisher").val(product.option.finisher);
+      $("#option_fax").val(product.option.fax);
+      $("#option_solution").val(product.option.solution);
+      $("#option_addHdd").val(product.option.addHDD);
+      $("#option_addRam").val(product.option.addRam);
+      $("#option_addStand").val(product.option.addStand);
     })
-    .catch(function () {
+    .catch(function() {
       alert('Lỗi lấy thông tin sản phẩm');
-    })
+    });
 }
+
+
+
 
 
 // chỉnh branch input

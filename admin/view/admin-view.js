@@ -22,7 +22,7 @@ function renderProductList(result) {
             <h4 style="font-weight:400">${product.description}</h4>
           </td>
           <td class="product-group-manage">
-          <a href="./product.html/${product.id}" id=btnUrl class="me-4" target="_blank" title="đi tới trang riêng"><i class="fa-solid fa-receipt"></i></a>
+          <a href="./product.html/${product.name}" id=btnUrl class="me-4" target="_blank" title="đi tới trang riêng"><i class="fa-solid fa-receipt"></i></a>
             <a onclick="editProduct('${product.id}')" id="btn-modal-edit" class="me-4" data-bs-toggle="modal" data-bs-target="#product-modal" href="" title="sửa"><i class="fa-solid fa-file-pen"></i></a>
             <a onclick="deleteProduct('${product.id}','${product.name}')" id="btnDelete" href="" title="xóa"><i class="fa-solid fa-trash"></i></a>
           </td>

@@ -300,15 +300,6 @@ form {
   position: relative;
   width: 200px;
 }
-.product .product-zone .product-price #price-original {
-  text-decoration: line-through;
-  font-weight: 400;
-  font-size: 1rem;
-  color: gray;
-  position: absolute;
-  bottom: 2px;
-  right: 0;
-}
 .product .product-zone .product-price #price {
   font-size: 1.5rem;
   color: red;

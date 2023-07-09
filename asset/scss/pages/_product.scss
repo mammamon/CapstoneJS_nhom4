@@ -26,17 +26,6 @@ $product-rounded: 8px;
         .product-price {
             position: relative;
             width: 200px;
-
-            #price-original {
-                text-decoration: line-through;
-                font-weight: 400;
-                font-size: 1rem;
-                color: gray;
-                position: absolute;
-                bottom: 2px;
-                right: 0;
-            }
-
             #price {
                 font-size: 1.5rem;
                 color: red;

@@ -1,4 +1,4 @@
-// your-script.js
+// product.js
 // Initialize Page.js
 page();
 
@@ -10,11 +10,15 @@ page('/child/:id', productPage);
 
 // Define the handler function for the product page and child links
 function productPage(ctx) {
-  // Load the product.html file and display it in your application
-  // This can be done using an AJAX request or by simply redirecting to the product.html page
-  // Make sure to replace ":id" with the actual product ID in the URL
-  var productUrl = 'product.html';  // or use an absolute path if necessary
-  window.location.href = productUrl;
+  // Fetch the contents of product.html using Axios
+  axios.get('product.html')
+    .then(function (response) {
+      // Update the current page's HTML with the fetched content
+      $('html').html(response.data);
+    })
+    .catch(function (error) {
+      console.error('Error fetching product.html:', error);
+    });
 }
 
 // Start Page.js

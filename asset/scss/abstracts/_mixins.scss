@@ -14,6 +14,16 @@
     height: $square;
 }
 
+@mixin border($top, $right, $bottom, $left, $style, $color, $round) {
+    border-top: $top;
+    border-right: $right;
+    border-bottom: $bottom;
+    border-left: $left;
+    border-style: $style;
+    border-color: $color;
+    border-radius: $round;
+  }
+
 @mixin transform($property) {
     -webkit-transform: $property;
     -ms-transform: $property;

@@ -29,8 +29,8 @@
     <!-- BOOTSTRAP V5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <!-- SWIPER v9.3.1 -->
-    <link rel="stylesheet" href="./asset/css/swiper-bundle.min.css">
+    <!-- SWIPER v10.0 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- FANCYBOX v4.0.31 -->
     <link rel="stylesheet" href="./asset/css/fancybox.css">
     <!-- ANIMATE v4.1.1 -->
@@ -40,12 +40,143 @@
 </head>
 
 <body>
-    <div id="productInfo">
-        <h2 id="productName"></h2>
-        <p id="productDescription"></p>
-        <p id="productPrice"></p>
-        <!-- Add more elements to display other product details -->
-      </div>
+    <!-- header -->
+    <div class="container product p-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page" id="product-name">Tên sản phẩm</li>
+            </ol>
+        </nav>
+        <div class="container d-flex p-0 m-0">
+            <div class="col-10 product-zone d-flex">
+                <div class="col-5 product-image p-3">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="wow" src="./asset/img/RICOH/Ricoh_M2700M2701.jpg" alt="" data-thumb=""
+                                    data-fancybox="gallery" href="./asset/img/RICOH/Ricoh_M2700M2701.jpg"
+                                    data-caption="RICOH">
+                            </div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="col-7 product-details">
+                    <div class="product-promote">
+                        <div class="product-header">
+                            <h4 id="branch">Hãng sản xuất: SHARP</h4>
+                            <h2 id="title">máy in đa chức năng MX AM 2019 full màu hdcolor</h4>
+                                <div class="rating">
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="half-star"><i class="fas fa-star-half-alt"></i></span>
+                                    <span class="rating-score">(4.5)</span>
+                                </div>
+                        </div>
+                        <div class="product-main">
+                            <div class="product-price d-flex">
+                                <h4 id="price">200000</h4>
+                                <h4 id="price-original">200000</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="container d-flex p-0 m-0">
+            <div class="table-responsive col-10">
+                <div class="table-title d-flex align-items-center px-3 py-2">
+                    <h3>THÔNG TIN CHI TIẾT</h3>
+                </div>
+                <table class="table table-hover table-nowrap">
+                    <tr>
+                        <td>Hãng sản xuất</td>
+                        <td>Ricoh</td>
+                    </tr>
+                    <tr>
+                        <td>Tốc độ in</td>
+                        <td>28 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>Loại</td>
+                        <td>Máy photocopy</td>
+                    </tr>
+                    <tr>
+                        <td>In màu</td>
+                        <td>Có màu</td>
+                    </tr>
+                    <tr>
+                        <td>Khổ giấy</td>
+                        <td>Tối đa A3</td>
+                    </tr>
+                    <tr>
+                        <td>RAM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>HDD</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>DPI</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Khay</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian khởi động</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>DSPF</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>RSPF</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Finisher</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Fax</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Solution</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Thêm HDD</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Thêm RAM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Thêm stand</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="recommend-zone">
+        <!-- Similar products go here -->
+    </div>
+    </div>
+    <!-- footer -->
     <!-- IMPORT SCRIPTS -->
     <!-- JQUERY V3.6.4 -->
     <script src="./asset/js/jquery-3.6.4.min.js"></script>
@@ -55,8 +186,20 @@
         crossorigin="anonymous"></script>
     <!-- WAYPOINT V4.0.1 -->
     <script src="./asset/js/jquery.waypoints.min.js"></script>
-    <!-- SWIPER v9.3.1 -->
-    <script src="./asset/js/swiper-bundle.min.js"></script>
+    <!-- SWIPER v10.0 -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            direction: "vertical",
+            slidesPerView: 1,
+            spaceBetween: 30,
+            mousewheel: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
     <!-- FANCYBOX v4.0.31 -->
     <script src="./asset/js/fancybox.umd.js"></script>
     <!-- WOWJS V1.1.2 -->
@@ -66,29 +209,6 @@
     </script>
     <!-- MAIN JS -->
     <script src="./asset/js/main.js"></script>
-    <!-- Product Script -->
-    <script>
-        // Fetch product data
-        const productId = getProductIdFromURL(); // Implement this function to retrieve the product ID from the URL parameters
-        fetchProductData(productId);
-    
-        function fetchProductData(productId) {
-          // Make a GET request to fetch the product data from the API
-          fetch(`https://649d36a19bac4a8e669d62a2.mockapi.io/product/${productId}`)
-            .then(response => response.json())
-            .then(product => {
-              // Populate the page with product data
-              document.getElementById("productName").innerText = product.name;
-              document.getElementById("productDescription").innerText = product.description;
-              document.getElementById("productPrice").innerText = `Price: ${product.price}`;
-              // Update other elements with the remaining product details
-            })
-            .catch(error => {
-              console.log(error);
-              alert('Failed to fetch product data');
-            });
-        }
-      </script>
 </body>
 
 </html>

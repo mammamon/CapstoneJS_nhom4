@@ -1,22 +1,3 @@
-//lấy data từ mockAPI
-let idProduct;
-function getProductList() {
-  let promise = axios({
-    url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
-    method: 'GET',
-  })
-  promise
-    .then(function (result) {
-      console.log('result: ', result.data)
-      renderProductList(result)
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-}
-getProductList();
-
-
 //lấy thông tin từ người dùng
 function getInput() {
   let id = "";
@@ -207,7 +188,7 @@ $('#btn-modal').on('click', function () {
   $('#btnEdit').css('display', 'none');
 });
 
-// reset các đoạn text thông báo và input value mỗi khi đóng modal
+// reset các đoạn text thông báo và input mỗi khi đóng modal
 const modal = $("#product-modal")[0];
 const observer = new MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {

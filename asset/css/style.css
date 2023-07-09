@@ -16,6 +16,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: #e8e8e8;
+}
+
 a,
 a:hover {
   text-decoration: none;
@@ -265,4 +269,76 @@ form {
 }
 .admin__main .product-group-manage #btnUrl {
   color: #0cb1ee;
+}
+
+/*Product Page*/
+.product .product-zone {
+  background-color: #fff;
+  border-radius: 8px;
+}
+.product .product-zone h2 {
+  text-transform: uppercase;
+}
+.product .product-zone .product-image {
+  border-top: 0;
+  border-right: 1px;
+  border-bottom: 0;
+  border-left: 0;
+  border-style: solid;
+  border-color: #eee;
+  border-radius: 0;
+  cursor: pointer;
+}
+.product .product-zone .star,
+.product .product-zone .half-star {
+  color: #e8c400;
+}
+.product .product-zone #branch {
+  text-transform: uppercase;
+}
+.product .product-zone .product-price {
+  position: relative;
+  width: 200px;
+}
+.product .product-zone .product-price #price-original {
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 1rem;
+  color: gray;
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+}
+.product .product-zone .product-price #price {
+  font-size: 1.5rem;
+  color: red;
+  font-weight: 600;
+}
+.product .swiper {
+  width: 400px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
+.product .swiper-slide {
+  text-align: center;
+  font-size: 1rem;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product .swiper-pagination-vertical.swiper-pagination-bullets,
+.product .swiper-vertical > .swiper-pagination-bullets {
+  top: 5vh;
+  left: 0;
+}
+.product .swiper-slide img {
+  display: block;
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+}
+.product .swiper-pagination-bullet-active {
+  background: #e8c400;
 }/*# sourceMappingURL=style.css.map */

@@ -1,35 +1,54 @@
-// Get the product name from the URL path
-const productName = window.location.pathname.split('/').pop();
+function getProductDetails(productName) {
+    axios
+      .get(`https://649d36a19bac4a8e669d62a2.mockapi.io/product/${productName}`)
+      .then(function (response) {
+        const product = response.data;
+  
+        // Update the product name in the breadcrumb
+        $('#product-name').text(product.name);
+  
+        // Update the product image
+        $('.swiper-slide img').attr('src', product.image);
+  
+        // Update the product details
+        $('#branch').text(product.branch);
+        $('#title').text(product.title);
+        $('#price').text(product.price.toLocaleString());
+        $('#speed').text(product.speed);
+        $('#type').text(product.type);
+        $('#color').text(product.color);
+        $('#paper').text(product.paper);
+        $('#ram').text(product.spec.RAM);
+        $('#hdd').text(product.spec.HDD);
+        $('#dpi').text(product.spec.DPI);
+        $('#tray').text(product.spec.tray);
+        $('#warmUpTime').text(product.spec.warmUpTime);
+        $('#dspf').text(product.option.DSPF);
+        $('#rspf').text(product.option.RSPF);
+        $('#finisher').text(product.option.finisher);
+        $('#fax').text(product.option.fax);
+        $('#solution').text(product.option.solution);
+        $('#addHdd').text(product.option.addHDD);
+        $('#addRam').text(product.option.addRam);
+        $('#addStand').text(product.option.addStand);
+  
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
-// Fetch the product data from the API using Axios
-axios.get(`https://649d36a19bac4a8e669d62a2.mockapi.io/product/${productName}`)
-  .then(response => {
-    const product = response.data;
-    // Update the product name in the breadcrumb
-    $('#product-name').text(product.name);
 
-    // Update the product information
-    $('#branch').text(product.branch);
-    $('#title').text(product.title);
-    $('#price').text(product.price.toLocaleString());
-
-    // Update the product details
-    $('#speed').text(product.speed);
-    $('#type').text(product.type);
-    $('#color').text(product.color);
-    $('#paper').text(product.paper);
-    $('#ram').text(product.spec.RAM);
-    $('#hdd').text(product.spec.HDD);
-    $('#dpi').text(product.spec.DPI);
-    $('#tray').text(product.spec.tray);
-    $('#warmUpTime').text(product.spec.warmUpTime);
-    $('#dspf').text(product.option.DSPF);
-    $('#rspf').text(product.option.RSPF);
-    $('#finisher').text(product.option.finisher);
-    $('#fax').text(product.option.fax);
-    $('#solution').text(product.option.solution);
-    $('#addHdd').text(product.option.addHDD);
-    $('#addRam').text(product.option.addRam);
-    $('#addStand').text(product.option.addStand);
-  })
-  .catch(error => console.error(error));
+// handle routing
+  function handleRouting() {
+    const pathname = window.location.pathname;
+    const productSlug = pathname.substring(pathname.lastIndexOf('/') + 1);
+    getProductDetails(productSlug);
+  }
+  
+  // Listen for the 'popstate' event when the URL changes
+  window.onpopstate = handleRouting;
+  
+  // Trigger the initial routing when the page loads
+  handleRouting();
+  

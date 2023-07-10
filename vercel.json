@@ -3,6 +3,36 @@
     {
       "source": "/(.*)",
       "destination": "/product.html"
+    },
+    {
+      "source": "/product.html/asset/css/(.*)",
+      "destination": "/asset/css/$1",
+      "type": "rewrite"
+    },
+    {
+      "source": "/product.html/asset/js/(.*)",
+      "destination": "/asset/js/$1",
+      "type": "rewrite"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/product.html/asset/css/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        }
+      ]
+    },
+    {
+      "source": "/product.html/asset/js/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/javascript"
+        }
+      ]
     }
   ]
 }

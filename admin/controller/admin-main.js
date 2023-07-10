@@ -85,26 +85,22 @@ $('#btnAdd').on('click', async function () {
 
 
 // Xóa sản phẩm
-function deleteProduct(id, name) {
+function deleteProduct(id, name, event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
   if (confirm(`Xác nhận xóa sản phẩm ${name}?`)) {
-    let promise = axios({
+    axios({
       url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}`,
       method: 'DELETE',
-      headers: {
-        'If-Match': 'ETag value', // Replace 'ETag value' with the actual ETag of the resource
-      },
-    });
-    promise
+    })
       .then(function () {
-        getProductList();
+        getProductList(); // Assuming getProductList is responsible for fetching and rendering the updated product list
       })
       .catch(function () {
-        alert('Xóa sản phẩm thất bại')
-      })
-  } else {
-    event.preventDefault();
+        alert('Xóa sản phẩm thất bại');
+      });
   }
-};
+}
 
 
 //sửa sản phẩm

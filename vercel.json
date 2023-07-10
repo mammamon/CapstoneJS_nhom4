@@ -1,24 +1,29 @@
 {
     "rewrites": [
-      {
-        "source": "/product/:slug*",
-        "destination": "/product.html"
-      }
+        {
+            "source": "/product/:slug*",
+            "destination": "/product.html"
+        }
     ],
     "rewritesHeaders": [
-      {
-        "source": "/product/:slug*",
-        "headers": [
-          { "key": "content-type", "value": "text/html" }
-        ]
-      }
+        {
+            "source": "/product/:slug*",
+            "headers": [
+                {
+                    "key": "content-type",
+                    "value": "text/html"
+                }
+            ]
+        }
     ],
     "routes": [
-      {
-        "src": "/assets/(.*)",
-        "dest": "/assets/$1"
-      }
+        {
+            "src": "/assets/(.*)",
+            "dest": "/assets/$1"
+        }
     ],
-    "version": 2
-  }
-  
+    "version": 2,
+    "static": {
+        "directory": "assets"
+    }
+}

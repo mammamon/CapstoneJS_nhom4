@@ -1,29 +1,24 @@
 {
     "rewrites": [
       {
-        "source": "/(.*)",
+        "source": "/product/:slug*",
         "destination": "/product.html"
       }
     ],
-    "headers": [
+    "rewritesHeaders": [
       {
-        "source": "/asset/css/.*",
+        "source": "/product/:slug*",
         "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/css"
-          }
-        ]
-      },
-      {
-        "source": "/asset/js/.*",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/javascript"
-          }
+          { "key": "content-type", "value": "text/html" }
         ]
       }
-    ]
+    ],
+    "routes": [
+      {
+        "src": "/assets/(.*)",
+        "dest": "/assets/$1"
+      }
+    ],
+    "version": 2
   }
   

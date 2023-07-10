@@ -1,17 +1,17 @@
 //lấy data từ mockAPI
 function getProductList() {
   let promise = axios({
-      url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
-      method: 'GET',
+    url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
+    method: 'GET',
   })
   promise
-      .then(function (result) {
-          console.log('result: ', result.data)
-          renderProductList(result)
-      })
-      .catch(function (error) {
-          console.log(error)
-      })
+    .then(function (result) {
+      console.log('result: ', result.data)
+      renderProductList(result)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
 getProductList();
 
@@ -88,8 +88,11 @@ $('#btnAdd').on('click', async function () {
 function deleteProduct(id, name) {
   if (confirm(`Xác nhận xóa sản phẩm ${name}?`)) {
     let promise = axios({
-      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}?_=${Math.random()}`,
+      url: `https://649d36a19bac4a8e669d62a2.mockapi.io/product/${id}`,
       method: 'DELETE',
+      headers: {
+        'If-Match': 'ETag value', // Replace 'ETag value' with the actual ETag of the resource
+      },
     });
     promise
       .then(function () {

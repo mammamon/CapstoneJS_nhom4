@@ -1,12 +1,8 @@
-// Function to fetch and display product data
 function fetchProductData(productName) {
-    // Make an Axios GET request to fetch the product data from the API
     axios
       .get('https://649d36a19bac4a8e669d62a2.mockapi.io/product/' + productName)
       .then(function (response) {
         var productData = response.data;
-  
-        // Update the elements in #product-show with the fetched data
         $('#product-name').text(productData.title);
         $('#branch').text(productData.branch);
         $('#title').text(productData.title);
@@ -34,18 +30,13 @@ function fetchProductData(productName) {
       });
   }
   
-  // Function to initialize Page.js and define routes
   function initializePage() {
     page();
-  
-    // Define the route for product subpages
     page('/product/:productName', function (ctx) {
       var productName = ctx.params.productName;
       fetchProductData(productName);
     });
   }
-  
-  // Call the initializePage function when the DOM is ready
   $(document).ready(function () {
     initializePage();
   });  

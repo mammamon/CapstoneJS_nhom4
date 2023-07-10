@@ -4,6 +4,17 @@
         "source": "/(.*)",
         "destination": "/product.html"
       }
+    ],
+    "headers": [
+      {
+        "source": "/asset/css/fancybox.css",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/css"
+          }
+        ]
+      }
     ]
   }
   

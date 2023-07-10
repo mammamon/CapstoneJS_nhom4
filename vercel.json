@@ -1,8 +1,8 @@
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/product.html"
-    }
-  ]
-}
+// {
+//   "rewrites": [
+//     {
+//       "source": "/(.*)",
+//       "destination": "/product.html"
+//     }
+//   ]
+// }

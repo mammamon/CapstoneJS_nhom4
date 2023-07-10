@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="product-show">
 
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
 
 <body>
     <!-- header -->
-    <div id="product-show">
+    <div>
         <div class="container product p-0">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -191,14 +191,14 @@
     <!-- MAIN JS -->
     <script src="./asset/js/main.js"></script>
     <!-- PRODUCT JS -->
-    <script src="./customer/controller/product.js"></script>
+    <!-- <script src="./customer/controller/product.js"></script> -->
     <script>
         function fetchProductData(productName) {
     axios
       .get('https://649d36a19bac4a8e669d62a2.mockapi.io/product/' + productName)
       .then(function (response) {
-        var productData = response.data;
-        $('#product-name').text(productData.title);
+        let productData = response.data;
+        $('#product-name').text(productData.name);
         $('#branch').text(productData.branch);
         $('#title').text(productData.title);
         $('#price').text(productData.price);
@@ -228,7 +228,8 @@
   function initializePage() {
     page();
     page('/product/:productName', function (ctx) {
-      var productName = ctx.params.productName;
+      let productName = ctx.params.productName;
+      console.log(productName);
       fetchProductData(productName);
     });
   }

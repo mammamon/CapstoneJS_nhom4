@@ -1,29 +1,42 @@
 {
     "rewrites": [
-        {
-            "source": "/product/:slug*",
-            "destination": "/product.html"
-        }
+      {
+        "source": "/product/:slug*",
+        "destination": "/product.html"
+      }
     ],
     "rewritesHeaders": [
-        {
-            "source": "/product/:slug*",
-            "headers": [
-                {
-                    "key": "content-type",
-                    "value": "text/html"
-                }
-            ]
-        }
+      {
+        "source": "/product/:slug*",
+        "headers": [
+          { "key": "content-type", "value": "text/html" }
+        ]
+      },
+      {
+        "source": "/asset/css/animate.min.css",
+        "headers": [
+          { "key": "content-type", "value": "text/css" }
+        ]
+      },
+      {
+        "source": "/asset/css/fancybox.css",
+        "headers": [
+          { "key": "content-type", "value": "text/css" }
+        ]
+      },
+      {
+        "source": "/asset/css/style.css",
+        "headers": [
+          { "key": "content-type", "value": "text/css" }
+        ]
+      }
     ],
     "routes": [
-        {
-            "src": "/assets/(.*)",
-            "dest": "/assets/$1"
-        }
+      {
+        "src": "/assets/(.*)",
+        "dest": "/assets/$1"
+      }
     ],
-    "version": 2,
-    "static": {
-        "directory": "assets"
-    }
-}
+    "version": 2
+  }
+  

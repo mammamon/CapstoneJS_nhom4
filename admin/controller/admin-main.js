@@ -219,10 +219,10 @@ observer.observe(modal, { attributes: true });
 
 //tìm kiếm thông tin sản phẩm
 $("#searchTool").on("input", function () {
-  let searchName = $("#searchTool").val().toLowerCase();
+  let searchName = $("#searchTool").val().toLowerCase().replace(/[\.,]/g, "");
   let tableRows = $("tbody tr");
   for (let i = 0; i < tableRows.length; i++) {
-    let productInfo = $(tableRows[i]).text().toLowerCase();
+    let productInfo = $(tableRows[i]).text().toLowerCase().replace(/[\.,]/g, "");
     if (productInfo.includes(searchName)) {
       $(tableRows[i]).show();
     } else {
@@ -230,3 +230,4 @@ $("#searchTool").on("input", function () {
     }
   }
 });
+

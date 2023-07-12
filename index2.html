@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .product-item {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+        }
+
+        .cart-icon {
+            position: absolute;
+            top: 10vhpx;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+        }
+
+        #cartZone {
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            display: none;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            max-width: 300px;
+            z-index: 1;
+        }
+
+        #cartTotal {
+            font-weight: bold;
+        }
+
+        .btn {
+            cursor: pointer;
+        }
+
+        .product-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product-saved .product-img {
+            filter: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart-icon" id="cartIcon">
+        <i class="bi bi-cart-fill"></i>
+    </div>
+
+    <section class="col-8 product-zone">
+        <div class="product-item">
+        </div>
+    </section>
+
+    <section class="col-4 cart-zone" id="cartZone">
+        <h2>Shopping Cart</h2>
+        <div class="cart-item">
+        </div>
+        <p>Total: $<span id="cartTotal">0.00</span></p>
+    </section>
+
+    <!-- Modal for maximum quantity reached -->
+    <div class="modal fade" id="maxQuantityModal" tabindex="-1" aria-labelledby="maxQuantityModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="maxQuantityModalLabel">Maximum Quantity Reached</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You have reached the maximum quantity allowed for this product.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // CartItem class
+        class CartItem {
+            constructor(name, price, quantity, saved = false) {
+                this.name = name;
+                this.price = price;
+                this.quantity = quantity;
+                this.saved = saved;
+            }
+
+            getTotal() {
+                let total = 0;
+                for (const item of this.items) {
+                    total += parseFloat(item.price) * parseFloat(item.quantity);
+                }
+                return total.toFixed(2);
+            }
+        }
+
+        // Cart class
+        class Cart {
+            constructor() {
+                this.items = [];
+            }
+
+            addItem(item) {
+                this.items.push(item);
+            }
+
+            removeItem(item) {
+                const index = this.items.indexOf(item);
+                if (index > -1) {
+                    this.items.splice(index, 1);
+                }
+            }
+
+            getTotal() {
+                let total = 0;
+                for (const item of this.items) {
+                    total += parseFloat(item.price) * parseFloat(item.quantity);
+                }
+                return total.toFixed(2);
+            }
+
+            saveToLocalStorage() {
+                localStorage.setItem('cart', JSON.stringify(this.items));
+            }
+
+            static loadFromLocalStorage() {
+                const data = localStorage.getItem('cart');
+                if (data) {
+                    const items = JSON.parse(data);
+                    const cart = new Cart();
+                    cart.items = items;
+                    return cart;
+                }
+                return new Cart();
+            }
+        }
+
+        // Function to render product list
+        function renderProductList(products) {
+            const productContainer = $('.product-item');
+            let content = '';
+            for (const product of products) {
+                const saved = cart.items.some(item => item.name === product.name && item.saved);
+                const productClass = saved ? 'product product-saved' : 'product';
+
+                const formattedPrice = formatPrice(product.price);
+
+                content += `
+      <div class="${productClass}" data-name="${product.name}">
+        <h3>${product.name}</h3>
+        <img src="${product.image}" alt="${product.name}" class="product-img">
+        <p>Price: ${formattedPrice}</p>
+        <div class="quantity-zone">
+          <button class="btn btn-minus" data-name="${product.name}">-</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+          <button class="btn btn-plus" data-name="${product.name}">+</button>
+        </div>
+        <button class="btn btn-add-to-cart" data-name="${product.name}" data-price="${product.price.toFixed(2)}">Add to Cart</button>
+      </div>
+    `;
+            }
+            productContainer.html(content);
+
+            // Add event listeners to "Add to Cart" buttons
+            $('.btn-add-to-cart').click(addToCart);
+            $('.btn-minus').click(decreaseQuantity);
+            $('.btn-plus').click(increaseQuantity);
+        }
+
+        function formatPrice(price) {
+            return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        // Rest of the code...
+
+        // Rest of the code...
+
+        // Function to handle decreasing quantity
+        function decreaseQuantity() {
+            const productName = $(this).data('name');
+            const quantityInput = $(this).siblings('.quantity-input');
+            let quantity = parseInt(quantityInput.val());
+
+            if (quantity > 1) {
+                quantity--;
+                quantityInput.val(quantity);
+            }
+        }
+
+        // Function to handle increasing quantity
+        function increaseQuantity() {
+            const productName = $(this).data('name');
+            const quantityInput = $(this).siblings('.quantity-input');
+            let quantity = parseInt(quantityInput.val());
+
+            if (quantity < 10) {
+                quantity++;
+                quantityInput.val(quantity);
+            }
+        }
+
+        // Function to handle adding a product to the cart
+        function addToCart() {
+            const addButton = $(this);
+            const productName = addButton.data('name');
+            const price = parseFloat(addButton.data('price'));
+            const quantityInput = addButton.siblings('.quantity-input');
+            const quantity = parseInt(quantityInput.val());
+
+            const existingItem = cart.items.find(item => item.name === productName);
+
+            if (existingItem) {
+                const totalQuantity = existingItem.quantity + quantity;
+
+                if (totalQuantity > 3) {
+                    // Show a modal informing the user that the maximum quantity has been reached
+                    $('#maxQuantityModal').modal('show');
+                } else {
+                    existingItem.quantity = totalQuantity;
+                }
+            } else {
+                const newItem = new CartItem(productName, price, quantity);
+                cart.addItem(newItem);
+            }
+
+            renderCartItems(cart);
+            renderCartTotal();
+
+            const productDiv = addButton.closest('.product');
+            productDiv.addClass('product-saved');
+
+            $('#cartZone').css('display', 'block');
+
+            cart.saveToLocalStorage(); // Save the cart to local storage
+
+            // Reset the quantity input to 1
+            quantityInput.val(1);
+        }
+
+
+
+
+
+
+
+        // Rest of the code...
+
+
+
+        // Function to render cart items
+        function renderCartItems(cart) {
+            const cartItemContainer = $('.cart-item');
+            let content = '';
+            for (const cartItem of cart.items) {
+                const item = new CartItem(cartItem.name, cartItem.price, cartItem.quantity, cartItem.saved);
+                content += `
+          <div class="cart-item">
+            <p>${item.name} - $${item.price.toFixed(2)} - Quantity: ${item.quantity}</p>
+            <button class="btn btn-remove-from-cart" data-name="${item.name}">Remove</button>
+          </div>
+        `;
+            }
+            cartItemContainer.html(content);
+
+            // Add event listeners to "Remove" buttons
+            $('.btn-remove-from-cart').click(removeFromCart);
+        }
+
+        // Function to handle adding a product to the cart
+        // Rest of the code...
+
+        // Function to handle adding a product to the cart
+        function addToCart() {
+            const productName = $(this).data('name');
+            const price = parseFloat($(this).data('price'));
+            const quantityInput = $(this).siblings('.quantity-zone').find('.quantity-input');
+            let quantity = parseInt(quantityInput.val());
+
+            if (isNaN(quantity) || quantity <= 0) {
+                quantity = 1;
+                quantityInput.val(quantity);
+            } else if (quantity > 10) {
+                quantity = 10;
+                quantityInput.val(quantity);
+            }
+
+            const existingItem = cart.items.find(item => item.name === productName);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                const newItem = new CartItem(productName, price, quantity);
+                cart.addItem(newItem);
+            }
+
+            renderCartItems(cart);
+            renderCartTotal();
+
+            const productDiv = $(this).closest('.product');
+            productDiv.addClass('product-saved');
+
+            $('#cartZone').css('display', 'block');
+
+            cart.saveToLocalStorage();
+        }
+
+        // Rest of the code...
+
+
+        // Function to handle removing a product from the cart
+        function removeFromCart() {
+            const name = $(this).data('name');
+
+            const item = cart.items.find(item => item.name === name);
+            if (item) {
+                cart.removeItem(item);
+            }
+
+            renderCartItems(cart);
+            renderCartTotal();
+
+            const productDiv = $(`.product[data-name="${name}"]`);
+            productDiv.removeClass('product-saved');
+
+            if (cart.items.length === 0) {
+                $('#cartZone').css('display', 'none');
+            }
+
+            cart.saveToLocalStorage();
+        }
+
+        // Function to render the cart total
+        function renderCartTotal() {
+            $('#cartTotal').text(cart.getTotal());
+        }
+
+        // Create a new cart instance
+        let cart = Cart.loadFromLocalStorage();
+
+        // Fetch product data from API and render the product list
+        function getProductList() {
+            $.get('https://649d36a19bac4a8e669d62a2.mockapi.io/product', function (response) {
+                const products = response;
+                console.log('Products: ', products);
+                renderProductList(products);
+            })
+                .fail(function (error) {
+                    console.log('Error: ', error);
+                });
+        }
+
+        // Call the getProductList function
+        getProductList();
+
+        // Add event listener to cart icon for showing/hiding the cart zone
+        $('#cartIcon').click(function () {
+            // Load the cart from local storage
+            cart = Cart.loadFromLocalStorage();
+
+            // Render the loaded cart
+            renderCartItems(cart);
+            renderCartTotal();
+
+            // Show or hide the cart zone based on its current display state
+            const cartZone = $('#cartZone');
+            cartZone.toggle();
+
+            // If the cart is visible, update the product saved class
+            if (cartZone.is(':visible')) {
+                $('.product').each(function () {
+                    const productName = $(this).data('name');
+                    const saved = cart.items.some(item => item.name === productName && item.saved);
+                    $(this).toggleClass('product-saved', saved);
+                });
+            }
+        });
+
+
+        // Add event listener to "Save Cart" button
+        $('.btn-save-cart').click(function () {
+            cart.saveToLocalStorage();
+            console.log('Cart saved to local storage.');
+        });
+
+        // Add event listener to "Load Cart" button
+        $('.btn-load-cart').click(function () {
+            cart = Cart.loadFromLocalStorage();
+            console.log('Cart loaded from local storage.');
+
+            // Render the loaded cart
+            renderCartItems(cart);
+            renderCartTotal();
+
+            if (cart.items.length > 0) {
+                $('#cartZone').css('display', 'block');
+            } else {
+                $('#cartZone').css('display', 'none');
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

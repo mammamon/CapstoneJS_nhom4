@@ -74,37 +74,12 @@
     </div>
 
     <section class="col-8 product-zone">
-        <div class="product-item">
-            <!-- Product 1 -->
-            <div class="product" data-name="Product 1">
-                <h3>Product 1</h3>
-                <img src="product1.jpg" alt="Product 1" class="product-img">
-                <p>Price: $10.00</p>
-                <button class="btn btn-purchase" data-name="Product 1">Purchase</button>
-            </div>
-
-            <!-- Product 2 -->
-            <div class="product" data-name="Product 2">
-                <h3>Product 2</h3>
-                <img src="product2.jpg" alt="Product 2" class="product-img">
-                <p>Price: $20.00</p>
-                <button class="btn btn-purchase" data-name="Product 2">Purchase</button>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product" data-name="Product 3">
-                <h3>Product 3</h3>
-                <img src="product3.jpg" alt="Product 3" class="product-img">
-                <p>Price: $30.00</p>
-                <button class="btn btn-purchase" data-name="Product 3">Purchase</button>
-            </div>
-        </div>
+        <div class="product-item"></div>
     </section>
 
     <section class="col-4 cart-zone" id="cartZone">
         <h2>Shopping Cart</h2>
-        <div class="cart-item">
-        </div>
+        <div class="cart-item"></div>
         <p>Total: $<span id="cartTotal">0.00</span></p>
     </section>
 
@@ -121,6 +96,9 @@
                         <h3></h3>
                         <img src="" alt="" class="product-img">
                         <p></p>
+                        <p>Speed: </p>
+                        <p>Title: </p>
+                        <p>Branch: </p>
                     </div>
                     <div class="quantity-zone">
                         <button class="btn btn-minus">-</button>
@@ -142,7 +120,7 @@
         class CartItem {
             constructor(name, price, quantity, saved = false) {
                 this.name = name;
-                this.price = price;
+                this.price = parseFloat(price);
                 this.quantity = quantity;
                 this.saved = saved;
             }
@@ -155,6 +133,7 @@
                 return total.toFixed(2);
             }
         }
+
 
         // Cart class
         class Cart {
@@ -197,33 +176,7 @@
             }
         }
 
-        // Function to render product list
-        // Function to render product list
-        function renderProductList(products) {
-            const productContainer = $('.product-item');
-            let content = '';
-            for (const product of products) {
-                const saved = cart.items.some(item => item.name === product.name && item.saved);
-                const productClass = saved ? 'product product-saved' : 'product';
-
-                const formattedPrice = formatPrice(product.price);
-
-                content += `
-      <div class="${productClass}" data-name="${product.name}">
-        <h3>${product.name}</h3>
-        <img src="${product.image}" alt="${product.name}" class="product-img">
-        <p>Price: ${formattedPrice}</p>
-        <button class="btn btn-purchase" data-name="${product.name}">Purchase</button>
-      </div>
-    `;
-            }
-            productContainer.html(content);
-
-            // Add event listeners to "Purchase" buttons
-            $('.btn-purchase').click(showAddToCartModal);
-        }
-
-
+        // Function to format price
         function formatPrice(price) {
             return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         }
@@ -231,15 +184,16 @@
         // Function to show the "Add to Cart" modal
         function showAddToCartModal() {
             const productName = $(this).data('name');
-            const productDiv = $(`.product[data-name="${productName}"]`);
-            const price = parseFloat(productDiv.find('p').text().replace('Price: ', ''));
-            const productImg = productDiv.find('img').attr('src');
+            const product = products.find(product => product.name === productName);
 
             const modal = $('#addToCartModal');
             modal.find('.modal-title').text('Add to Cart');
-            modal.find('.product-info h3').text(productName);
-            modal.find('.product-info img').attr('src', productImg);
-            modal.find('.product-info p').text(`Price: ${formatPrice(price)}`);
+            modal.find('.product-info h3').text(product.name);
+            modal.find('.product-info img').attr('src', product.image);
+            modal.find('.product-info p').text(`Price: ${formatPrice(product.price)}`);
+            modal.find('.product-info p:eq(1)').text(`Speed: ${product.speed}`);
+            modal.find('.product-info p:eq(2)').text(`Title: ${product.title}`);
+            modal.find('.product-info p:eq(3)').text(`Branch: ${product.branch}`);
             modal.find('.quantity-input').val(1);
 
             modal.modal('show');
@@ -270,7 +224,8 @@
         // Function to handle adding a product to the cart
         function addToCart() {
             const productName = $(this).closest('.modal-content').find('.product-info h3').text();
-            const price = parseFloat($(this).closest('.modal-content').find('.product-info p').text().replace('Price: ', ''));
+            const product = products.find(product => product.name === productName);
+            const price = product.productPrice;
             const quantityInput = $(this).closest('.modal-content').find('.quantity-input');
             const quantity = parseInt(quantityInput.val());
 
@@ -299,24 +254,25 @@
             $('#addToCartModal').modal('hide');
         }
 
+
         // Function to render cart items
         function renderCartItems(cart) {
             const cartItemContainer = $('.cart-item');
             let content = '';
             for (const cartItem of cart.items) {
-                const item = new CartItem(cartItem.name, cartItem.price, cartItem.quantity, cartItem.saved);
                 content += `
-                    <div class="cart-item">
-                        <p>${item.name} - $${item.price.toFixed(2)} - Quantity: ${item.quantity}</p>
-                        <button class="btn btn-remove-from-cart" data-name="${item.name}">Remove</button>
-                    </div>
-                `;
+      <div class="cart-item">
+        <p>${cartItem.name} - $${parseFloat(cartItem.price).toFixed(2)} - Quantity: ${cartItem.quantity}</p>
+        <button class="btn btn-remove-from-cart" data-name="${cartItem.name}">Remove</button>
+      </div>
+    `;
             }
             cartItemContainer.html(content);
 
             // Add event listeners to "Remove" buttons
             $('.btn-remove-from-cart').click(removeFromCart);
         }
+
 
         // Function to handle removing a product from the cart
         function removeFromCart() {
@@ -351,7 +307,7 @@
         // Fetch product data from API and render the product list
         function getProductList() {
             $.get('https://649d36a19bac4a8e669d62a2.mockapi.io/product', function (response) {
-                const products = response;
+                products = response;
                 console.log('Products: ', products);
                 renderProductList(products);
             })
@@ -360,8 +316,30 @@
                 });
         }
 
-        // Call the getProductList function
-        getProductList();
+        // Function to render product list
+        function renderProductList(products) {
+            const productContainer = $('.product-item');
+            let content = '';
+            for (const product of products) {
+                const saved = cart.items.some(item => item.name === product.name && item.saved);
+                const productClass = saved ? 'product product-saved' : 'product';
+
+                const formattedPrice = formatPrice(product.price);
+
+                content += `
+          <div class="${productClass}" data-name="${product.name}">
+            <h3>${product.name}</h3>
+            <img src="${product.image}" alt="${product.name}" class="product-img">
+            <p>Price: ${formattedPrice}</p>
+            <button class="btn btn-purchase" data-name="${product.name}">Purchase</button>
+          </div>
+        `;
+            }
+            productContainer.html(content);
+
+            // Add event listeners to "Purchase" buttons
+            $('.btn-purchase').click(showAddToCartModal);
+        }
 
         // Add event listener to cart icon for showing/hiding the cart zone
         $('#cartIcon').click(function () {
@@ -386,34 +364,13 @@
             }
         });
 
-        // Add event listener to "Save Cart" button
-        $('.btn-save-cart').click(function () {
-            cart.saveToLocalStorage();
-            console.log('Cart saved to local storage.');
-        });
-
-        // Add event listener to "Load Cart" button
-        $('.btn-load-cart').click(function () {
-            cart = Cart.loadFromLocalStorage();
-            console.log('Cart loaded from local storage.');
-
-            // Render the loaded cart
-            renderCartItems(cart);
-            renderCartTotal();
-
-            if (cart.items.length > 0) {
-                $('#cartZone').css('display', 'block');
-            } else {
-                $('#cartZone').css('display', 'none');
-            }
-        });
-
-        // Add event listeners to "Add to Cart" modal buttons
-        $(document).on('click', '.btn-add-to-cart', addToCart);
-
         // Add event listeners to quantity buttons in the modal
         $(document).on('click', '.modal-body .btn-minus', decreaseQuantity);
         $(document).on('click', '.modal-body .btn-plus', increaseQuantity);
+        $(document).on('click', '.btn-add-to-cart', addToCart);
+
+        // Call the getProductList function
+        getProductList();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

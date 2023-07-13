@@ -75,6 +75,29 @@
 
     <section class="col-8 product-zone">
         <div class="product-item">
+            <!-- Product 1 -->
+            <div class="product" data-name="Product 1">
+                <h3>Product 1</h3>
+                <img src="product1.jpg" alt="Product 1" class="product-img">
+                <p>Price: $10.00</p>
+                <button class="btn btn-purchase" data-name="Product 1">Purchase</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product" data-name="Product 2">
+                <h3>Product 2</h3>
+                <img src="product2.jpg" alt="Product 2" class="product-img">
+                <p>Price: $20.00</p>
+                <button class="btn btn-purchase" data-name="Product 2">Purchase</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product" data-name="Product 3">
+                <h3>Product 3</h3>
+                <img src="product3.jpg" alt="Product 3" class="product-img">
+                <p>Price: $30.00</p>
+                <button class="btn btn-purchase" data-name="Product 3">Purchase</button>
+            </div>
         </div>
     </section>
 
@@ -84,6 +107,34 @@
         </div>
         <p>Total: $<span id="cartTotal">0.00</span></p>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addToCartModalLabel">Add to Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="product-info">
+                        <h3></h3>
+                        <img src="" alt="" class="product-img">
+                        <p></p>
+                    </div>
+                    <div class="quantity-zone">
+                        <button class="btn btn-minus">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="btn btn-plus">+</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -147,6 +198,7 @@
         }
 
         // Function to render product list
+        // Function to render product list
         function renderProductList(products) {
             const productContainer = $('.product-item');
             let content = '';
@@ -161,30 +213,40 @@
         <h3>${product.name}</h3>
         <img src="${product.image}" alt="${product.name}" class="product-img">
         <p>Price: ${formattedPrice}</p>
-        <div class="quantity-zone">
-          <button class="btn btn-minus" data-name="${product.name}">-</button>
-          <input type="number" class="quantity-input" value="1" min="1">
-          <button class="btn btn-plus" data-name="${product.name}">+</button>
-        </div>
-        <button class="btn btn-add-to-cart" data-name="${product.name}" data-price="${product.price.toFixed(2)}">Add to Cart</button>
+        <button class="btn btn-purchase" data-name="${product.name}">Purchase</button>
       </div>
     `;
             }
             productContainer.html(content);
 
-            // Add event listeners to "Add to Cart" buttons
-            $('.btn-add-to-cart').click(addToCart);
-            $('.btn-minus').click(decreaseQuantity);
-            $('.btn-plus').click(increaseQuantity);
+            // Add event listeners to "Purchase" buttons
+            $('.btn-purchase').click(showAddToCartModal);
         }
+
 
         function formatPrice(price) {
             return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         }
 
+        // Function to show the "Add to Cart" modal
+        function showAddToCartModal() {
+            const productName = $(this).data('name');
+            const productDiv = $(`.product[data-name="${productName}"]`);
+            const price = parseFloat(productDiv.find('p').text().replace('Price: ', ''));
+            const productImg = productDiv.find('img').attr('src');
+
+            const modal = $('#addToCartModal');
+            modal.find('.modal-title').text('Add to Cart');
+            modal.find('.product-info h3').text(productName);
+            modal.find('.product-info img').attr('src', productImg);
+            modal.find('.product-info p').text(`Price: ${formatPrice(price)}`);
+            modal.find('.quantity-input').val(1);
+
+            modal.modal('show');
+        }
+
         // Function to handle decreasing quantity
         function decreaseQuantity() {
-            const productName = $(this).data('name');
             const quantityInput = $(this).siblings('.quantity-input');
             let quantity = parseInt(quantityInput.val());
 
@@ -196,7 +258,6 @@
 
         // Function to handle increasing quantity
         function increaseQuantity() {
-            const productName = $(this).data('name');
             const quantityInput = $(this).siblings('.quantity-input');
             let quantity = parseInt(quantityInput.val());
 
@@ -208,10 +269,9 @@
 
         // Function to handle adding a product to the cart
         function addToCart() {
-            const addButton = $(this);
-            const productName = addButton.data('name');
-            const price = parseFloat(addButton.data('price'));
-            const quantityInput = addButton.siblings('.quantity-input');
+            const productName = $(this).closest('.modal-content').find('.product-info h3').text();
+            const price = parseFloat($(this).closest('.modal-content').find('.product-info p').text().replace('Price: ', ''));
+            const quantityInput = $(this).closest('.modal-content').find('.quantity-input');
             const quantity = parseInt(quantityInput.val());
 
             const existingItem = cart.items.find(item => item.name === productName);
@@ -226,7 +286,7 @@
             renderCartItems(cart);
             renderCartTotal();
 
-            const productDiv = addButton.closest('.product');
+            const productDiv = $(`.product[data-name="${productName}"]`);
             productDiv.addClass('product-saved');
 
             $('#cartZone').css('display', 'block');
@@ -235,8 +295,9 @@
 
             // Reset the quantity input to 1
             quantityInput.val(1);
-        }
 
+            $('#addToCartModal').modal('hide');
+        }
 
         // Function to render cart items
         function renderCartItems(cart) {
@@ -245,50 +306,16 @@
             for (const cartItem of cart.items) {
                 const item = new CartItem(cartItem.name, cartItem.price, cartItem.quantity, cartItem.saved);
                 content += `
-          <div class="cart-item">
-            <p>${item.name} - $${item.price.toFixed(2)} - Quantity: ${item.quantity}</p>
-            <button class="btn btn-remove-from-cart" data-name="${item.name}">Remove</button>
-          </div>
-        `;
+                    <div class="cart-item">
+                        <p>${item.name} - $${item.price.toFixed(2)} - Quantity: ${item.quantity}</p>
+                        <button class="btn btn-remove-from-cart" data-name="${item.name}">Remove</button>
+                    </div>
+                `;
             }
             cartItemContainer.html(content);
 
             // Add event listeners to "Remove" buttons
             $('.btn-remove-from-cart').click(removeFromCart);
-        }
-
-        // Function to handle adding a product to the cart
-        function addToCart() {
-            const productName = $(this).data('name');
-            const price = parseFloat($(this).data('price'));
-            const quantityInput = $(this).siblings('.quantity-zone').find('.quantity-input');
-            let quantity = parseInt(quantityInput.val());
-
-            if (isNaN(quantity) || quantity <= 0) {
-                quantity = 1;
-                quantityInput.val(quantity);
-            } else if (quantity > 10) {
-                quantity = 10;
-                quantityInput.val(quantity);
-            }
-
-            const existingItem = cart.items.find(item => item.name === productName);
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                const newItem = new CartItem(productName, price, quantity);
-                cart.addItem(newItem);
-            }
-
-            renderCartItems(cart);
-            renderCartTotal();
-
-            const productDiv = $(this).closest('.product');
-            productDiv.addClass('product-saved');
-
-            $('#cartZone').css('display', 'block');
-
-            cart.saveToLocalStorage();
         }
 
         // Function to handle removing a product from the cart
@@ -380,6 +407,13 @@
                 $('#cartZone').css('display', 'none');
             }
         });
+
+        // Add event listeners to "Add to Cart" modal buttons
+        $(document).on('click', '.btn-add-to-cart', addToCart);
+
+        // Add event listeners to quantity buttons in the modal
+        $(document).on('click', '.modal-body .btn-minus', decreaseQuantity);
+        $(document).on('click', '.modal-body .btn-plus', increaseQuantity);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

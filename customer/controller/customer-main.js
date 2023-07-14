@@ -1,5 +1,5 @@
 // Define the products variable
-let products;
+let products = [];
 
 // Fetch product data from the API
 function getProductList() {
@@ -18,7 +18,6 @@ function getProductList() {
             console.log(error);
         });
 }
-
 // Call the getProductList function
 getProductList();
 
@@ -47,7 +46,8 @@ function formatPrice(price) {
     const formattedPrice = parseFloat(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     return formattedPrice;
 }
-//isEmpty Object
+
+// isEmpty Object
 function isEmptyObject(obj) {
     for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
@@ -73,7 +73,7 @@ function increaseQuantity() {
     const quantityInput = $(this).siblings('.quantity-input');
     let quantity = parseInt(quantityInput.val());
 
-    if (quantity < 10) {
+    if (quantity < 3) {
         quantity++;
         quantityInput.val(quantity);
     }
@@ -123,37 +123,92 @@ function removeFromCart() {
 
     cart.localStorageSave();
 }
-
-// Event listener for "Add to Cart" buttons
-// Function to handle adding a product to the cart
 function addToCart(product) {
+    console.log('Adding to cart:', product);
     const productName = product.name;
     const price = parseFloat(product.price);
     const quantity = 1;
-
+  
     const existingItem = cart.items.find((item) => item.name === productName);
-
+  
     if (existingItem) {
-        existingItem.quantity += quantity;
+      existingItem.quantity += quantity;
     } else {
-        const newItem = new CartItem(productName, price, quantity);
-        cart.addItem(newItem);
+      const newItem = new CartItem(productName, price, quantity);
+      cart.addItem(newItem);
     }
-
+  
     renderCartItems();
     renderCartTotal();
-
+  
     const productDiv = $(`.product[data-name="${productName}"]`);
     productDiv.addClass('product-saved');
-
+  
     $('#cartZone').css('display', 'block');
-
+  
     cart.localStorageSave();
-}
-$(document).on('click', '.btn-add-to-cart', function () {
-    const productName = $(this).closest('.modal-content').find('.product-info h3').text();
-    const product = products.find((product) => product.name === productName);
-    addToCart(product);
-});
+  }
+  
+  function addToCart(productId) {
+    const product = products.find((product) => product.id === productId);
+  
+    if (product) {
+      const productName = product.name;
+      const price = parseFloat(product.price);
+      const quantity = 1;
+  
+      const existingItem = cart.items.find((item) => item.name === productName);
+  
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        const newItem = new CartItem(productName, price, quantity);
+        cart.addItem(newItem);
+      }
+  
+      renderCartItems();
+      renderCartTotal();
+  
+      const productDiv = $(`.product[data-name="${productName}"]`);
+      productDiv.addClass('product-saved');
+  
+      $('#cartZone').css('display', 'block');
+  
+      cart.localStorageSave();
+    } else {
+      console.error('Product not found');
+    }
+  }
+
+  $(document).on('click', '.btn-remove-all', function () {
+    // Remove all items from the cart
+    cart.items = cart.items.filter((item) => {
+      // Filter out the mischievous item by checking for undefined or isNaN values
+      if (typeof item.quantity === 'undefined' || isNaN(item.quantity) || typeof item.price === 'undefined' || isNaN(item.price)) {
+        return false; // Exclude the mischievous item
+      }
+      return true; // Keep the regular items
+    });
+  
+    renderCartItems(); // Update the cart items display
+    renderCartTotal(); // Update the cart total display
+    $('#cartZone').css('display', 'none'); // Hide the cart zone
+    cart.localStorageClear(); // Clear the cart data from local storage
+  });
+  
+  
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
 
 

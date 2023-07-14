@@ -123,39 +123,14 @@ function removeFromCart() {
 
     cart.localStorageSave();
 }
-function addToCart(product) {
-    console.log('Adding to cart:', product);
-    const productName = product.name;
-    const price = parseFloat(product.price);
-    const quantity = 1;
   
-    const existingItem = cart.items.find((item) => item.name === productName);
-  
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      const newItem = new CartItem(productName, price, quantity);
-      cart.addItem(newItem);
-    }
-  
-    renderCartItems();
-    renderCartTotal();
-  
-    const productDiv = $(`.product[data-name="${productName}"]`);
-    productDiv.addClass('product-saved');
-  
-    $('#cartZone').css('display', 'block');
-  
-    cart.localStorageSave();
-  }
-  
-  function addToCart(productId) {
+function addToCart(productId) {
     const product = products.find((product) => product.id === productId);
   
     if (product) {
       const productName = product.name;
       const price = parseFloat(product.price);
-      const quantity = 1;
+      const quantity = parseInt($('#quantity-input').val());
   
       const existingItem = cart.items.find((item) => item.name === productName);
   
@@ -179,22 +154,7 @@ function addToCart(product) {
       console.error('Product not found');
     }
   }
-
-  $(document).on('click', '.btn-remove-all', function () {
-    // Remove all items from the cart
-    cart.items = cart.items.filter((item) => {
-      // Filter out the mischievous item by checking for undefined or isNaN values
-      if (typeof item.quantity === 'undefined' || isNaN(item.quantity) || typeof item.price === 'undefined' || isNaN(item.price)) {
-        return false; // Exclude the mischievous item
-      }
-      return true; // Keep the regular items
-    });
   
-    renderCartItems(); // Update the cart items display
-    renderCartTotal(); // Update the cart total display
-    $('#cartZone').css('display', 'none'); // Hide the cart zone
-    cart.localStorageClear(); // Clear the cart data from local storage
-  });
   
   
 

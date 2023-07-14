@@ -22,7 +22,6 @@ function getProductList() {
 // Call the getProductList function
 getProductList();
 
-
 let cart = Cart.localStorageLoad();
 
 // Function to initialize the Cart from local storage
@@ -35,6 +34,9 @@ function initializeCart() {
     } else {
         cart = new Cart();
     }
+
+    renderCartItems();
+    renderCartTotal();
 }
 
 // Call the initializeCart function to initialize the Cart
@@ -42,7 +44,17 @@ initializeCart();
 
 // Function to format price
 function formatPrice(price) {
-    return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    const formattedPrice = parseFloat(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return formattedPrice;
+}
+//isEmpty Object
+function isEmptyObject(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
 }
 
 // Function to handle decreasing quantity
@@ -67,91 +79,13 @@ function increaseQuantity() {
     }
 }
 
-// Function to handle adding a product to the cart
-function addToCart() {
-    const productName = $(this).closest('.modal-content').find('.product-info h3').text();
-    const product = products.find((product) => product.name === productName);
-    const price = parseFloat(product.price); // Parse the price as a float
-    const quantityInput = $(this).closest('.modal-content').find('.quantity-input');
-    const quantity = parseInt(quantityInput.val());
-
-    const existingItem = cart.items.find((item) => item.name === productName);
-
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        const newItem = new CartItem(productName, price, quantity);
-        cart.addItem(newItem);
-    }
-
-    renderCartItems(cart); // Update the cart items
-    renderCartTotal(); // Update the cart total
-
-    const productDiv = $(`.product[data-name="${productName}"]`);
-    productDiv.addClass('product-saved');
-
-    $('#cartZone').css('display', 'block');
-
-    cart.localStorageSave();
-
-    // Reset the quantity input to 1
-    quantityInput.val(1);
-
-    $('#addProductModal').modal('hide');
-}
-
-// Function to render cart items
-function renderCartItems(cart) {
-    const cartItemContainer = $('.cart-item');
-    let content = '';
-    for (const cartItem of cart.items) {
-        content += `
-      <div class="cart-item">
-        <p>${cartItem.name} - $${parseFloat(cartItem.price).toFixed(2)} - Quantity: ${cartItem.quantity}</p>
-        <button class="btn btn-remove-from-cart" data-name="${cartItem.name}">Remove</button>
-      </div>
-    `;
-    }
-    cartItemContainer.html(content);
-
-    // Add event listeners to "Remove" buttons
-    $('.btn-remove-from-cart').click(removeFromCart);
-}
-
-// Function to handle removing a product from the cart
-function removeFromCart() {
-    const name = $(this).data('name');
-
-    const item = cart.items.find((item) => item.name === name);
-    if (item) {
-        cart.removeItem(item);
-    }
-
-    renderCartItems(cart);
-    renderCartTotal();
-
-    const productDiv = $(`.product[data-name="${name}"]`);
-    productDiv.removeClass('product-saved');
-
-    if (cart.items.length === 0) {
-        $('#cartZone').css('display', 'none');
-    }
-
-    cart.localStorageSave();
-}
-
-// Function to render the cart total
-function renderCartTotal() {
-    $('#cartTotal').text(cart.totalPrice());
-}
-
 // Add event listener to cart icon for showing/hiding the cart zone
 $('#cartIcon').click(function () {
     // Load the cart from local storage
     cart = Cart.localStorageLoad();
 
     // Render the loaded cart
-    renderCartItems(cart);
+    renderCartItems();
     renderCartTotal();
 
     // Show or hide the cart zone based on its current display state
@@ -168,7 +102,58 @@ $('#cartIcon').click(function () {
     }
 });
 
-// Add event listeners to quantity buttons in the modal
-$(document).on('click', '.modal-body .btn-minus', decreaseQuantity);
-$(document).on('click', '.modal-body .btn-plus', increaseQuantity);
-$(document).on('click', '.btn-add-to-cart', addToCart);
+// Function to handle removing a product from the cart
+function removeFromCart() {
+    const name = $(this).data('name');
+
+    const item = cart.items.find((item) => item.name === name);
+    if (item) {
+        cart.removeItem(item);
+    }
+
+    renderCartItems();
+    renderCartTotal();
+
+    const productDiv = $(`.product[data-name="${name}"]`);
+    productDiv.removeClass('product-saved');
+
+    if (cart.items.length === 0) {
+        $('#cartZone').css('display', 'none');
+    }
+
+    cart.localStorageSave();
+}
+
+// Event listener for "Add to Cart" buttons
+// Function to handle adding a product to the cart
+function addToCart(product) {
+    const productName = product.name;
+    const price = parseFloat(product.price);
+    const quantity = 1;
+
+    const existingItem = cart.items.find((item) => item.name === productName);
+
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        const newItem = new CartItem(productName, price, quantity);
+        cart.addItem(newItem);
+    }
+
+    renderCartItems();
+    renderCartTotal();
+
+    const productDiv = $(`.product[data-name="${productName}"]`);
+    productDiv.addClass('product-saved');
+
+    $('#cartZone').css('display', 'block');
+
+    cart.localStorageSave();
+}
+$(document).on('click', '.btn-add-to-cart', function () {
+    const productName = $(this).closest('.modal-content').find('.product-info h3').text();
+    const product = products.find((product) => product.name === productName);
+    addToCart(product);
+});
+
+

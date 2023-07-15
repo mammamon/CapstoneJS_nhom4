@@ -1,0 +1,17 @@
+/* CART */
+#cartZone {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    width: 700px;
+    padding: 1.5rem;
+    background-color: $primaryColor;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 600px;
+    z-index: 1;
+    thead,  th, td {
+        width: 100px;
+        text-align: center;
+    }
+}

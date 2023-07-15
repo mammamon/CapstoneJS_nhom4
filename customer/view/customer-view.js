@@ -9,7 +9,7 @@ function renderProductList(products) {
       <div class="${productClass}" data-name="${product.name}">
         <h3>${product.name}</h3>
         <img src="${product.image}" alt="${product.name}" class="product-img">
-        <p>Price: ${formattedPrice}</p>
+        <p class="text-danger">${formattedPrice}</p>
         <button class="btn btn-purchase" data-name="${product.name}">MUA NGAY</button>
       </div>
     `;
@@ -41,7 +41,7 @@ const changeKeyNames = {
 
 //render ô chứa thông tin sản phẩm
 function renderProductInfo(product) {
-  const { name, id, price, speed, branch, type, color, paper, spec, option } = product;
+  const { name, id, price, speed, branch, type, color, paper, image, description, spec, option } = product;
   const modal = $('#addProductModal');
   modal.find('.modal-title').text('Thông tin sản phẩm');
 
@@ -64,15 +64,17 @@ function renderProductInfo(product) {
   }
 
   modal.find('.product-info').html(`
-    <table class="product-attributes">
+    <table class="product-attributes"
+      <tr><img src="${image}" alt="" class="product-img"></tr>
       <tr><td>Model</td><td>${name}</td></tr>
-      <tr><td>id</td><td>${id}</td></tr>
+      <tr><td>id</td><td>No. ${id}</td></tr>
       <tr><td>Giá</td><td>${formatPrice(price)}</td></tr>
       <tr><td>Tốc độ in</td><td>${speed}</td></tr>
       <tr><td>Hãng</td><td>${branch}</td></tr>
       <tr><td>Loại</td><td>${type}</td></tr>
       <tr><td>Màu</td><td>${color}</td></tr>
       <tr><td>Khổ giấy</td><td>${paper}</td></tr>
+      <tr><td>Mô tả</td><td>${description}</td></tr>
       <tr>
         <td>Thông số</td>
         <td colspan="3">
@@ -103,16 +105,25 @@ function renderCartTotal() {
 
 //render sản phẩm trong giỏ hàng
 function renderCartItems() {
-  const cartItemContainer = $('.cart-item');
-  let content = '';
+  const cartItemContainer = $('.cart-items');
+  cartItemContainer.empty();
+
   for (const cartItem of cart.items) {
-    content += `
-      <div class="cart-item">
-        <p>${cartItem.name} - ${formatPrice(cartItem.price)} - Quantity: ${cartItem.quantity}</p>
-        <button class="btn btnRemove" data-name="${cartItem.name}">Remove</button>
-      </div>
+    const row = `
+      <tr>
+        <td>${cartItem.name}</td>
+        <td>${formatPrice(cartItem.price)}</td>
+        <td>${cartItem.quantity}</td>
+        <td>
+          <i class="btnRemove fa-solid fa-trash" data-name="${cartItem.name}"></i>
+        </td>
+      </tr>
     `;
+    cartItemContainer.append(row);
   }
-  cartItemContainer.html(content);
+
   $('.btnRemove').click(deleteCartItem);
 }
+
+
+

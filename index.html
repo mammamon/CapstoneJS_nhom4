@@ -65,18 +65,6 @@
             background-color: red;
         }
 
-        #cartZone {
-            position: fixed;
-            top: 50px;
-            right: 10px;
-            display: none;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            max-width: 300px;
-            z-index: 1;
-        }
-
         #cartTotal {
             font-weight: bold;
         }
@@ -268,25 +256,20 @@
         <i class="bi bi-cart-fill"></i>
     </div>
     <!-- CART MODALS -->
-    <section class="col-4 cart-zone" id="cartZone">
-        <h2>Shopping Cart</h2>
-        <div class="cart-item"></div>
-        <p>Total: $<span id="cartTotal">0.00</span></p>
-
-        <div class="order-zone" style="display: none;">
-            <h2>Order Zone</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                    </tr>
+    <section class="cart-zone" id="cartZone" style="display: block;">
+        <div class="card-header">Giỏ hàng của bạn</div>
+        <div class="card-body">
+            <table class="cart-table">
+                <thead class="text-center">
+                  <tr>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Xóa</th>
+                  </tr>
                 </thead>
-                <tbody id="orderTableBody"></tbody>
-            </table>
-        </div>
+                <tbody class="cart-items"></tbody>
+              </table>
     </section>
     <!-- ADD PRODUCT MODAL -->
     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"

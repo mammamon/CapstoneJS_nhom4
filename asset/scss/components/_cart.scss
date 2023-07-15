@@ -9,7 +9,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     max-width: 600px;
-    z-index: 1;
+    z-index: 99;
     thead,  th, td {
         width: 100px;
         text-align: center;
@@ -19,9 +19,9 @@
             font-size: 20px;
         }
     }
-    .cart-items {
+    .cart-item, .order-item {
         max-width: 60px;
-        .btnRemove {
+        .btnRemoveAdd, .btnRemoveOrder {
             cursor: pointer;
         }
         img {
@@ -35,4 +35,5 @@
 }
 #cart-table-order {
     border-radius: 8px;
+    background-color: antiquewhite;
 }

@@ -163,7 +163,7 @@ form {
   border: 1px solid #ccc;
   border-radius: 8px;
   max-width: 600px;
-  z-index: 1;
+  z-index: 99;
 }
 #cartZone thead, #cartZone th, #cartZone td {
   width: 100px;
@@ -172,13 +172,13 @@ form {
 #cartZone .cart-header i {
   font-size: 20px;
 }
-#cartZone .cart-items {
+#cartZone .cart-item, #cartZone .order-item {
   max-width: 60px;
 }
-#cartZone .cart-items .btnRemove {
+#cartZone .cart-item .btnRemoveAdd, #cartZone .cart-item .btnRemoveOrder, #cartZone .order-item .btnRemoveAdd, #cartZone .order-item .btnRemoveOrder {
   cursor: pointer;
 }
-#cartZone .cart-items img {
+#cartZone .cart-item img, #cartZone .order-item img {
   width: 60px;
   height: 60px;
 }
@@ -189,6 +189,7 @@ form {
 
 #cart-table-order {
   border-radius: 8px;
+  background-color: antiquewhite;
 }
 
 /* HEADER */

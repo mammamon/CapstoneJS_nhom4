@@ -256,7 +256,7 @@
         <i class="bi bi-cart-fill"></i>
     </div>
     <!-- CART MODALS -->
-    <section class="cart-zone" id="cartZone" style="display: block;">
+    <section class="cart-zone" id="cartZone" style="display: none;">
         <div class="cart-header">Giỏ hàng của bạn</div>
         <div class="cart-body">
             <table class="cart-table-add">
@@ -269,26 +269,26 @@
                         <th>Xóa</th>
                     </tr>
                 </thead>
-                <tbody class="cart-items"></tbody>
+                <tbody class="cart-item"></tbody>
                 <tfoot>
                     <td>Tổng cộng: </td>
                     <td class="cart-total"></td>
                 </tfoot>
             </table>
-            <table class="cart-table-order" style="display:none">
+            <table class="cart-table-order">
                 <thead class="text-center">
                     <tr>
                         <th>Sản phẩm</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
                         <th>Trạng thái</th>
-                        <th>Xóa</th>
+                        <th>Hủy đơn hàng</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody class="order-item"></tbody>
                 <tfoot>
                     <td>Tổng cộng: </td>
-                    <td class="cart-total"></td>
+                    <td class="cart-total-order"</td>
                 </tfoot>
             </table>
             <div class="cart-btn d-flex">

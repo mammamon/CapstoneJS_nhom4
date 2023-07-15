@@ -55,6 +55,20 @@ class Cart {
     }
   }
 
+  //constructor sản phẩm đã được đặt hàng
+  class OrderItem {
+    constructor(_name, _price, _quantity, _image, _status = 'đã đặt hàng') {
+      this.name = _name;
+      this.price = parseFloat(_price);
+      this.quantity = _quantity;
+      this.image = _image;
+      this.status = _status;
+    }
+  
+    totalPrice() {
+      return (parseFloat(this.price) * parseFloat(this.quantity)).toFixed(2);
+    }
+  }
 
   //constructor sản phẩm (vì lý do nào đó mà khi test trên firefox/brave không cho đọc file js module nên không import được)
   class Product {

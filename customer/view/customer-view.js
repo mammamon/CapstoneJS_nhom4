@@ -99,15 +99,19 @@ function renderCartTotal() {
   $('#cartTotal').text(formatPrice(cart.totalPrice()));
 }
 
-//render sản phẩm trong giỏ hàng
+// Render sản phẩm trong giỏ hàng
 function renderCartItems() {
-  const cartItemContainer = $('.cart-items');
-  const orderItemContainer = $('.cart-table-order tbody');
-  const totalContainer = $('.cart-total');
+  const cartItemContainer = $('.cart-item');
+  const orderItemContainer = $('.order-item');
+  const cartTotalContainer = $('.cart-total');
+  const orderTotalContainer = $('.cart-total-order');
+
   cartItemContainer.empty();
   orderItemContainer.empty();
 
-  let totalPrice = 0;
+  let totalCartPrice = 0;
+  let totalOrderPrice = 0;
+
   for (const cartItem of cart.items) {
     const row = `
       <tr>
@@ -119,25 +123,110 @@ function renderCartItems() {
         <td>${cartItem.quantity}</td>
         <td>${cartItem.status}</td>
         <td>
-          <i class="btnRemove fa-solid fa-trash" data-name="${cartItem.name}"></i>
+          ${
+            cartItem.status === 'đã thêm'
+              ? `<i class="btnRemoveAdd fa-solid fa-trash" data-name="${cartItem.name}"></i>`
+              : `<i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"></i>`
+          }
         </td>
       </tr>
     `;
 
     if (cartItem.status === 'đã thêm') {
       cartItemContainer.append(row);
+      totalCartPrice += cartItem.price * cartItem.quantity;
     } else if (cartItem.status === 'đã đặt hàng') {
       orderItemContainer.append(row);
+      totalOrderPrice += cartItem.price * cartItem.quantity;
     }
-
-    const itemPrice = cartItem.price * cartItem.quantity;
-    totalPrice += itemPrice;
   }
 
-  totalContainer.text(formatPrice(totalPrice));
-  $('.btnRemove').click(deleteCartItem);
-  handleOrderTableVisibility();
+  cartTotalContainer.text(formatPrice(totalCartPrice));
+  orderTotalContainer.text(formatPrice(totalOrderPrice));
+
+  $('.btnRemoveAdd').click(deleteCartItemAdd);
+  $('.btnRemoveOrder').click(deleteCartItemOrder);
 }
+
+
+
+// Đặt hàng
+$('#btnOrder').click(function () {
+  const orderItems = $('.order-item').find('tr');
+  
+  if (orderItems.length === 0) {
+    alert('Không có đơn hàng');
+    return;
+  }
+  
+  if (confirm('Xác nhận đặt hàng?')) {
+    // Process the order here
+    
+    // Clear the order table
+    $('.order-item').empty();
+    
+    // Update the total price
+    $('.cart-total-order').text(formatPrice(0));
+    
+    // Check if there are any remaining cart items
+    const cartItems = $('.cart-item').find('tr');
+    
+    if (cartItems.length === 0) {
+      $('#cartZone').hide();
+    }
+  }
+});
+
+
+function deleteCartItemAdd() {
+  const productName = $(this).data('name');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã thêm');
+  if (index !== -1) {
+    cart.items.splice(index, 1);
+    cart.localStorageSave();
+    renderCartItems();
+    renderCartTotal();
+  }
+}
+
+function deleteCartItemOrder() {
+  const productName = $(this).data('name');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã đặt hàng');
+  if (index !== -1) {
+    cart.items.splice(index, 1);
+    cart.localStorageSave();
+    renderCartItems();
+    renderCartTotal();
+  }
+}
+
+
+function renderOrderItems() {
+  const orderItemContainer = $('.cart-table-order tbody');
+  orderItemContainer.empty();
+
+  for (const cartItem of cart.items) {
+    if (cartItem.status === 'đã đặt hàng') {
+      const row = `
+        <tr>
+          <td>
+            <div>${cartItem.name}</div>
+            <div><img class="" src="${cartItem.image}"></div>
+          </td>
+          <td>${formatPrice(cartItem.price)}</td>
+          <td>${cartItem.quantity}</td>
+          <td>${cartItem.status}</td>
+          <td>
+            <i class="btnRemove fa-solid fa-trash" data-name="${cartItem.name}"></i>
+          </td>
+        </tr>
+      `;
+      orderItemContainer.append(row);
+    }
+  }
+}
+
+
 
 
 

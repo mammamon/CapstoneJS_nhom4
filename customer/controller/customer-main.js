@@ -32,16 +32,16 @@ getProductList();
 function loadCart() {
     const data = localStorage.getItem('cart');
     if (data) {
-      const items = JSON.parse(data);
-      cart = new Cart();
-      cart.items = items;
+        const items = JSON.parse(data);
+        cart = new Cart();
+        cart.items = items;
     } else {
-      cart = new Cart();
+        cart = new Cart();
     }
     renderCartItems();
     renderCartTotal();
-  }
-  
+}
+
 loadCart();
 
 
@@ -73,71 +73,74 @@ function deleteCartItem() {
 function addToCart(productId) {
     const product = products.find((product) => product.id === productId);
     if (product) {
-      const productName = product.name;
-      const price = parseFloat(product.price);
-      const quantity = parseInt($('#quantity-input').val());
-      const image = product.image;
-  
-      const existingCartItem = cart.items.find(
-        (item) => item.name === productName && item.status === 'đã thêm'
-      );
-  
-      if (existingCartItem) {
-        existingCartItem.quantity += quantity;
-      } else {
-        const newItem = new CartItem(productName, price, quantity, image);
-        cart.addItem(newItem);
-      }
-  
-      renderCartItems();
-      const productDiv = $(`.product[data-name="${productName}"]`);
-      productDiv.addClass('product-saved');
-      $('#cartZone').css('display', 'block');
-      cart.localStorageSave();
-      $('.close').click();
+        const productName = product.name;
+        const price = parseFloat(product.price);
+        const quantity = parseInt($('#quantity-input').val());
+        const image = product.image;
+
+        const existingCartItem = cart.items.find(
+            (item) => item.name === productName && item.status === 'đã thêm'
+        );
+
+        if (existingCartItem) {
+            existingCartItem.quantity += quantity;
+        } else {
+            const newItem = new CartItem(productName, price, quantity, image);
+            cart.addItem(newItem);
+        }
+
+        renderCartItems();
+        const productDiv = $(`.product[data-name="${productName}"]`);
+        productDiv.addClass('product-saved');
+        $('#cartZone').css('display', 'block');
+        cart.localStorageSave(); // Save the updated cart items to local storage
+        $('.close').click();
     } else {
-      console.error('Error');
+        console.error('Error');
     }
-  }
-  // Remove all cart items
-  function resetCart() {
+}
+// Remove all cart items
+function resetCart() {
     cart.items = [];
+    cart.localStorageSave(); // Save the updated cart items to local storage
     renderCartItems();
-  }
-  
-  // Reset cart button
-  $('#btnReset').click(function () {
+}
+
+// Reset cart button
+$('#btnReset').click(function () {
     if (confirm('Xác nhận xoá giỏ hàng?')) {
-      resetCart();
+        resetCart();
     }
-  });
-  
-  // Add event listener for adding to cart
-  $(document).on('click', '.btn-add-to-cart', function (event) {
+});
+
+// Add event listener for adding to cart
+$(document).on('click', '.btn-add-to-cart', function (event) {
     const productId = $(this).data('productId');
     addToCart(productId);
     event.preventDefault();
     event.stopPropagation();
-  });
+});
 
-//đặt hàng
+
+// Đặt hàng
 $('#btnOrder').click(function () {
     const addedItems = $('.cart-item');
     const orderedItems = $('.order-item');
     const invoiceTable = $('.cart-table-order');
   
-    if (addedItems.children().length === 0) {
+    if (addedItems.children().length === 0 && orderedItems.children().length === 0) {
       alert('Không có sản phẩm trong giỏ hàng');
       return;
     }
   
-    if (confirm(`Xác nhận đặt hàng?`)) {
+    if (confirm('Xác nhận đặt hàng?')) {
       const itemsToMove = cart.items.filter((item) => item.status === 'đã thêm');
       for (const item of itemsToMove) {
         item.status = 'đã đặt hàng';
       }
   
       renderCartItems();
+      renderOrderItems(); // Render order items in the invoice table
   
       // Calculate total price for invoice table
       let totalOrderPrice = 0;
@@ -151,46 +154,45 @@ $('#btnOrder').click(function () {
       // Hide cart table and show invoice table
       addedItems.empty();
       invoiceTable.show();
+  
+      // Save the updated cart to local storage
+      cart.localStorageSave();
     }
   });
 
-  $('#btnRemoveOrder').click(function () {
-    const invoiceTable = $('.cart-table-order');
-    const orderedItems = $('.order-item');
-    const orderTotalContainer = $('.order-total');
-  
-    if (confirm('Xác nhận xoá hóa đơn?')) {
-      orderedItems.empty();
-      orderTotalContainer.text('0');
-      invoiceTable.hide();
-    }
-  });
-  
-  // Remove item from add table
-$(document).on('click', '.btnRemoveAdd', function() {
-    const itemId = $(this).data('id');
-    const itemToRemove = cart.items.find((item) => item.id === itemId && item.status === 'đã thêm');
+
+
+// Remove item from add table
+$(document).on('click', '.btnRemoveAdd', function () {
+    const productName = $(this).data('name');
+    const itemToRemove = cart.items.find((item) => item.name === productName && item.status === 'đã thêm');
     if (itemToRemove) {
-      cart.deleteItem(itemToRemove);
-      renderCartItems();
+      if (confirm('Xác nhận xoá sản phẩm?')) {
+        cart.deleteItem(itemToRemove);
+        renderCartItems();
+      }
     }
   });
   
   // Remove item from invoice table
-  $(document).on('click', '.btnRemoveOrder', function() {
-    const itemId = $(this).data('id');
-    const itemToRemove = cart.items.find((item) => item.id === itemId && item.status === 'đã đặt hàng');
+  $(document).on('click', '.btnRemoveOrder', function () {
+    const productName = $(this).data('name');
+    const itemToRemove = cart.items.find((item) => item.name === productName && item.status === 'đã đặt hàng');
     if (itemToRemove) {
-      cart.deleteItem(itemToRemove);
-      renderCartItems();
+      if (confirm('Xác nhận xoá sản phẩm?')) {
+        cart.deleteItem(itemToRemove);
+        renderCartItems();
+      }
     }
   });
   
+  
 
 
-  
-  
-  
+
+
+
+
 
 
 

@@ -1,19 +1,23 @@
-//render danh sách sản phẩm
+// Render danh sách sản phẩm
 function renderProductList(products) {
   const productShow = $('.product-show');
-  const content = products.map((product) => {
-    const saved = cart.items.some((item) => item.name === product.name && item.saved);
-    const productClass = saved ? 'product product-saved' : 'product';
-    const formattedPrice = formatPrice(product.price);
-    return `
-      <div class="${productClass}" data-name="${product.name}">
-        <h3>${product.name}</h3>
-        <img src="${product.image}" alt="${product.name}" class="product-img">
-        <p class="text-danger">${formattedPrice}</p>
-        <button class="btn btn-purchase" data-name="${product.name}">MUA NGAY</button>
-      </div>
-    `;
-  }).join('');
+  const content = products
+    .map((product) => {
+      const saved = cart.items.some(
+        (item) => item.name === product.name && item.saved
+      );
+      const productClass = saved ? 'product product-saved' : 'product';
+      const formattedPrice = formatPrice(product.price);
+      return `
+        <div class="${productClass}" data-name="${product.name}">
+          <h3>${product.name}</h3>
+          <img src="${product.image}" alt="${product.name}" class="product-img">
+          <p class="text-danger">${formattedPrice}</p>
+          <button class="btn btn-purchase" data-name="${product.name}">MUA NGAY</button>
+        </div>
+      `;
+    })
+    .join('');
   productShow.html(content);
   productShow.on('click', '.btn-purchase', function () {
     const productName = $(this).data('name');
@@ -22,24 +26,24 @@ function renderProductList(products) {
   });
 }
 
-//đổi tên thuộc tính
+// Đổi tên thuộc tính
 const changeKeyNames = {
-  "RAM": "RAM",
-  "HDD": "HDD",
-  "DPI": "DPI",
-  "tray": "Khay giấy",
-  "warmUpTime": "Thời gian khởi động",
-  "DSPF": "DSPF",
-  "RSPF": "RSPF",
-  "finisher": "finisher",
-  "fax": "Fax",
-  "solution": "solution",
-  "addHDD": "Thêm HDD",
-  "addRam": "Thêm RAM",
-  "addStand": "Thêm stand"
+  RAM: 'RAM',
+  HDD: 'HDD',
+  DPI: 'DPI',
+  tray: 'Khay giấy',
+  warmUpTime: 'Thời gian khởi động',
+  DSPF: 'DSPF',
+  RSPF: 'RSPF',
+  finisher: 'finisher',
+  fax: 'Fax',
+  solution: 'solution',
+  addHDD: 'Thêm HDD',
+  addRam: 'Thêm RAM',
+  addStand: 'Thêm stand',
 };
 
-//render ô chứa thông tin sản phẩm
+// Render ô chứa thông tin sản phẩm
 function renderProductInfo(product) {
   const { name, id, price, speed, branch, type, color, paper, image, description, spec, option } = product;
   const modal = $('#addProductModal');
@@ -64,7 +68,7 @@ function renderProductInfo(product) {
   }
 
   modal.find('.product-info').html(`
-    <table class="product-attributes"
+    <table class="product-attributes">
       <tr><img src="${image}" alt="" class="product-img"></tr>
       <tr><td>Model</td><td>${name}</td></tr>
       <tr><td>id</td><td>No. ${id}</td></tr>
@@ -82,7 +86,7 @@ function renderProductInfo(product) {
         </td>
       </tr>
       <tr>
-        <<td>Tùy chọn</td>
+        <td>Tùy chọn</td>
         <td colspan="3">
           <table class="sub-attributes">${optionContent}</table>
         </td>
@@ -93,8 +97,7 @@ function renderProductInfo(product) {
   modal.modal('show');
 }
 
-
-//render tổng tiền trong giỏ hàng
+// Render tổng tiền trong giỏ hàng
 function renderCartTotal() {
   $('#cartTotal').text(formatPrice(cart.totalPrice()));
 }
@@ -148,59 +151,7 @@ function renderCartItems() {
   $('.btnRemoveOrder').click(deleteCartItemOrder);
 }
 
-
-
-// Đặt hàng
-$('#btnOrder').click(function () {
-  const orderItems = $('.order-item').find('tr');
-  
-  if (orderItems.length === 0) {
-    alert('Không có đơn hàng');
-    return;
-  }
-  
-  if (confirm('Xác nhận đặt hàng?')) {
-    // Process the order here
-    
-    // Clear the order table
-    $('.order-item').empty();
-    
-    // Update the total price
-    $('.cart-total-order').text(formatPrice(0));
-    
-    // Check if there are any remaining cart items
-    const cartItems = $('.cart-item').find('tr');
-    
-    if (cartItems.length === 0) {
-      $('#cartZone').hide();
-    }
-  }
-});
-
-
-function deleteCartItemAdd() {
-  const productName = $(this).data('name');
-  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã thêm');
-  if (index !== -1) {
-    cart.items.splice(index, 1);
-    cart.localStorageSave();
-    renderCartItems();
-    renderCartTotal();
-  }
-}
-
-function deleteCartItemOrder() {
-  const productName = $(this).data('name');
-  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã đặt hàng');
-  if (index !== -1) {
-    cart.items.splice(index, 1);
-    cart.localStorageSave();
-    renderCartItems();
-    renderCartTotal();
-  }
-}
-
-
+// Render đơn hàng
 function renderOrderItems() {
   const orderItemContainer = $('.cart-table-order tbody');
   orderItemContainer.empty();
@@ -228,5 +179,27 @@ function renderOrderItems() {
 
 
 
+// Xóa sản phẩm đã thêm vào giỏ hàng
+function deleteCartItemAdd() {
+  const productName = $(this).data('name');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã thêm');
+  if (index !== -1) {
+    cart.items.splice(index, 1);
+    cart.localStorageSave();
+    renderCartItems();
+    renderCartTotal();
+  }
+}
 
+// Xóa sản phẩm đã đặt hàng
+function deleteCartItemOrder() {
+  const productName = $(this).data('name');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã đặt hàng');
+  if (index !== -1) {
+    cart.items.splice(index, 1);
+    cart.localStorageSave();
+    renderCartItems();
+    renderCartTotal();
+  }
+}
 

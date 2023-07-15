@@ -1,3 +1,4 @@
+//constructor giỏ hàng
 class Cart {
     constructor() {
       this.items = [];
@@ -38,6 +39,7 @@ class Cart {
     }
   }
   
+  //constructor sản phẩm trong giỏ hàng
   class CartItem {
     constructor(_name, _price, _quantity, _image, _saved = false) {
       this.name = _name;
@@ -52,6 +54,8 @@ class Cart {
     }
   }
   
+
+  //constructor sản phẩm (vì lý do nào đó mà khi test trên firefox/brave không cho đọc file js module nên không import được)
   class Product {
     constructor(_name, _title, _image, _price, _speed, _branch, _type, _color, _paper, _spec, _option, _description, _id) {
       this.name = _name;

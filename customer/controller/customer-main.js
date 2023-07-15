@@ -54,46 +54,48 @@ $('#cartIcon').click(function () {
     $('#cartZone').toggle();
 });
 
-// xóa sản phẩm khỏi giỏ hàng (dựa trên data-name)
+// xóa sản phẩm khỏi giỏ hàng (dựa theo id)
 function deleteCartItem() {
-    const name = $(this).data('name');
-    const item = cart.items.find((item) => item.name === name);
-    if (item) {
-        cart.deleteItem(item);
+    const productId = $(this).data('productId'); 
+    const itemIndex = cart.items.findIndex((item) => item.id === productId); 
+    if (itemIndex !== -1) {
+        cart.items.splice(itemIndex, 1);
     }
     renderCartItems();
     renderCartTotal();
-    $(`.product[data-name="${name}"]`).removeClass('product-saved');
-    cart.localStorageSave();
+    $(`.product[data-productId="${productId}"]`).removeClass('product-saved');
 }
 
+
 //thêm sản phẩm vào giỏ hàng (dựa theo id)
-$(document).on('click', '.btn-add-to-cart', function () {
-    const productId = $(this).data('productId');
+function addToCart(productId) {
     const product = products.find((product) => product.id === productId);
     if (product) {
-      const productName = product.name;
-      const price = parseFloat(product.price);
-      const quantity = parseInt($('#quantity-input').val());
-      const existingItem = cart.items.find((item) => item.name === productName);
-      if (existingItem) {
-        existingItem.quantity += quantity;
-      } else {
-        const newItem = new CartItem(productName, price, quantity);
-        cart.addItem(newItem);
-      }
-      renderCartItems();
-      renderCartTotal();
-      const productDiv = $(`.product[data-name="${productName}"]`);
-      productDiv.addClass('product-saved');
-      $('#cartZone').css('display', 'block');
-      cart.localStorageSave();
-      $('.close').click();
+        const productName = product.name;
+        const price = parseFloat(product.price);
+        const quantity = parseInt($('#quantity-input').val());
+        const existingItem = cart.items.find((item) => item.name === productName);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            const newItem = new CartItem(productName, price, quantity);
+            cart.addItem(newItem);
+        }
+        renderCartItems();
+        renderCartTotal();
+        const productDiv = $(`.product[data-name="${productName}"]`);
+        productDiv.addClass('product-saved');
+        $('#cartZone').css('display', 'block');
+        cart.localStorageSave();
+        $('.close').click();
     } else {
-      console.error('error');
+        console.error('error');
     }
-  });
-  
+}
+$(document).on('click', '.btn-add-to-cart', function () {
+    const productId = $(this).data('productId');
+    addToCart(productId);
+});
 
 
 

@@ -31,9 +31,9 @@ const changeKeyNames = {
   "warmUpTime": "Thời gian khởi động",
   "DSPF": "DSPF",
   "RSPF": "RSPF",
-  "finisher": "Bộ hoàn thiện",
+  "finisher": "finisher",
   "fax": "Fax",
-  "solution": "Giải pháp",
+  "solution": "solution",
   "addHDD": "Thêm HDD",
   "addRam": "Thêm RAM",
   "addStand": "Thêm stand"

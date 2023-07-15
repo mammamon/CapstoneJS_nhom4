@@ -92,10 +92,6 @@ function renderProductInfo(product) {
   modal.find('.btn-add-to-cart').data('productId', id);
   modal.modal('show');
 }
-$(document).on('click', '.btn-add-to-cart', function () {
-  const productId = $(this).data('productId');
-  addToCart(productId);
-});
 
 
 //render tổng tiền trong giỏ hàng
@@ -106,23 +102,41 @@ function renderCartTotal() {
 //render sản phẩm trong giỏ hàng
 function renderCartItems() {
   const cartItemContainer = $('.cart-items');
+  const orderItemContainer = $('.cart-table-order tbody');
+  const totalContainer = $('.cart-total');
   cartItemContainer.empty();
+  orderItemContainer.empty();
 
+  let totalPrice = 0;
   for (const cartItem of cart.items) {
     const row = `
       <tr>
-        <td>${cartItem.name}</td>
+        <td>
+          <div>${cartItem.name}</div>
+          <div><img class="" src="${cartItem.image}"></div>
+        </td>
         <td>${formatPrice(cartItem.price)}</td>
         <td>${cartItem.quantity}</td>
+        <td>${cartItem.status}</td>
         <td>
           <i class="btnRemove fa-solid fa-trash" data-name="${cartItem.name}"></i>
         </td>
       </tr>
     `;
-    cartItemContainer.append(row);
+
+    if (cartItem.status === 'đã thêm') {
+      cartItemContainer.append(row);
+    } else if (cartItem.status === 'đã đặt hàng') {
+      orderItemContainer.append(row);
+    }
+
+    const itemPrice = cartItem.price * cartItem.quantity;
+    totalPrice += itemPrice;
   }
 
+  totalContainer.text(formatPrice(totalPrice));
   $('.btnRemove').click(deleteCartItem);
+  handleOrderTableVisibility();
 }
 
 

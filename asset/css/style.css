@@ -157,7 +157,7 @@ form {
   position: fixed;
   top: 50px;
   right: 10px;
-  width: 700px;
+  max-width: 600px;
   padding: 1.5rem;
   background-color: #e8c400;
   border: 1px solid #ccc;
@@ -168,6 +168,27 @@ form {
 #cartZone thead, #cartZone th, #cartZone td {
   width: 100px;
   text-align: center;
+}
+#cartZone .cart-header i {
+  font-size: 20px;
+}
+#cartZone .cart-items {
+  max-width: 60px;
+}
+#cartZone .cart-items .btnRemove {
+  cursor: pointer;
+}
+#cartZone .cart-items img {
+  width: 60px;
+  height: 60px;
+}
+#cartZone .cart-table-add {
+  border-radius: 8px;
+  background-color: white;
+}
+
+#cart-table-order {
+  border-radius: 8px;
 }
 
 /* HEADER */

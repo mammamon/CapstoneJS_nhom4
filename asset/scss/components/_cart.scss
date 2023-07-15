@@ -3,7 +3,7 @@
     position: fixed;
     top: 50px;
     right: 10px;
-    width: 700px;
+    max-width: 600px;
     padding: 1.5rem;
     background-color: $primaryColor;
     border: 1px solid #ccc;
@@ -14,4 +14,25 @@
         width: 100px;
         text-align: center;
     }
+    .cart-header {
+        i {
+            font-size: 20px;
+        }
+    }
+    .cart-items {
+        max-width: 60px;
+        .btnRemove {
+            cursor: pointer;
+        }
+        img {
+            @include square(60px);
+        }
+    }
+    .cart-table-add {
+        border-radius: 8px;
+        background-color: white;
+    }
+}
+#cart-table-order {
+    border-radius: 8px;
 }

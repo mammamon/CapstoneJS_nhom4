@@ -59,13 +59,13 @@ function deleteCartItem() {
     const productId = $(this).data('productId');
     const index = cart.items.findIndex((item) => item.id === productId);
     if (index !== -1) {
-      cart.items.splice(index, 1);
-      cart.localStorageSave();
-      renderCartItems();
-      renderCartTotal();
+        cart.items.splice(index, 1);
+        cart.localStorageSave();
+        renderCartItems();
+        renderCartTotal();
     }
-  }
-  
+}
+
 
 
 //thêm sản phẩm vào giỏ hàng (dựa theo id)
@@ -75,13 +75,16 @@ function addToCart(productId) {
         const productName = product.name;
         const price = parseFloat(product.price);
         const quantity = parseInt($('#quantity-input').val());
+        const image = product.image;
+        const status = product.status;
         const existingItem = cart.items.find((item) => item.name === productName);
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
-            const newItem = new CartItem(productName, price, quantity);
+            const newItem = new CartItem(productName, price, quantity, image);
             cart.addItem(newItem);
         }
+
         renderCartItems();
         renderCartTotal();
         const productDiv = $(`.product[data-name="${productName}"]`);
@@ -93,13 +96,55 @@ function addToCart(productId) {
         console.error('error');
     }
 }
-$(document).on('click', '.btn-add-to-cart', function () {
+$(document).on('click', '.btn-add-to-cart', function (event) {
+    console.log('click event triggered');
     const productId = $(this).data('productId');
     addToCart(productId);
-});
+    event.preventDefault();
+    event.stopPropagation();
+  });
 
 
+//đặt hàng
+$('#btnOrder').click(function () {
+    const addedItems = $('.cart-items');
+    const orderedItems = $('.cart-table-order tbody');
   
+    if (addedItems.children().length === 0) {
+      alert('Không có sản phẩm trong giỏ hàng');
+      return;
+    }
+  
+    if (confirm(`Xác nhận đặt hàng ?`)) {
+      const itemsToMove = cart.items.filter((item) => item.status === 'đã thêm');
+      itemsToMove.forEach((item) => {
+        item.status = 'đã đặt hàng';
+        const row = addedItems.find(`[data-name="${item.name}"]`);
+        orderedItems.append(row);
+      });
+    }
+  
+    renderCartItems();
+  });
+  
+  
+
+  function handleOrderTableVisibility() {
+    const orderTable = $('.cart-table-order');
+    const orderItemContainer = $('.cart-table-order tbody');
+    if (orderItemContainer.children().length === 0) {
+      orderTable.hide();
+    } else {
+      orderTable.show();
+    }
+  }
+  
+  
+  
+
+
+
+
 
 
 

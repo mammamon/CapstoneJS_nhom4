@@ -7,7 +7,7 @@ class Cart {
       this.items.push(item);
     }
   
-    removeItem(item) {
+    deleteItem(item) {
       const index = this.items.indexOf(item);
       if (index > -1) {
         this.items.splice(index, 1);

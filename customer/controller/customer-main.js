@@ -1,30 +1,35 @@
-// Define the products variable
-let products = [];
+/*---------- UTILITIES ----------*/
 
-// Fetch product data from the API
+// format giá ra tiền Việt
+function formatPrice(price) {
+    const formattedPrice = parseFloat(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return formattedPrice;
+}
+
+
+/*---------- INITIALIZES  ----------*/
+
+// load sản phẩm từ API
+let products = [];
 function getProductList() {
     let promise = axios({
         url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
         method: 'GET',
     });
-
     promise
         .then(function (result) {
             console.log('result: ', result.data);
-            products = result.data; // Assign the data to the products variable
-            renderProductList(products); // Pass the product data to renderProductList
+            products = result.data;
+            renderProductList(products);
         })
         .catch(function (error) {
             console.log(error);
         });
 }
-// Call the getProductList function
 getProductList();
 
-let cart = Cart.localStorageLoad();
-
-// Function to initialize the Cart from local storage
-function initializeCart() {
+// load giỏ hàng từ local storage
+function loadCart() {
     const data = localStorage.getItem('cart');
     if (data) {
         const items = JSON.parse(data);
@@ -33,134 +38,68 @@ function initializeCart() {
     } else {
         cart = new Cart();
     }
-
     renderCartItems();
     renderCartTotal();
 }
+loadCart();
 
-// Call the initializeCart function to initialize the Cart
-initializeCart();
 
-// Function to format price
-function formatPrice(price) {
-    const formattedPrice = parseFloat(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    return formattedPrice;
-}
+/*---------- CONTROLLERS ----------*/
 
-// isEmpty Object
-function isEmptyObject(obj) {
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-// Function to handle decreasing quantity
-function decreaseQuantity() {
-    const quantityInput = $(this).siblings('.quantity-input');
-    let quantity = parseInt(quantityInput.val());
-
-    if (quantity > 1) {
-        quantity--;
-        quantityInput.val(quantity);
-    }
-}
-
-// Function to handle increasing quantity
-function increaseQuantity() {
-    const quantityInput = $(this).siblings('.quantity-input');
-    let quantity = parseInt(quantityInput.val());
-
-    if (quantity < 3) {
-        quantity++;
-        quantityInput.val(quantity);
-    }
-}
-
-// Add event listener to cart icon for showing/hiding the cart zone
+// icon giỏ hàng
 $('#cartIcon').click(function () {
-    // Load the cart from local storage
     cart = Cart.localStorageLoad();
-
-    // Render the loaded cart
     renderCartItems();
     renderCartTotal();
-
-    // Show or hide the cart zone based on its current display state
-    const cartZone = $('#cartZone');
-    cartZone.toggle();
-
-    // If the cart is visible, update the product saved class
-    if (cartZone.is(':visible')) {
-        $('.product').each(function () {
-            const productName = $(this).data('name');
-            const saved = cart.items.some((item) => item.name === productName && item.saved);
-            $(this).toggleClass('product-saved', saved);
-        });
-    }
+    $('#cartZone').toggle();
 });
 
-// Function to handle removing a product from the cart
-function removeFromCart() {
+// xóa sản phẩm khỏi giỏ hàng (dựa trên data-name)
+function deleteCartItem() {
     const name = $(this).data('name');
-
     const item = cart.items.find((item) => item.name === name);
     if (item) {
-        cart.removeItem(item);
+        cart.deleteItem(item);
     }
-
     renderCartItems();
     renderCartTotal();
-
-    const productDiv = $(`.product[data-name="${name}"]`);
-    productDiv.removeClass('product-saved');
-
-    if (cart.items.length === 0) {
-        $('#cartZone').css('display', 'none');
-    }
-
+    $(`.product[data-name="${name}"]`).removeClass('product-saved');
     cart.localStorageSave();
 }
-  
-function addToCart(productId) {
+
+//thêm sản phẩm vào giỏ hàng (dựa theo id)
+$(document).on('click', '.btn-add-to-cart', function () {
+    const productId = $(this).data('productId');
     const product = products.find((product) => product.id === productId);
-  
     if (product) {
       const productName = product.name;
       const price = parseFloat(product.price);
       const quantity = parseInt($('#quantity-input').val());
-  
       const existingItem = cart.items.find((item) => item.name === productName);
-  
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
         const newItem = new CartItem(productName, price, quantity);
         cart.addItem(newItem);
       }
-  
       renderCartItems();
       renderCartTotal();
-  
       const productDiv = $(`.product[data-name="${productName}"]`);
       productDiv.addClass('product-saved');
-  
       $('#cartZone').css('display', 'block');
-  
       cart.localStorageSave();
+      $('.close').click();
     } else {
-      console.error('Product not found');
+      console.error('error');
     }
-  }
-  
-  
+  });
   
 
-  
-  
-  
+
+
+
+
+
 
 
 

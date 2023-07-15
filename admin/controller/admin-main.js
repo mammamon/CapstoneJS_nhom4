@@ -86,7 +86,7 @@ $('#btnAdd').on('click', async function () {
 
 // Xóa sản phẩm
 function deleteProduct(id, name, event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  event.preventDefault(); 
 
   if (confirm(`Xác nhận xóa sản phẩm ${name}?`)) {
     axios({
@@ -94,7 +94,7 @@ function deleteProduct(id, name, event) {
       method: 'DELETE',
     })
       .then(function () {
-        getProductList(); // Assuming getProductList is responsible for fetching and rendering the updated product list
+        getProductList(); 
       })
       .catch(function () {
         alert('Xóa sản phẩm thất bại');

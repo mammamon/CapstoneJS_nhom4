@@ -7,8 +7,9 @@
 @import '../scss/base/customize';
 
 // Components
-@import '../scss/components/validation';
 @import '../scss/components/logo';
+@import '../scss/components/validation';
+@import '../scss/components/animation';
 
 // Layout
 @import '../scss/layouts/header';
@@ -23,6 +24,6 @@
 // Pages
 @import '../scss/pages/index';
 @import '../scss/pages/admin';
-// Themes (no themes)
+// Themes (no themes yet)
 
 // Vendors (no vendors yet)

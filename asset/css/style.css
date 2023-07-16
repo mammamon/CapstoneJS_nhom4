@@ -141,17 +141,48 @@ form {
   height: 34px;
 }
 
-.check {
-  font-size: 0.8rem;
-  color: #ff0000;
-}
-
 /*COMPONENTS*/
 .logo img {
   max-width: 250px;
   max-height: 60px;
 }
 
+.check {
+  font-size: 0.8rem;
+  color: #ff0000;
+}
+
+/*ANIMATIONS*/
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+
+.ripple:hover {
+  background: #e8c400 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+  filter: brightness(1.1);
+}
+
+.ripple:active {
+  background-color: #6eb9f7;
+  background-size: 100%;
+  transition: background 0.3s;
+}
+
+@keyframes tumbler {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 /* HEADER */ /* FOOTER */ /* CART */
 #cartZone {
   position: fixed;
@@ -165,22 +196,30 @@ form {
   max-width: 600px;
   z-index: 99;
 }
-#cartZone thead, #cartZone th, #cartZone td {
+#cartZone thead,
+#cartZone th,
+#cartZone td {
   width: 100px;
   text-align: center;
 }
 #cartZone .cart-header i {
   font-size: 20px;
 }
-#cartZone .cart-item, #cartZone .order-item {
+#cartZone .cart-item,
+#cartZone .order-item {
   max-width: 60px;
+  margin-bottom: 10px;
 }
-#cartZone .cart-item .btnRemoveAdd, #cartZone .cart-item .btnRemoveOrder, #cartZone .order-item .btnRemoveAdd, #cartZone .order-item .btnRemoveOrder {
+#cartZone .cart-item .btnRemoveAdd,
+#cartZone .cart-item .btnRemoveOrder,
+#cartZone .order-item .btnRemoveAdd,
+#cartZone .order-item .btnRemoveOrder {
   cursor: pointer;
   font-size: 22px;
   color: red;
 }
-#cartZone .cart-item img, #cartZone .order-item img {
+#cartZone .cart-item img,
+#cartZone .order-item img {
   width: 60px;
   height: 60px;
 }
@@ -197,6 +236,25 @@ form {
   background-color: antiquewhite;
 }
 
+.cart-icon {
+  background-color: #1f1f1f;
+  position: absolute;
+  cursor: pointer;
+  top: 10vh;
+  right: 3vw;
+  z-index: 1998;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: tumbler 1s infinite;
+}
+.cart-icon i {
+  font-size: 1rem;
+  color: #fff;
+}
+
 /* ADD-TO-CART MODAL */ /* PRODUCT-ZONE */
 .product-show {
   display: flex;
@@ -208,26 +266,6 @@ form {
   padding: 10px;
   margin: 10px;
   width: 200px;
-}
-
-.cart-item {
-  margin-bottom: 10px;
-}
-
-.cart-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1;
-  width: 30px;
-  height: 30px;
-  background-color: red;
-}
-
-#cartTotal {
-  font-weight: bold;
 }
 
 .btn {

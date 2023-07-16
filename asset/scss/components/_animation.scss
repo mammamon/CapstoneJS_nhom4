@@ -1,0 +1,24 @@
+/*ANIMATIONS*/
+
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.ripple:hover {
+    background: $primaryColor radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+    filter: brightness(1.1);
+}
+
+.ripple:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background .3s;
+}
+
+@keyframes tumbler {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-20deg); }
+    100% { transform: rotate(0deg); }
+}

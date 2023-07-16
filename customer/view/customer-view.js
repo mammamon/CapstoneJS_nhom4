@@ -153,11 +153,14 @@ function renderCartItems() {
       $('#exclamation').remove();
     }
   }
-  cartTotalContainer.text(formatPrice(totalCartPrice));
-  orderTotalContainer.text(formatPrice(totalOrderPrice));
+  
   $('.btnRemoveAdd').click(deleteCartItemAdd);
   $('.btnRemoveOrder').click(deleteCartItemOrder);
+  
+  cartTotalContainer.text(formatPrice(totalCartPrice));
+  orderTotalContainer.text(formatPrice(totalOrderPrice));
 }
+
 
 // Render sản phẩm đã đặt hàng
 function renderOrderItems() {
@@ -176,7 +179,7 @@ function renderOrderItems() {
           <td>${cartItem.quantity}</td>
           <td>${cartItem.status}</td>
           <td>
-            <i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"></i>
+            <i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"</i>
           </td>
         </tr>
       `;
@@ -185,7 +188,7 @@ function renderOrderItems() {
   }
 }
 
-// Xóa sản phẩm chưa đặt hàng vào giỏ hàng
+// Xóa sản phẩm chưa đặt hàng
 function deleteCartItemAdd() {
   const productName = $(this).data('name');
   const index = cart.items.findIndex((item) => item.name === productName && item.status === 'chưa đặt hàng');

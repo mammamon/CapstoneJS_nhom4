@@ -40,53 +40,34 @@
 <body>
     <!-- HEADER -->
     <header id="movetop">
-        <!-- logo & tìm kiếm -->
-        <div class="container d-flex justify-content-center">
-            <a href="">
-                <img src="./asset/img/logo.png" alt="#" width="150px" height="100px">
-            </a>
-            <div class="form-group" id="search">
-                <select class="custom-select" name="" id="">
-                    <option selected>Chọn Sản Phẩm</option>
-                    <option value="SHARP">SHARP</option>
-                    <option value="RICOH">RICOH</option>
-                    <option value="SOLUTION">SOLUTION</option>
-                </select>
-                <div class="d-flex">
-                    <input type="search" class="form-control" name="" id="" aria-describedby="helpId"
-                        placeholder="Nhập tên sản phẩm">
-
-                    <button type="button" class="btn btn-submit" style="height:40px;"><i
-                            class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+        <div id="frameHead">
+            <div id="logoArea">
+                <div id="logo">
+                    <h1
+                        style="color: red; font-weight: 500;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        GIA THINH</h1>
+                    <i>Smart solution smart copier</i>
                 </div>
             </div>
-        </div>
-        <!-- nav bar -->
-        <ul class="nav justify-content-center" style="background-color: antiquewhite">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Trang Chủ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Về Chúng Tôi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Sản Phẩm</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Dịch Vụ & Giải Pháp</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Hỗ Trợ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="./admin.html">Trang admin</a>
-            </li>
-            <div class="nav__contact">
-                <a href="https://www.giathinhcopier.vn" class="btn btn-success">LIÊN HỆ</a>
-
+            <div id="rightArea" style="z-index:1000;">
+                <div class="headerSlope"><img src="./asset/img/header/headerSlope.gif" width="140" height="48" alt="">
+                </div>
+                <ul class="float-r">
+                    <li>Trang chủ</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    <li>Về chúng tôi</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    <li>Sản phẩm</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    <li>Dịch vụ & Giải pháp</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    <li>Hổ trợ</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    <li>Đăng nhập</li>
+                </ul>
             </div>
-        </ul>
+        </div>
+        <div></div>
     </header>
     <!-- CAROUSEL -->
     <div id="carouselExampleIndicators" class="carousel slide">
@@ -123,7 +104,139 @@
     <div class="container-fluid d-flex">
         <!-- SORT-TABLE -->
         <section class="sort-table col-4">
-            <table></table>
+            <table>
+                <div class="container mt-3">
+                    <form action="/action_page.php">
+                        <div class="form-check-label">
+                            <nav class="nav justify-content-left">
+                                <a>HÃNG</a>
+                            </nav>
+                            <hr width="80%" style="margin:5px;">
+                            <div style="padding-left: 30px;">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                        value="something" checked>
+                                    <label class="form-check-label" for="check1">SHARP</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">RICOH</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">RICOH</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-check-label">
+                            <nav class="nav justify-content-left">
+                                <a>TỐC ĐỘ</a>
+                            </nav>
+                            <hr width="80%" style="margin:5px;">
+                            <div style="padding-left: 30px;">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                        value="something" checked>
+                                    <label class="form-check-label" for="check1">21-30 PPM</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">31-45 PPM</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">46-55 PPM</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">56-70 PPM</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">LỚN HƠN 71 PPM</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-check-label">
+                            <nav class="nav justify-content-left">
+                                <a>MÀU SẴC</a>
+                            </nav>
+                            <hr width="80%" style="margin:5px;">
+                            <div style="padding-left: 30px;">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                        value="something" checked>
+                                    <label class="form-check-label" for="check1">MÀU</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">TRẮNG ĐEN</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-check-label">
+                            <nav class="nav justify-content-left">
+                                <a>KHỔ GIẤY</a>
+                            </nav>
+                            <hr width="80%" style="margin:5px;">
+                            <div style="padding-left: 30px;">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                        value="something" checked>
+                                    <label class="form-check-label" for="check1">TỐI ĐA A4</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">TỐI ĐA A3</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-check-label">
+                            <nav class="nav justify-content-left">
+                                <a>GIÁ</a>
+                            </nav>
+                            <hr width="80%" style="margin:5px;">
+                            <div style="padding-left: 30px;">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                        value="something" checked>
+                                    <label class="form-check-label" for="check1">DƯỚI 30,000,000 VNĐ</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">TỪ 31,000,000 VNĐ - 60,000,000
+                                        VNĐ</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">TỪ 61,000,000 VNĐ - 99,000,000
+                                        VNĐ</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                        value="something">
+                                    <label class="form-check-label" for="check2">TRÊN 100,000,000 VNĐ</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">TÌM KIẾM</button>
+                    </form>
+                </div>
+            </table>
         </section>
         <!-- PRODUCT-ZONE -->
         <section class="product-show col-8">
@@ -131,84 +244,273 @@
         </section>
     </div>
     <!-- SERVICE -->
-    <section class="service"></section>
-    <!-- SUPPORT -->
-    <section class="support"></section>
-    <!-- FOOTER -->
-    <footer>
-        <div>
-            <div class=" py-md-4" id="GiaThinhFooter">
-                <div class="row footer-top-29">
-                    <div class="col-lg-4 col-md-6 footer-list-29 footer-1">
-                        <div class="footer-logo mb-4">
-                            <a class="navbar-brand" href="">
-                                <img src="./asset/img/logo.png" width="250px" height="150px" alt="">
-                        </div>
-                        <div class="main-social-footer-29 mt-md-4 mt-3">
-                            <a href="" class="facebook">
-                                <i class="fa-brands fa-facebook"></i>
-                            </a>
-                            <a href="" class="twitter">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                            <a href="" class="instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                            <a href="" class="youtobe">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                            <a href="" class="tiktok">
-                                <i class="fa-brands fa-tiktok"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 footer-list-29 footer-1 pr-lg-5 mt-md-0 mt-5">
-                        <h6 class="footer-title-29">Thông Tin Liên Hệ</h6>
-                        <p class="mb-2">
-                            Địa chỉ : 469/32 Nguyễn Oanh, Phường 17, Quận Gò Vấp, TPHCM </p>
-                        <p class="mb-2">Điện Thoại : <a href="tel:0785411888">
-                                0785411888</a></p>
-                        <p class="mb-2">Email : <a href="">
-                                <span class="__cf_email__"
-                                    data-cfemail="442d2a222b04213c25293428216a272b29">trung@giathinhcopier.vn</span></a>
-                        </p>
-                        <p class="mb-2">Hổ trợ : <a href="">
-                                <span class="__cf_email__"
-                                    data-cfemail="5d34333b321d2e282d2d322f29733e3230">kythuat@giathinhcopier.vn</span></a>
-                        </p>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-6 footer-list-29 footer-2 mt-lg-0 mt-6">
-                        <div id="categories-4" class="widget_categories">
-                            <h6 class="footer-title-29">Chính Sách & Điều Khoản</h6>
-                            <ul>
-                                <li class="cat-item cat-item-2"><a href="">Chính sách bảo hành</a>
-                                </li>
-                                <li class="cat-item cat-item-3"><a href="">Chính sách bảo mật</a>
-                                </li>
-                                <li class="cat-item cat-item-4"><a href="">Chính sách đổi trả hàng</a>
-                                </li>
-                                <li class="cat-item cat-item-4"><a href="">Phương thức đặt hàng</a>
-                                </li>
+    <section class="service">
+        <div id="frameService">
+            <div id="logoArea">
+                <div id="logo">
+                    <h1
+                        style="color: red; font-weight: 500;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        DỊCH VỤ & GIẢI PHÁP</h1>
 
-                            </ul>
+                    <i>Smart solution smart copier</i>
+                </div>
+            </div>
+            <div id="rightArea" style="z-index:1000;">
+                <div class="headerSlope"><img src="./asset/img/header/headerSlope.gif" width="140" height="48" alt="">
+                </div>
+                <ul class="float-r">
+                    <li>Dịch vụ</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    <li>Giải pháp</li>
+                    <img src="./asset/img/header/headerBGspline.gif" alt="">
 
-                        </div>
+                </ul>
+            </div>
+            <section class="services section-inner">
+                <div class="services__container">
+                    <div class="title">
+                        <h1>DỊCH VỤ CHUYÊN SÂU</h1>
                     </div>
-
-                    <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-2 mt-lg-0 mt-5">
-                        <div id="meta-4" class="widget_meta">
-                            <h6 class="footer-title-29">Database</h6>
-                            <ul>
-                                <li><a href="">Đăng nhập</a></li>
-                                <li><a href="">Tra cứu lịch sửa sữa chữa</a></li>
-                                <li><a href="">Tra cứu lỗi</a></li>
-                                <li><a href="">Tìm kiếm mã spare part</a></li>
-                            </ul>
+                    <div class="services__content">
+                        <div class="service__item">
+                            <img src="./asset/img/solution & service/rent.png" alt="pic1_3">
+                            <h3>Dịch vụ cho thuê máy</h3>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp; Cho thuê máy màu
+                            </p>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp;Cho thuê máy
+                                trắng
+                                đen
+                            </p>
+                        </div>
+                        <div class="service__item">
+                            <img src="./asset/img/solution & service/sec.png" alt="pic1_3">
+                            <h3>Giải pháp bảo mật</h3>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp;Dùng User Control
+                            </p>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp;Dùng LDAP</p>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp;Dùng Card Reader
+                            </p>
+                        </div>
+                        <div class="service__item">
+                            <img src="./asset/img/solution & service/Followme.png" alt="pic1_3">
+                            <h3>Phần mềm quản lý</h3>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp;Kayleigh Solution
+                            </p>
+                            <p><i class="fa-solid fa-check" style="color: #f40101;"></i> &nbsp;Papercut Solution
+                            </p>
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
+    </section>
+    <!-- SUPPORT -->
+    <section class="support">
+        <div id="support">
+            <div id="frameSupport">
+                <div id="logoArea">
+                    <div id="logo">
+                        <h1
+                            style="color: red; font-weight: 500;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                            HỔ TRỢ</h1>
+
+                        <i>Smart solution smart copier</i>
+                    </div>
+                </div>
+                <div id="rightArea" style="z-index:1000;">
+                    <div class="headerSlope"><img src="./asset/img/header/headerSlope.gif" width="140" height="48"
+                            alt="">
+                    </div>
+                    <ul class="float-r">
+                        <li>Brochures</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Manual</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Driver</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Mã lỗi</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Video clip</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                    </ul>
+                </div>
             </div>
-    </footer>
+            <div class="container">
+                <div class="containerSupport">
+                    <div id="downloadsList" class="non clearfix">
+                        <div class="downloadsBtn brochures">
+                            <div class="icon"><img src="./asset/img/download/ic_brochures.png"></div>
+                            <a href="https://global.sharp/products/copier/downloads/brochures/index.html"><span
+                                    class="downloadsLink"><span class="downloadsArrow">Brochures &nbsp;<i
+                                            class="fa-solid fa-caret-right"></i></span></span></a>
+                        </div>
+                        <div class="downloadsBtn manuals">
+                            <div class="icon"><img src="./asset/img/download/ic_instructionmanuals_2.png"></div>
+                            <a href="https://global.sharp/restricted/products/copier/downloads/manuals/select.html"><span
+                                    class="downloadsLink"><span class="downloadsArrow">Manuals &nbsp;<i
+                                            class="fa-solid fa-caret-right"></i></span></span></a>
+                        </div>
+                        <div class="downloadsBtn drivers">
+                            <div class="icon"><img src="./asset/img/download/ic_drivers.png"></div>
+                            <a href="https://global.sharp/restricted/products/copier/downloads/select_us_driver.html"><span
+                                    class="downloadsLink"><span class="downloadsArrow">Driver &nbsp;<i
+                                            class="fa-solid fa-caret-right"></i></span></span></a>
+                        </div>
+                        <div class="downloadsBtn softwares">
+                            <div class="icon"><img src="./asset/img/download/ic_softwares.png"></div>
+                            <a href="https://global.sharp/restricted/products/copier/downloads/select_us_software.html"><span
+                                    class="downloadsLink"><span class="downloadsArrow">Software &nbsp;<i
+                                            class="fa-solid fa-caret-right"></i></span></span></a>
+                        </div>
+                        <div class="downloadsBtn errors">
+                            <div class="icon"><img src="./asset/img/download/no-error-sign-hi.png"></div>
+                            <a href="downloads/brochures/index.html"><span class="downloadsLink"><span
+                                        class="downloadsArrow">Mã
+                                        lỗi &nbsp;<i class="fa-solid fa-caret-right"></i></span></span></a>
+                        </div>
+                        <div class="downloadsBtn videos">
+                            <div class="icon"><img src="./asset/img/download/video1.jpg"></div>
+                            <a href="downloads/brochures/index.html"><span class="downloadsLink"><span
+                                        class="downloadsArrow">Video &nbsp;<i
+                                            class="fa-solid fa-caret-right"></i></span></span></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <div id="footer">
+        <footer class="bg-footer text-center text-lg-start text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row my-4">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+
+                        <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto"
+                            style="width: 200px; height: 200px;">
+                            <img src="./asset/img/logo.png" height="90" alt="" loading="lazy" />
+                        </div>
+
+                        <p class="text-center">CÔNG TY TNHH THIẾT BỊ VĂN PHÒNG GIA THỊNH</p>
+
+                        <ul id="tnContact">
+                            <li>
+                                <a href=" https://m.me/trung.nguyenvan.902" class="iconfb" target="_blank">
+                                    <i class="text-black fab fa-facebook-f"></i>
+                                </a>
+                                <!-- <span class="text-black label fb" >Chat Facebook</span> -->
+                            </li>
+                            <li>
+                                <a href="https://zalo.me/0785411888" class="iconzalo" target="_blanl">
+                                    <img src="https://caohungphat.com/wp-content/uploads/2019/07/icon_zalomessage.png"
+                                        alt="">
+                                </a>
+                                <!-- <span class=" text-black label zalo">Nhắn tin zalo</span> -->
+                            </li>
+                            <li>
+                                <a href="sms:0785411888" class="iconsms">
+                                    <i class="text-black fa-solid fa-comment-sms fa-2xl"></i>
+                                </a>
+                                <!-- <span class="text-black label sms">Nhắn tin điện thoại</span> -->
+                            </li>
+                            <li>
+                                <a href="tel:0899326019" class="iconcall">
+                                    <i class="text-black fas fa-phone fa-2xl"></i>
+                                </a>
+                                <!-- <span class="text-black label call">Gọi điện thoại</span> -->
+                            </li>
+                            <li>
+                                <a class="text-black ps-2" href="#!">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4">Tra cứu thông tin</h5>
+
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Lịch sử sửa chữa</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Lịch sử báo giá</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Hợp đồng</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Hóa đơn</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4">Chính sách và điều khoản</h5>
+
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Chính sách bảo hành</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Chính sách đổi trả sản
+                                    phẩm</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Chính sách bảo mật</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#!" class="text-black"><i class="fas fa-paw pe-3"></i>Phương thức thanh
+                                    toán</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4">Liên hệ</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <p><i class="fas fa-map-marker-alt pe-2"></i>469/32 Nguyễn Oanh, Phường 17, Quận Gò Vấp,
+                                    TP Hồ Chí Minh.</p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone pe-2"></i>(+84) 0785411888 </p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope pe-2 mb-0"></i>kythuat@giathinhcopier.vn</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2023 Copyright:
+                <a class="text-white" href="http//:www.giathinhcopier.vn">www.giathinhcopier.vn</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </div>
     <!-- CONTROL BUTTONS -->
     <div style="position:relative">
         <div class="cart-icon rounded-circle" id="cartIcon" title="giỏ hàng">

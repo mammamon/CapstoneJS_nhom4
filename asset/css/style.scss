@@ -9,11 +9,16 @@
 // Components
 @import '../scss/components/validation';
 @import '../scss/components/logo';
-@import '../scss/components/cart';
 
 // Layout
 @import '../scss/layouts/header';
 @import '../scss/layouts/footer';
+@import '../scss/layouts/cart';
+@import '../scss/layouts/addtocart';
+@import '../scss/layouts/productzone';
+@import '../scss/layouts/service';
+@import '../scss/layouts/sort-table';
+@import '../scss/layouts/support';
 
 // Pages
 @import '../scss/pages/index';

@@ -23,6 +23,8 @@
         max-width: 60px;
         .btnRemoveAdd, .btnRemoveOrder {
             cursor: pointer;
+            font-size: 22px;
+            color: red;
         }
         img {
             @include square(60px);
@@ -31,6 +33,9 @@
     .cart-table-add {
         border-radius: 8px;
         background-color: white;
+    }
+    .accordion-button {
+        width: 540px;
     }
 }
 #cart-table-order {

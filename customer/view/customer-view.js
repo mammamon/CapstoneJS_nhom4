@@ -168,7 +168,7 @@ function renderOrderItems() {
           <td>${cartItem.quantity}</td>
           <td>${cartItem.status}</td>
           <td>
-            <i class="btnRemove fa-solid fa-trash" data-name="${cartItem.name}"></i>
+            <i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"></i>
           </td>
         </tr>
       `;

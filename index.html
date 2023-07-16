@@ -36,56 +36,9 @@
         referrerpolicy="no-referrer" />
     <!-- CSS STYLE -->
     <link rel="stylesheet" href="./asset/css/style.css">
-    <style>
-        .product-show {
-            display: flex;
-            flex-wrap: wrap;
-        }
 
-        .product {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-            width: 200px;
-        }
-
-        .cart-item {
-            margin-bottom: 10px;
-        }
-
-        .cart-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1;
-            width: 30px;
-            height: 30px;
-            background-color: red;
-        }
-
-        #cartTotal {
-            font-weight: bold;
-        }
-
-        .btn {
-            cursor: pointer;
-        }
-
-        .product-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        .product-saved .product-img {
-            filter: none;
-        }
-    </style>
-
-    <!-- header -->
+<body>
+    <!-- HEADER -->
     <header id="movetop">
         <!-- logo & tìm kiếm -->
         <div class="container d-flex justify-content-center">
@@ -135,7 +88,7 @@
             </div>
         </ul>
     </header>
-    <!-- carousel -->
+    <!-- CAROUSEL -->
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -167,16 +120,21 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <!-- PRODUCT ZONE-->
-    <div class="container-fluid">
-        <section class="product-filter col-4">
+    <div class="container-fluid d-flex">
+        <!-- SORT-TABLE -->
+        <section class="sort-table col-4">
             <table></table>
         </section>
+        <!-- PRODUCT-ZONE -->
         <section class="product-show col-8">
             <!-- product được tạo tự động từ API -->
         </section>
     </div>
-    <!-- footer -->
+    <!-- SERVICE -->
+    <section class="service"></section>
+    <!-- SUPPORT -->
+    <section class="support"></section>
+    <!-- FOOTER -->
     <footer>
         <div>
             <div class=" py-md-4" id="GiaThinhFooter">
@@ -251,53 +209,86 @@
                 </div>
             </div>
     </footer>
-    <!-- MANIPULATE BUTTONS -->
+    <!-- CONTROL BUTTONS -->
     <div class="cart-icon" id="cartIcon">
         <i class="bi bi-cart-fill"></i>
     </div>
+    <!-- HIDDEN SECTIONS -->
     <!-- CART MODALS -->
     <section class="cart-zone" id="cartZone" style="display: none;">
         <div class="cart-header">Giỏ hàng của bạn</div>
         <div class="cart-body">
-            <table class="cart-table-add">
-                <thead class="text-center">
-                    <tr>
-                        <th>Sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Trạng thái</th>
-                        <th>Xóa</th>
-                    </tr>
-                </thead>
-                <tbody class="cart-item"></tbody>
-                <tfoot>
-                    <td>Tổng cộng: </td>
-                    <td class="cart-total"></td>
-                </tfoot>
-            </table>
-            <table class="cart-table-order">
-                <thead class="text-center">
-                    <tr>
-                        <th>Sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Trạng thái</th>
-                        <th>Hủy đơn hàng</th>
-                    </tr>
-                </thead>
-                <tbody class="order-item"></tbody>
-                <tfoot>
-                    <td>Tổng cộng: </td>
-                    <td class="cart-total-order"</td>
-                </tfoot>
-            </table>
+            <div class="accordion" id="cartAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="cartAddHeading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cartAddCollapse" aria-expanded="true" aria-controls="cartAddCollapse">
+                            Giỏ hàng
+                        </button>
+                    </h2>
+                    <div id="cartAddCollapse" class="accordion-collapse collapse show" aria-labelledby="cartAddHeading"
+                        data-bs-parent="#cartAccordion">
+                        <div class="accordion-body">
+                            <table class="cart-table-add">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="cart-item"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>Tổng cộng:</td>
+                                        <td class="cart-total"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="cartOrderHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#cartOrderCollapse" aria-expanded="false" aria-controls="cartOrderCollapse">
+                            Đơn hàng đã đặt
+                        </button>
+                    </h2>
+                    <div id="cartOrderCollapse" class="accordion-collapse collapse" aria-labelledby="cartOrderHeading"
+                        data-bs-parent="#cartAccordion">
+                        <div class="accordion-body">
+                            <table class="cart-table-order">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hủy đơn hàng</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="order-item"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>Tổng cộng:</td>
+                                        <td class="cart-total-order"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="cart-btn d-flex">
                 <button id="btnOrder" class="btn btn-success">Đặt hàng</button>
                 <button id="btnReset" class="btn btn-danger">Reset</button>
             </div>
         </div>
     </section>
-    <!-- ADD PRODUCT MODAL -->
+    <!-- ADD-TO-CARD MODAL -->
     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -354,6 +345,6 @@
     <script src="./asset/js/main.js"></script>
     <!-- CUSTOMER JS -->
     <script src="./customer/controller/customer-main.js"></script>
-    </body>
+</body>
 
 </html>

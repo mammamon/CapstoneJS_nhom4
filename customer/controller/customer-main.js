@@ -67,53 +67,54 @@ function deleteCartItem() {
     }
 }
 
-
-
 //thêm sản phẩm vào giỏ hàng (dựa theo id)
 function addToCart(productId) {
-    const product = products.find((product) => product.id === productId);
-    if (product) {
-        const productName = product.name;
-        const price = parseFloat(product.price);
-        const quantity = parseInt($('#quantity-input').val());
-        const image = product.image;
+  const product = products.find((product) => product.id === productId);
+  if (product) {
+    const productName = product.name;
+    const price = parseFloat(product.price);
+    const quantity = parseInt($('#quantity-input').val());
+    const image = product.image;
 
-        const existingCartItem = cart.items.find(
-            (item) => item.name === productName && item.status === 'đã thêm'
-        );
+    const existingCartItem = cart.items.find(
+      (item) => item.name === productName && item.status === 'đã thêm'
+    );
 
-        if (existingCartItem) {
-            existingCartItem.quantity += quantity;
-        } else {
-            const newItem = new CartItem(productName, price, quantity, image);
-            cart.addItem(newItem);
-        }
-
-        renderCartItems();
-        const productDiv = $(`.product[data-name="${productName}"]`);
-        productDiv.addClass('product-saved');
-        $('#cartZone').css('display', 'block');
-        cart.localStorageSave(); // Save the updated cart items to local storage
-        $('.close').click();
+    if (existingCartItem) {
+      existingCartItem.quantity += quantity;
     } else {
-        console.error('Error');
+      const newItem = new CartItem(productName, price, quantity, image);
+      cart.addItem(newItem);
     }
-}
-// Remove all cart items
-function resetCart() {
-    cart.items = [];
-    cart.localStorageSave(); // Save the updated cart items to local storage
     renderCartItems();
+    const productDiv = $(`.product[data-name="${productName}"]`);
+    productDiv.addClass('product-saved');
+    $('#cartZone').css('display', 'block');
+    cart.localStorageSave(); 
+    $('.close').click();
+    const addAccordionPanel = $('#cartAdd');
+    const orderAccordionPanel = $('#cartOrder');
+    const isAddAccordionVisible = addAccordionPanel.hasClass('show');
+    const isOrderAccordionVisible = orderAccordionPanel.hasClass('show');
+    if (isOrderAccordionVisible && !isAddAccordionVisible) {
+      orderAccordionPanel.collapse('toggle');
+      addAccordionPanel.collapse('toggle');
+    }
+  } else {
+    console.error('Error');
+  }
 }
 
-// Reset cart button
+//reset giỏ hàng
 $('#btnReset').click(function () {
-    if (confirm('Xác nhận xoá giỏ hàng?')) {
-        resetCart();
-    }
+  if (confirm('Xác nhận xoá giỏ hàng?')) {
+      cart.items = [];
+      cart.localStorageSave();
+      renderCartItems();
+  }
 });
 
-// Add event listener for adding to cart
+
 $(document).on('click', '.btn-add-to-cart', function (event) {
     const productId = $(this).data('productId');
     addToCart(productId);
@@ -122,43 +123,37 @@ $(document).on('click', '.btn-add-to-cart', function (event) {
 });
 
 
-// Đặt hàng
 $('#btnOrder').click(function () {
-    const addedItems = $('.cart-item');
-    const orderedItems = $('.order-item');
-    const invoiceTable = $('.cart-table-order');
-  
-    if (addedItems.children().length === 0 && orderedItems.children().length === 0) {
-      alert('Không có sản phẩm trong giỏ hàng');
-      return;
+  const addedItems = $('.cart-item');
+  const orderedItems = $('.order-item');
+  const invoiceTable = $('.cart-table-order');
+
+  if (addedItems.children().length === 0 && orderedItems.children().length === 0) {
+    alert('Không có sản phẩm trong giỏ hàng');
+    return;
+  }
+
+  if (confirm('Xác nhận đặt hàng?')) {
+    const itemsToMove = cart.items.filter((item) => item.status === 'đã thêm');
+    for (const item of itemsToMove) {
+      item.status = 'đã đặt hàng';
     }
-  
-    if (confirm('Xác nhận đặt hàng?')) {
-      const itemsToMove = cart.items.filter((item) => item.status === 'đã thêm');
-      for (const item of itemsToMove) {
-        item.status = 'đã đặt hàng';
+    renderCartItems();
+    renderOrderItems(); 
+    let totalOrderPrice = 0;
+    for (const orderItem of cart.items) {
+      if (orderItem.status === 'đã đặt hàng') {
+        totalOrderPrice += orderItem.price * orderItem.quantity;
       }
-  
-      renderCartItems();
-      renderOrderItems(); // Render order items in the invoice table
-  
-      // Calculate total price for invoice table
-      let totalOrderPrice = 0;
-      for (const orderItem of cart.items) {
-        if (orderItem.status === 'đã đặt hàng') {
-          totalOrderPrice += orderItem.price * orderItem.quantity;
-        }
-      }
-      $('.order-total').text(formatPrice(totalOrderPrice));
-  
-      // Hide cart table and show invoice table
-      addedItems.empty();
-      invoiceTable.show();
-  
-      // Save the updated cart to local storage
-      cart.localStorageSave();
     }
-  });
+    $('.order-total').text(formatPrice(totalOrderPrice));
+    addedItems.empty();
+    invoiceTable.show();
+    $('#cartOrderHeading > button').click();
+    cart.localStorageSave();
+  }
+});
+
 
 
 

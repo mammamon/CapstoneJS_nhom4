@@ -41,7 +41,7 @@ class Cart {
   
   //constructor sản phẩm trong giỏ hàng
   class CartItem {
-    constructor(_name, _price, _quantity, _image, _saved = false, _status="đã thêm") {
+    constructor(_name, _price, _quantity, _image, _saved = false, _status="chưa đặt hàng") {
       this.name = _name;
       this.price = parseFloat(_price);
       this.quantity = _quantity;

@@ -77,7 +77,7 @@ function addToCart(productId) {
     const image = product.image;
 
     const existingCartItem = cart.items.find(
-      (item) => item.name === productName && item.status === 'đã thêm'
+      (item) => item.name === productName && item.status === 'chưa đặt hàng'
     );
 
     if (existingCartItem) {
@@ -123,12 +123,10 @@ $('#btnReset').click(function () {
 // nút reset sản phẩm trong giỏ hàng
 $(document).on('click', '.btnRemoveAdd', function () {
   const productName = $(this).data('name');
-  const itemToRemove = cart.items.find((item) => item.name === productName && item.status === 'đã thêm');
+  const itemToRemove = cart.items.find((item) => item.name === productName && item.status === 'chưa đặt hàng');
   if (itemToRemove) {
-    if (confirm('Xác nhận xoá sản phẩm?')) {
-      cart.deleteItem(itemToRemove);
-      renderCartItems();
-    }
+    cart.deleteItem(itemToRemove);
+    renderCartItems();
   }
 });
 
@@ -137,10 +135,8 @@ $(document).on('click', '.btnRemoveOrder', function () {
   const productName = $(this).data('name');
   const itemToRemove = cart.items.find((item) => item.name === productName && item.status === 'đã đặt hàng');
   if (itemToRemove) {
-    if (confirm('Xác nhận xoá sản phẩm?')) {
-      cart.deleteItem(itemToRemove);
-      renderCartItems();
-    }
+    cart.deleteItem(itemToRemove);
+    renderCartItems();
   }
 });
 
@@ -154,7 +150,7 @@ $('#btnOrder').click(function () {
     return;
   }
   if (confirm('Xác nhận đặt hàng?')) {
-    const itemsToMove = cart.items.filter((item) => item.status === 'đã thêm');
+    const itemsToMove = cart.items.filter((item) => item.status === 'chưa đặt hàng');
     for (const item of itemsToMove) {
       item.status = 'đã đặt hàng';
     }

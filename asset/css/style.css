@@ -201,6 +201,14 @@ form {
   max-width: 600px;
   z-index: 99;
 }
+#cartZone .price {
+  color: red;
+}
+#cartZone .cart-total, #cartZone .cart-total-order {
+  font-weight: 700;
+  font-size: 18px;
+  color: red;
+}
 #cartZone thead,
 #cartZone th,
 #cartZone td {
@@ -232,9 +240,8 @@ form {
 #cartZone .order-item tr {
   border: 1px solid #ddd;
 }
-#cartZone .cart-item h5, #cartZone .cart-item .price,
-#cartZone .order-item h5,
-#cartZone .order-item .price {
+#cartZone .cart-item h5,
+#cartZone .order-item h5 {
   color: red;
   font-weight: 600;
 }
@@ -243,10 +250,13 @@ form {
   background-color: white;
 }
 #cartZone .accordion-body {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
+  max-height: 400px;
+  overflow-y: auto;
 }
 #cartZone .accordion-button {
-  width: 500px;
+  min-width: 511.333px;
+  max-width: 550px;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   font-weight: 800;

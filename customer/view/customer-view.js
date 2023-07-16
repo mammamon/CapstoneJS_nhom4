@@ -126,15 +126,15 @@ function renderCartItems() {
         <td>${cartItem.quantity}</td>
         <td>${cartItem.status}</td>
         <td>
-          ${cartItem.status === 'đã thêm'
+          ${cartItem.status === 'chưa đặt hàng'
         ? `<i class="btnRemoveAdd fa-solid fa-trash" data-name="${cartItem.name}"></i>`
         : `<i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"></i>`
       }
         </td>
       </tr>
     `;
-    //tính riêng tổng tiền của sản phẩm đã thêm vào giỏ / sản phẩm đã đặt hàng 
-    if (cartItem.status === 'đã thêm') {
+    //tính riêng tổng tiền của sản phẩm chưa đặt hàng vào giỏ / sản phẩm đã đặt hàng 
+    if (cartItem.status === 'chưa đặt hàng') {
       cartItemContainer.append(row);
       totalCartPrice += cartItem.price * cartItem.quantity;
     } else if (cartItem.status === 'đã đặt hàng') {
@@ -172,7 +172,7 @@ function renderOrderItems() {
             <div>${cartItem.name}</div>
             <div><img class="" src="${cartItem.image}"></div>
           </td>
-          <td>${formatPrice(cartItem.price)}</td>
+          <td class=price>${formatPrice(cartItem.price)}</td>
           <td>${cartItem.quantity}</td>
           <td>${cartItem.status}</td>
           <td>
@@ -185,10 +185,10 @@ function renderOrderItems() {
   }
 }
 
-// Xóa sản phẩm đã thêm vào giỏ hàng
+// Xóa sản phẩm chưa đặt hàng vào giỏ hàng
 function deleteCartItemAdd() {
   const productName = $(this).data('name');
-  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã thêm');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'chưa đặt hàng');
   if (index !== -1) {
     cart.items.splice(index, 1);
     cart.localStorageSave();

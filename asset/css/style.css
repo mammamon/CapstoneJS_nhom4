@@ -153,20 +153,8 @@ form {
 }
 
 /*ANIMATIONS*/
-.ripple {
-  background-position: center;
-  transition: background 0.8s;
-}
-
-.ripple:hover {
-  background: #e8c400 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
-  filter: brightness(1.1);
-}
-
-.ripple:active {
-  background-color: #6eb9f7;
-  background-size: 100%;
-  transition: background 0.3s;
+.ani-tumbler {
+  animation: tumbler 1s infinite;
 }
 
 @keyframes tumbler {
@@ -183,14 +171,31 @@ form {
     transform: rotate(0deg);
   }
 }
+#exclamation {
+  background-color: red;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  animation: tumbler 1.5s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* HEADER */ /* FOOTER */ /* CART */
 #cartZone {
   position: fixed;
-  top: 50px;
-  right: 10px;
+  top: 1rem;
+  right: 1rem;
   max-width: 600px;
-  padding: 1.5rem;
-  background-color: #e8c400;
+  padding: 1rem;
+  background-color: #1f1f1f;
   border: 1px solid #ccc;
   border-radius: 8px;
   max-width: 600px;
@@ -199,7 +204,7 @@ form {
 #cartZone thead,
 #cartZone th,
 #cartZone td {
-  width: 100px;
+  width: 90px;
   text-align: center;
 }
 #cartZone .cart-header i {
@@ -223,12 +228,30 @@ form {
   width: 60px;
   height: 60px;
 }
+#cartZone .cart-item tr,
+#cartZone .order-item tr {
+  border: 1px solid #ddd;
+}
+#cartZone .cart-item h5, #cartZone .cart-item .price,
+#cartZone .order-item h5,
+#cartZone .order-item .price {
+  color: red;
+  font-weight: 600;
+}
 #cartZone .cart-table-add {
   border-radius: 8px;
   background-color: white;
 }
+#cartZone .accordion-body {
+  padding: 1rem;
+}
 #cartZone .accordion-button {
-  width: 540px;
+  width: 500px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-weight: 800;
+  background-color: #e8e8e8;
+  box-shadow: 1px solid #fff;
 }
 
 #cart-table-order {
@@ -238,20 +261,19 @@ form {
 
 .cart-icon {
   background-color: #1f1f1f;
-  position: absolute;
+  position: fixed;
   cursor: pointer;
-  top: 10vh;
+  bottom: 5vh;
   right: 3vw;
   z-index: 1998;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: tumbler 1s infinite;
 }
 .cart-icon i {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #fff;
 }
 

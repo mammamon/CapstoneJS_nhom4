@@ -187,7 +187,7 @@
                                 </li>
                                 <li class="cat-item cat-item-4"><a href="">Chính sách đổi trả hàng</a>
                                 </li>
-                                <li class="cat-item cat-item-4"><a href="">Phương thức thanh toán</a>
+                                <li class="cat-item cat-item-4"><a href="">Phương thức đặt hàng</a>
                                 </li>
 
                             </ul>
@@ -210,13 +210,14 @@
             </div>
     </footer>
     <!-- CONTROL BUTTONS -->
-    <div class="cart-icon rounded-circle ripple" id="cartIcon">
-        <i class="fa-solid fa-cart-shopping"></i>
+    <div style="position:relative">
+        <div class="cart-icon rounded-circle" id="cartIcon">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
     </div>
     <!-- HIDDEN SECTIONS -->
     <!-- CART MODALS -->
     <section class="cart-zone" id="cartZone" style="display: none;">
-        <div class="cart-header">Giỏ hàng của bạn</div>
         <div class="cart-body">
             <div class="accordion" id="cartAccordion">
                 <div class="accordion-item">
@@ -230,7 +231,7 @@
                         data-bs-parent="#cartAccordion">
                         <div class="accordion-body">
                             <table class="cart-table-add">
-                                <thead class="text-center">
+                                <thead class="text-center pb-2">
                                     <tr>
                                         <th>Sản phẩm</th>
                                         <th>Giá</th>
@@ -261,7 +262,7 @@
                         data-bs-parent="#cartAccordion">
                         <div class="accordion-body">
                             <table class="cart-table-order">
-                                <thead class="text-center">
+                                <thead class="text-center mb-2">
                                     <tr>
                                         <th>Sản phẩm</th>
                                         <th>Giá</th>
@@ -282,8 +283,8 @@
                     </div>
                 </div>
             </div>
-            <div class="cart-btn d-flex">
-                <button id="btnOrder" class="btn btn-success">Đặt hàng</button>
+            <div class="cart-btn d-flex pt-3">
+                <button id="btnOrder" class="btn btn-success me-2">đặt hàng</button>
                 <button id="btnReset" class="btn btn-danger">Reset</button>
             </div>
         </div>

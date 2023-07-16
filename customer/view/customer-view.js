@@ -119,10 +119,10 @@ function renderCartItems() {
     const row = `
       <tr>
         <td>
-          <div>${cartItem.name}</div>
+          <h5>${cartItem.name}</h5>
           <div><img class="" src="${cartItem.image}"></div>
         </td>
-        <td>${formatPrice(cartItem.price)}</td>
+        <td class="price">${formatPrice(cartItem.price)}</td>
         <td>${cartItem.quantity}</td>
         <td>${cartItem.status}</td>
         <td>
@@ -140,6 +140,17 @@ function renderCartItems() {
     } else if (cartItem.status === 'đã đặt hàng') {
       orderItemContainer.append(row);
       totalOrderPrice += cartItem.price * cartItem.quantity;
+    }
+    //trigger animation cho icon khi có sản phẩm trong giỏ hàng
+    const cartZone = $('#cartZone');
+    const cartIcon = $('#cartIcon');
+    const cartItemAddTable = $('.cart-table-add');
+    if (cartItemAddTable.find('tr').length > 0) {
+      cartIcon.addClass('ani-tumbler');
+      cartIcon.append('<div id="exclamation">!</i></div>');
+    } else {
+      cartZone.removeClass('ani-tumbler');
+      $('#exclamation').remove();
     }
   }
   cartTotalContainer.text(formatPrice(totalCartPrice));

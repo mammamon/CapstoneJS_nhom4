@@ -43,7 +43,7 @@ const changeKeyNames = {
   addStand: 'Thêm stand',
 };
 
-// Render ô chứa thông tin sản phẩm
+// Render modal chứa thông tin sản phẩm
 function renderProductInfo(product) {
   const { name, id, price, speed, branch, type, color, paper, image, description, spec, option } = product;
   const modal = $('#addProductModal');
@@ -126,15 +126,14 @@ function renderCartItems() {
         <td>${cartItem.quantity}</td>
         <td>${cartItem.status}</td>
         <td>
-          ${
-            cartItem.status === 'đã thêm'
-              ? `<i class="btnRemoveAdd fa-solid fa-trash" data-name="${cartItem.name}"></i>`
-              : `<i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"></i>`
-          }
+          ${cartItem.status === 'đã thêm'
+        ? `<i class="btnRemoveAdd fa-solid fa-trash" data-name="${cartItem.name}"></i>`
+        : `<i class="btnRemoveOrder fa-solid fa-trash" data-name="${cartItem.name}"></i>`
+      }
         </td>
       </tr>
     `;
-
+    //tính riêng tổng tiền của sản phẩm đã thêm vào giỏ / sản phẩm đã đặt hàng 
     if (cartItem.status === 'đã thêm') {
       cartItemContainer.append(row);
       totalCartPrice += cartItem.price * cartItem.quantity;
@@ -143,15 +142,13 @@ function renderCartItems() {
       totalOrderPrice += cartItem.price * cartItem.quantity;
     }
   }
-
   cartTotalContainer.text(formatPrice(totalCartPrice));
   orderTotalContainer.text(formatPrice(totalOrderPrice));
-
   $('.btnRemoveAdd').click(deleteCartItemAdd);
   $('.btnRemoveOrder').click(deleteCartItemOrder);
 }
 
-// Render đơn hàng
+// Render sản phẩm đã đặt hàng
 function renderOrderItems() {
   const orderItemContainer = $('.cart-table-order tbody');
   orderItemContainer.empty();
@@ -176,8 +173,6 @@ function renderOrderItems() {
     }
   }
 }
-
-
 
 // Xóa sản phẩm đã thêm vào giỏ hàng
 function deleteCartItemAdd() {

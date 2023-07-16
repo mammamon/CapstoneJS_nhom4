@@ -70,7 +70,7 @@ class Cart {
     }
   }
 
-  //constructor sản phẩm (vì lý do nào đó mà khi test trên firefox/brave không cho đọc file js module nên không import được)
+  //constructor sản phẩm
   class Product {
     constructor(_name, _title, _image, _price, _speed, _branch, _type, _color, _paper, _spec, _option, _description, _id) {
       this.name = _name;

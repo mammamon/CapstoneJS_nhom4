@@ -63,7 +63,6 @@ $(document).ready(function () {
 });
 
 
-
 // xóa sản phẩm khỏi giỏ hàng (dựa theo id)
 function deleteCartItem() {
   const productId = $(this).data('productId');
@@ -76,6 +75,7 @@ function deleteCartItem() {
   }
 }
 
+// thêm sản phẩm vào giỏ hàng
 function addToCart(productId) {
   const product = products.find((product) => product.id === productId);
   if (product) {
@@ -86,7 +86,6 @@ function addToCart(productId) {
     const existingCartItem = cart.items.find(
       (item) => item.name === productName && item.status === 'chưa đặt hàng'
     );
-
     if (existingCartItem) {
       existingCartItem.quantity += quantity;
     } else {
@@ -106,6 +105,7 @@ function addToCart(productId) {
   }
 }
 
+//nút thêm vào giỏ hàng
 $(document).on('click', '.btn-add-to-cart', function (event) {
   const productId = $(this).data('productId');
   addToCart(productId);
@@ -114,13 +114,13 @@ $(document).on('click', '.btn-add-to-cart', function (event) {
 });
 
 
-
 //nút reset giỏ hàng
 $('#btnReset').click(function () {
   if (confirm('Xác nhận reset?')) {
     cart.items = [];
     cart.localStorageSave();
     renderCartItems();
+    // ẩn animation của cart icon
     $('#cartIcon').removeClass('ani-tumbler');
     $('#cartIcon').addClass('paused');
     $('#exclamation').hide();

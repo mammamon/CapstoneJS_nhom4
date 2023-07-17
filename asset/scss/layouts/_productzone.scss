@@ -9,8 +9,8 @@
     margin: 10px;
     @include center;
     flex-direction: column;
-    width: 260px;
-    height: 350px;
+    width: 244px;
+    height: 315px;
 
     p {
         color: red;
@@ -33,8 +33,8 @@
 .product-img {
     position: relative;
     overflow: hidden;
-    width: 256px;
-    height: 198px;
+    width: 220px;
+    height: 190px;
     object-fit: cover;
     margin-bottom: 10px;
     background-size: cover;

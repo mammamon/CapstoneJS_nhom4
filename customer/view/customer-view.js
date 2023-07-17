@@ -30,6 +30,7 @@ function renderProductList(products) {
   });
 }
 
+
 // Đổi tên thuộc tính
 const changeKeyNames = {
   RAM: 'RAM',
@@ -47,12 +48,12 @@ const changeKeyNames = {
   addStand: 'Thêm stand',
 };
 
+
 // Render modal chứa thông tin sản phẩm
 function renderProductInfo(product) {
   const { name, id, price, speed, branch, type, color, paper, image, description, spec, option } = product;
   const modal = $('#addProductModal');
   modal.find('.modal-title').text('Thông tin sản phẩm');
-
   let specContent = '';
   for (const key in spec) {
     if (spec.hasOwnProperty(key)) {
@@ -61,7 +62,6 @@ function renderProductInfo(product) {
       specContent += `<tr><td>${displayName}</td><td>${value}</td></tr>`;
     }
   }
-
   let optionContent = '';
   for (const key in option) {
     if (option.hasOwnProperty(key)) {
@@ -70,7 +70,6 @@ function renderProductInfo(product) {
       optionContent += `<tr><td>${displayName}</td><td>${value}</td></tr>`;
     }
   }
-
   modal.find('.product-info').html(`
     <table class="product-attributes">
       <tr><img src="${image}" alt="" class="product-img"></tr>
@@ -106,6 +105,7 @@ function renderCartTotal() {
   $('#cartTotal').text(formatPrice(cart.totalPrice()));
 }
 
+
 // Render sản phẩm trong giỏ hàng
 function renderCartItems() {
   const cartItemContainer = $('.cart-item');
@@ -117,7 +117,6 @@ function renderCartItems() {
   orderItemContainer.empty();
   let totalCartPrice = 0;
   let totalOrderPrice = 0;
-
   for (const cartItem of cart.items) {
     const row = `
       <tr>
@@ -167,6 +166,33 @@ function renderCartItems() {
   orderTotalContainer.text(formatPrice(totalOrderPrice));
 }
 
+
+// Xóa sản phẩm chưa đặt hàng
+function deleteCartItemAdd() {
+  const productName = $(this).data('name');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'chưa đặt hàng');
+  if (index !== -1) {
+    cart.items.splice(index, 1);
+    cart.localStorageSave();
+    renderCartItems();
+    renderCartTotal();
+  }
+}
+
+
+// Xóa sản phẩm đã đặt hàng
+function deleteCartItemOrder() {
+  const productName = $(this).data('name');
+  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã đặt hàng');
+  if (index !== -1) {
+    cart.items.splice(index, 1);
+    cart.localStorageSave();
+    renderCartItems();
+    renderCartTotal();
+  }
+}
+
+
 // Render sản phẩm đã đặt hàng
 function renderOrderItems() {
   const orderItemContainer = $('.cart-table-order tbody');
@@ -193,27 +219,6 @@ function renderOrderItems() {
   }
 }
 
-// Xóa sản phẩm chưa đặt hàng
-function deleteCartItemAdd() {
-  const productName = $(this).data('name');
-  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'chưa đặt hàng');
-  if (index !== -1) {
-    cart.items.splice(index, 1);
-    cart.localStorageSave();
-    renderCartItems();
-    renderCartTotal();
-  }
-}
 
-// Xóa sản phẩm đã đặt hàng
-function deleteCartItemOrder() {
-  const productName = $(this).data('name');
-  const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã đặt hàng');
-  if (index !== -1) {
-    cart.items.splice(index, 1);
-    cart.localStorageSave();
-    renderCartItems();
-    renderCartTotal();
-  }
-}
+
 

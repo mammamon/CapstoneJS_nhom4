@@ -97,6 +97,9 @@ $admin-sidebar-width: 50px;
         }
 
     }
+    .product-row {
+        height: 190.4px;
+    }
 
     #product-form {
         background-color: $grey;
@@ -124,5 +127,9 @@ $admin-sidebar-width: 50px;
         #btnUrl {
             color: $blue;
         }
+    }
+    .product-img-container {
+        width: 100%;
+        @include center;
     }
 }

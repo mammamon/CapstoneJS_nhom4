@@ -456,6 +456,8 @@ form {
 .product-show {
   display: flex;
   flex-wrap: wrap;
+  max-height: 1000px;
+  overflow: auto;
 }
 
 .product {

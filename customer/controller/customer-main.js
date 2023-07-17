@@ -181,6 +181,26 @@ $('#btnOrder').click(function () {
   }
 });
 
+function renderPagination() {
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const paginationContainer = $('#pagination');
+  paginationContainer.empty();
+
+  paginationContainer.bootpag({
+    total: totalPages,
+    maxVisible: 5, // Adjust the number of visible pagination links
+    page: currentPage, // Initial page
+  }).on('page', function (event, num) {
+    currentPage = num;
+    renderProductList(products);
+  });
+}
+
+$(document).ready(function () {
+  getProductList();
+});
+
+
 
 
 

@@ -12,7 +12,12 @@
     .price {
         color: red;
     }
-    
+    .btn {
+        border-radius: 20px;
+        &:hover {
+            filter: brightness(1.2)
+        }
+    }
     #btnOrder {
         background-color: $green;
     }
@@ -94,8 +99,8 @@
     background-color: $secondaryColor;
     position: fixed;
     cursor: pointer;
-    bottom: 5vh;
-    right:3vw;
+    bottom: 20px;
+    right: 20px;
     z-index: 1998;
     @include square(3rem);
     @include center;

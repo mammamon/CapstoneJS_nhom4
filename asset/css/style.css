@@ -353,6 +353,12 @@ form {
 #cartZone .price {
   color: red;
 }
+#cartZone .btn {
+  border-radius: 20px;
+}
+#cartZone .btn:hover {
+  filter: brightness(1.2);
+}
 #cartZone #btnOrder {
   background-color: #329f5b;
 }
@@ -432,8 +438,8 @@ form {
   background-color: #1f1f1f;
   position: fixed;
   cursor: pointer;
-  bottom: 5vh;
-  right: 3vw;
+  bottom: 20px;
+  right: 20px;
   z-index: 1998;
   width: 3rem;
   height: 3rem;
@@ -453,25 +459,63 @@ form {
 }
 
 .product {
-  border: 1px solid #ccc;
-  padding: 10px;
+  background-color: #fff;
   margin: 10px;
-  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 260px;
+  height: 350px;
 }
-
-.btn {
+.product p {
+  color: red;
+  font-size: 18px;
+  font-weight: 600;
+}
+.product .product-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  background-color: #e8e8e8;
+}
+.product:hover {
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .product-img {
-  width: 100px;
-  height: 100px;
+  position: relative;
+  overflow: hidden;
+  width: 256px;
+  height: 198px;
   object-fit: cover;
   margin-bottom: 10px;
+  background-size: cover;
+  transition: all 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-img img {
+  width: inherit;
+  height: inherit;
 }
 
 .product-saved .product-img {
   filter: none;
+}
+
+.btn-purchase {
+  background-color: red;
+  border-radius: 20px;
+}
+.btn-purchase:hover {
+  scale: 1.1;
+  transition: 0.5s;
+  background-color: red;
 }
 
 /* SERVICES */
@@ -537,7 +581,12 @@ form {
   border-image: url(../img/br.png) 1 round;
 }
 
-/* SORT-TABLE */ /*****support*****/
+/* SORT-TABLE */
+.sort-table {
+  width: 300px;
+}
+
+/*****support*****/
 #frameSupport {
   width: 100%;
   top: 1700px;

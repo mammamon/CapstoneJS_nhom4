@@ -9,12 +9,16 @@ function renderProductList(products) {
       const productClass = saved ? 'product product-saved' : 'product';
       const formattedPrice = formatPrice(product.price);
       return `
-        <div class="${productClass}" data-name="${product.name}">
-          <h3>${product.name}</h3>
-          <img src="${product.image}" alt="${product.name}" class="product-img">
-          <p class="text-danger">${formattedPrice}</p>
-          <button class="btn btn-purchase" data-name="${product.name}">MUA NGAY</button>
+      <div class="product p-2" data-name="${product.name}">
+        <div class="product-img">
+          <img src="${product.image}" alt="${product.name}">
         </div>
+        <div class="product-info p-2">
+          <h3>${product.title}</h3>
+          <p class="mb-2">${formattedPrice}</p>
+          <button class="btn btn-purchase text-white" data-name="${product.name}">ĐẶT HÀNG NGAY</button>
+        </div>
+      </div>
       `;
     })
     .join('');

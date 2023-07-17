@@ -1,10 +1,10 @@
-// Render danh sách sản phẩm
+// render danh sách sản phẩm (kết hợp Bootpag)
 function renderProductList(products, currentPage) {
+  //chỉnh thông số cho bootpag pagination
   const productsPerPage = 12;
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const productShow = $('.product-show');
-  
   const content = products
     .slice(startIndex, endIndex)
     .map((product) => {
@@ -27,8 +27,8 @@ function renderProductList(products, currentPage) {
       `;
     })
     .join('');
-  
   productShow.html(content);
+  // lấy thông tin sản phẩm và load lên modal 
   productShow.on('click', '.btn-purchase', function () {
     const productName = $(this).data('name');
     const product = products.find((product) => product.name === productName);
@@ -36,39 +36,19 @@ function renderProductList(products, currentPage) {
   });
 }
 
-//chia trang hiển thị sản phẩm (Bootpag Plugin)
-function pagination() {
+
+//render Pagination (Bootpag Plugin)
+function renderPagination() {
   const productsPerPage = 12;
   const totalPages = Math.ceil(products.length / productsPerPage);
   $('#pagination').bootpag({
     total: totalPages,
-    maxVisible: 5,
+    maxVisible: 10,
     page: 1,
   }).on('page', function (event, num) {
     renderProductList(products, num);
   });
 }
-$(document).ready(function () {
-  getProductList();
-});
-
-
-// Đổi tên thuộc tính
-const changeKeyNames = {
-  RAM: 'RAM',
-  HDD: 'HDD',
-  DPI: 'DPI',
-  tray: 'Khay giấy',
-  warmUpTime: 'Thời gian khởi động',
-  DSPF: 'DSPF',
-  RSPF: 'RSPF',
-  finisher: 'finisher',
-  fax: 'Fax',
-  solution: 'solution',
-  addHDD: 'Thêm HDD',
-  addRam: 'Thêm RAM',
-  addStand: 'Thêm stand',
-};
 
 
 // Render modal chứa thông tin sản phẩm
@@ -122,6 +102,7 @@ function renderProductInfo(product) {
   modal.modal('show');
 }
 
+
 // Render tổng tiền trong giỏ hàng
 function renderCartTotal() {
   $('#cartTotal').text(formatPrice(cart.totalPrice()));
@@ -130,13 +111,13 @@ function renderCartTotal() {
 
 // Render sản phẩm trong giỏ hàng
 function renderCartItems() {
-  const cartItemContainer = $('.cart-item');
-  const orderItemContainer = $('.order-item');
-  const cartTotalContainer = $('.cart-total');
-  const orderTotalContainer = $('.cart-total-order');
+  const cartZone = $('.cart-item');
+  const orderZone = $('.order-item');
+  const cartPrice = $('.cart-total');
+  const orderPrice = $('.cart-total-order');
   // làm sạch giỏ hàng trước khi render dữ liệu cập nhật
-  cartItemContainer.empty();
-  orderItemContainer.empty();
+  cartZone.empty();
+  orderZone.empty();
   let totalCartPrice = 0;
   let totalOrderPrice = 0;
   for (const cartItem of cart.items) {
@@ -159,10 +140,10 @@ function renderCartItems() {
     `;
     //tính riêng tổng tiền của sản phẩm chưa đặt hàng / sản phẩm đã đặt hàng 
     if (cartItem.status === 'chưa đặt hàng') {
-      cartItemContainer.append(row);
+      cartZone.append(row);
       totalCartPrice += cartItem.price * cartItem.quantity;
     } else if (cartItem.status === 'đã đặt hàng') {
-      orderItemContainer.append(row);
+      orderZone.append(row);
       totalOrderPrice += cartItem.price * cartItem.quantity;
     }
     //trigger animation cho icon khi có sản phẩm trong giỏ hàng
@@ -182,10 +163,11 @@ function renderCartItems() {
       exclamation.hide();
     }
   }
+  // gắn 2 nút xóa cho sản phẩm chưa đặt hàng và sản phẩm đã đặt hàng
   $('.btnRemoveAdd').click(deleteCartItemAdd);
   $('.btnRemoveOrder').click(deleteCartItemOrder);
-  cartTotalContainer.text(formatPrice(totalCartPrice));
-  orderTotalContainer.text(formatPrice(totalOrderPrice));
+  cartPrice.text(formatPrice(totalCartPrice));
+  orderPrice.text(formatPrice(totalOrderPrice));
 }
 
 
@@ -217,9 +199,8 @@ function deleteCartItemOrder() {
 
 // Render sản phẩm đã đặt hàng
 function renderOrderItems() {
-  const orderItemContainer = $('.cart-table-order tbody');
-  orderItemContainer.empty();
-
+  const orderZone = $('.cart-table-order tbody');
+  orderZone.empty();
   for (const cartItem of cart.items) {
     if (cartItem.status === 'đã đặt hàng') {
       const row = `
@@ -236,11 +217,25 @@ function renderOrderItems() {
           </td>
         </tr>
       `;
-      orderItemContainer.append(row);
+      orderZone.append(row);
     }
   }
 }
 
 
-
-
+// Đổi tên hiển thị thuộc tính API
+const changeKeyNames = {
+  RAM: 'RAM',
+  HDD: 'HDD',
+  DPI: 'DPI',
+  tray: 'Khay giấy',
+  warmUpTime: 'Thời gian khởi động',
+  DSPF: 'DSPF',
+  RSPF: 'RSPF',
+  finisher: 'finisher',
+  fax: 'Fax',
+  solution: 'solution',
+  addHDD: 'Thêm HDD',
+  addRam: 'Thêm RAM',
+  addStand: 'Thêm stand',
+};

@@ -94,7 +94,8 @@ function deleteProduct(id, name, event) {
       method: 'DELETE',
     })
       .then(function () {
-        getProductList(); 
+        getProductList();
+        alert('Xóa sản phẩm thành công'); 
       })
       .catch(function () {
         alert('Xóa sản phẩm thất bại');
@@ -105,7 +106,6 @@ function deleteProduct(id, name, event) {
 
 //sửa sản phẩm
 $('#btnEdit').on('click', async function () {
-  // Lấy thông tin product
   let product = getInput();
   const isValid = await validateInput(product.name, product.title, product.image, product.price, product.speed, product.branch, false);
   console.log(isValid)

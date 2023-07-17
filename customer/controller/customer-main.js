@@ -9,7 +9,7 @@ function formatPrice(price) {
 
 /*---------- INITIALIZES  ----------*/
 
-// load sản phẩm từ API
+// load sản phẩm từ API (kết hợp Bootpag)
 let products = [];
 function getProductList() {
   let promise = axios({
@@ -22,7 +22,7 @@ function getProductList() {
       console.log('result: ', result.data);
       products = result.data;
       renderProductList(products, 1);
-      pagination();
+      renderPagination();
     })
     .catch(function (error) {
       console.log(error);
@@ -49,13 +49,15 @@ loadCart();
 
 /*---------- CONTROLLERS ----------*/
 
-// đóng / mở giỏ hàng bằng icon và tự đóng icon khi click bên ngoài
+// đóng mở giỏ hàng
 $(document).ready(function () {
+  // giỏ hàng tự đóng khi click bên ngoài ngoại trừ click vào những vùng này:
   $(document).on('click', function (e) {
     if (!$(e.target).closest('#cartZone').length && !$(e.target).closest('#cartIcon').length && !$(e.target).closest('#cartAccordion').length && !$(e.target).hasClass('btn-add-to-cart') && !$(e.target).hasClass('btnRemoveOrder')) {
       $('#cartZone').hide();
     }
   });
+  // đóng mở bằng icon giỏ hàng
   $('#cartIcon, #cartIcon .fa-shopping-cart').on('click', function () {
     cart = Cart.localStorageLoad();
     renderCartItems();
@@ -65,7 +67,7 @@ $(document).ready(function () {
 });
 
 
-// xóa sản phẩm khỏi giỏ hàng (dựa theo id)
+// xóa sản phẩm khỏi giỏ hàng
 function deleteCartItem() {
   const productId = $(this).data('productId');
   const index = cart.items.findIndex((item) => item.id === productId);
@@ -77,6 +79,7 @@ function deleteCartItem() {
   }
 }
 
+
 // thêm sản phẩm vào giỏ hàng
 function addToCart(productId) {
   const product = products.find((product) => product.id === productId);
@@ -85,6 +88,7 @@ function addToCart(productId) {
     const price = parseFloat(product.price);
     const quantity = parseInt($('#quantity-input').val());
     const image = product.image;
+    // nếu có sản phẩm trùng tên và status thì cộng dồn số lượng
     const existingCartItem = cart.items.find(
       (item) => item.name === productName && item.status === 'chưa đặt hàng'
     );
@@ -95,6 +99,7 @@ function addToCart(productId) {
       cart.addItem(newItem);
     }
     renderCartItems();
+    // đóng modal thêm sản phẩm và mở modal / accordion giỏ hàng 
     const productDiv = $(`.product[data-name="${productName}"]`);
     productDiv.addClass('product-saved');
     $('#cartZone').show();
@@ -103,11 +108,12 @@ function addToCart(productId) {
     $('#cartAddCollapse').collapse('show');
 
   } else {
-    console.error('Error');
+    console.error('error');
   }
 }
 
-//nút thêm vào giỏ hàng
+
+//gắn chức năng cho nút thêm vào giỏ hàng
 $(document).on('click', '.btn-add-to-cart', function (event) {
   const productId = $(this).data('productId');
   addToCart(productId);
@@ -116,7 +122,7 @@ $(document).on('click', '.btn-add-to-cart', function (event) {
 });
 
 
-//nút reset giỏ hàng
+//nút reset toàn bộ giỏ hàng
 $('#btnReset').click(function () {
   if (confirm('Xác nhận reset?')) {
     cart.items = [];
@@ -153,7 +159,7 @@ $(document).on('click', '.btnRemoveOrder', function () {
   }
 });
 
-//đặt hàng
+// chức năng đặt hàng
 $('#btnOrder').click(function () {
   const addedItems = $('.cart-item');
   const orderedItems = $('.order-item');
@@ -169,6 +175,7 @@ $('#btnOrder').click(function () {
     }
     renderCartItems();
     renderOrderItems();
+    //chỉnh tổng tiền cho riêng các sản phẩm đã đặt hàng
     let totalOrderPrice = 0;
     for (const orderItem of cart.items) {
       if (orderItem.status === 'đã đặt hàng') {
@@ -181,25 +188,6 @@ $('#btnOrder').click(function () {
     $('#cartOrderHeading > button').click();
     cart.localStorageSave();
   }
-});
-
-function renderPagination() {
-  const totalPages = Math.ceil(products.length / productsPerPage);
-  const paginationContainer = $('#pagination');
-  paginationContainer.empty();
-
-  paginationContainer.bootpag({
-    total: totalPages,
-    maxVisible: 5, // Adjust the number of visible pagination links
-    page: currentPage, // Initial page
-  }).on('page', function (event, num) {
-    currentPage = num;
-    renderProductList(products);
-  });
-}
-
-$(document).ready(function () {
-  getProductList();
 });
 
 

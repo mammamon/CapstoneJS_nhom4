@@ -276,7 +276,7 @@ form {
 }
 
 .float-r > li {
-  color: white;
+  color: yellow;
   padding-right: 20px;
   padding-left: 20px;
   list-style: none;
@@ -591,9 +591,9 @@ form {
 
 /* SORT-TABLE */
 .sort-table {
-  width: 300px;
+  width: 350px;
   background-color: #fff;
-  height: 1000px;
+  height: 1005px;
 }
 
 /*****support*****/
@@ -785,7 +785,7 @@ form {
   align-items: center;
 }
 .admin__sidebar i {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .admin__main #product-table-admin tr,
@@ -849,6 +849,9 @@ form {
   align-items: center;
 }
 
+#pagination {
+  margin-top: 1rem;
+}
 #pagination li {
   font-size: 20px;
   margin-right: 3rem;

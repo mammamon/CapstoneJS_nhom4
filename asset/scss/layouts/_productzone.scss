@@ -1,9 +1,14 @@
 /* PRODUCT-ZONE */
+.product-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .product-show {
     display: flex;
     flex-wrap: wrap;
-    max-height: 1000px;
-    overflow: auto;
+    justify-content: center;
+    height: 1005px;
 }
 
 .product {

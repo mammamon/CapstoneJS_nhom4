@@ -1,0 +1,29 @@
+#pagination {
+    li {
+        font-size: 20px;
+        margin-right: 3rem;
+        font-weight: 600;
+        position: relative;
+      
+        &:not(:first-child):not(:last-child)::before {
+          content: '';
+          position: absolute;
+          background-color: red;
+          opacity: .95;
+          @include square(30px);
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      
+        a {
+          position: relative;
+        }
+      }
+      
+
+    .active {
+        color: #fff;
+    }
+}

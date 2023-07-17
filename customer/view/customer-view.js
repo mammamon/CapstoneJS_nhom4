@@ -1,7 +1,12 @@
 // Render danh sách sản phẩm
-function renderProductList(products) {
+function renderProductList(products, currentPage) {
+  const productsPerPage = 12;
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
   const productShow = $('.product-show');
+  
   const content = products
+    .slice(startIndex, endIndex)
     .map((product) => {
       const saved = cart.items.some(
         (item) => item.name === product.name && item.saved
@@ -9,7 +14,7 @@ function renderProductList(products) {
       const productClass = saved ? 'product product-saved' : 'product';
       const formattedPrice = formatPrice(product.price);
       return `
-      <div class="product p-2" data-name="${product.name}">
+      <div class="${productClass} p-2" data-name="${product.name}">
         <div class="product-img">
           <img src="${product.image}" alt="${product.name}">
         </div>
@@ -22,6 +27,7 @@ function renderProductList(products) {
       `;
     })
     .join('');
+  
   productShow.html(content);
   productShow.on('click', '.btn-purchase', function () {
     const productName = $(this).data('name');
@@ -29,6 +35,22 @@ function renderProductList(products) {
     renderProductInfo(product);
   });
 }
+
+//chia trang hiển thị sản phẩm (Bootpag Plugin)
+function pagination() {
+  const productsPerPage = 12;
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  $('#pagination').bootpag({
+    total: totalPages,
+    maxVisible: 5,
+    page: 1,
+  }).on('page', function (event, num) {
+    renderProductList(products, num);
+  });
+}
+$(document).ready(function () {
+  getProductList();
+});
 
 
 // Đổi tên thuộc tính

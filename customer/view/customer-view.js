@@ -108,10 +108,9 @@ function renderCartItems() {
   const orderItemContainer = $('.order-item');
   const cartTotalContainer = $('.cart-total');
   const orderTotalContainer = $('.cart-total-order');
-
+  // làm sạch giỏ hàng trước khi render dữ liệu cập nhật
   cartItemContainer.empty();
   orderItemContainer.empty();
-
   let totalCartPrice = 0;
   let totalOrderPrice = 0;
 
@@ -133,7 +132,7 @@ function renderCartItems() {
         </td>
       </tr>
     `;
-    //tính riêng tổng tiền của sản phẩm chưa đặt hàng vào giỏ / sản phẩm đã đặt hàng 
+    //tính riêng tổng tiền của sản phẩm chưa đặt hàng / sản phẩm đã đặt hàng 
     if (cartItem.status === 'chưa đặt hàng') {
       cartItemContainer.append(row);
       totalCartPrice += cartItem.price * cartItem.quantity;
@@ -142,25 +141,27 @@ function renderCartItems() {
       totalOrderPrice += cartItem.price * cartItem.quantity;
     }
     //trigger animation cho icon khi có sản phẩm trong giỏ hàng
-    const cartZone = $('#cartZone');
     const cartIcon = $('#cartIcon');
+    const exclamation = $('#exclamation');
     const cartItemAddTable = $('.cart-table-add');
     if (cartItemAddTable.find('tr').length > 0) {
       cartIcon.addClass('ani-tumbler');
-      cartIcon.append('<div id="exclamation">!</i></div>');
+      if (exclamation.length === 0) {
+        cartIcon.append('<div id="exclamation">!</i></div>');
+      } else {
+        exclamation.show();
+      }
     } else {
-      cartZone.removeClass('ani-tumbler');
-      $('#exclamation').remove();
+      cartIcon.removeClass('ani-tumbler');
+      cartIcon.addClass('paused');
+      exclamation.hide();
     }
   }
-  
   $('.btnRemoveAdd').click(deleteCartItemAdd);
   $('.btnRemoveOrder').click(deleteCartItemOrder);
-  
   cartTotalContainer.text(formatPrice(totalCartPrice));
   orderTotalContainer.text(formatPrice(totalOrderPrice));
 }
-
 
 // Render sản phẩm đã đặt hàng
 function renderOrderItems() {
@@ -172,7 +173,7 @@ function renderOrderItems() {
       const row = `
         <tr>
           <td>
-            <div>${cartItem.name}</div>
+            <h5>${cartItem.name}</h5>
             <div><img class="" src="${cartItem.image}"></div>
           </td>
           <td class=price>${formatPrice(cartItem.price)}</td>

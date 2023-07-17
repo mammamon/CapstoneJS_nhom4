@@ -153,6 +153,10 @@ form {
 }
 
 /*ANIMATIONS*/
+.paused {
+  animation-play-state: paused;
+}
+
 .ani-tumbler {
   animation: tumbler 1s infinite;
 }
@@ -349,6 +353,9 @@ form {
 #cartZone .price {
   color: red;
 }
+#cartZone #btnOrder {
+  background-color: #329f5b;
+}
 #cartZone .cart-total, #cartZone .cart-total-order {
   font-weight: 700;
   font-size: 18px;
@@ -395,18 +402,25 @@ form {
   background-color: white;
 }
 #cartZone .accordion-body {
-  padding: 1rem 1rem 0 1rem;
+  padding: 0 1rem 0 1rem;
   max-height: 400px;
   overflow-y: auto;
 }
 #cartZone .accordion-button {
   min-width: 511.333px;
+  color: #329f5b;
   max-width: 550px;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  font-weight: 800;
+  font-weight: 700;
   background-color: #e8e8e8;
   box-shadow: 1px solid #fff;
+}
+#cartZone .accordion-button:focus, #cartZone .accordion-button:hover {
+  box-shadow: none;
+  color: #329f5b;
+  background-color: #fff;
+  transition: all ease 0.3s;
 }
 
 #cart-table-order {

@@ -220,14 +220,32 @@ observer.observe(modal, { attributes: true });
 //tìm kiếm thông tin sản phẩm
 $("#searchTool").on("input", function () {
   let searchName = $("#searchTool").val().toLowerCase().replace(/[\.,]/g, "");
+  let searchNumber = parseFloat(searchName);
   let tableRows = $("tbody tr");
   for (let i = 0; i < tableRows.length; i++) {
     let productInfo = $(tableRows[i]).text().toLowerCase().replace(/[\.,]/g, "");
     if (productInfo.includes(searchName)) {
       $(tableRows[i]).show();
+    } else if (!isNaN(searchNumber)) {
+      //tìm giá sản phẩm gần giá nhập (+/-10% giá nhập)
+      let numbersInRow = productInfo.match(/\d+(\.\d+)?/g);
+      if (numbersInRow) {
+        let foundCloseNumber = numbersInRow.some(function (num) {
+          num = parseFloat(num);
+          return num >= searchNumber * 0.9 && num <= searchNumber * 1.1;
+        });
+        if (foundCloseNumber) {
+          $(tableRows[i]).show();
+        } else {
+          $(tableRows[i]).hide();
+        }
+      } else {
+        $(tableRows[i]).hide();
+      }
     } else {
       $(tableRows[i]).hide();
     }
   }
 });
+
 

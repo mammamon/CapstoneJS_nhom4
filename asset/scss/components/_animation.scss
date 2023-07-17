@@ -1,4 +1,7 @@
 /*ANIMATIONS*/
+.paused {
+    animation-play-state: paused;
+  }
 .ani-tumbler {
     animation: tumbler 1s infinite;
 }
@@ -8,6 +11,7 @@
     75% { transform: rotate(-20deg); }
     100% { transform: rotate(0deg); }
 }
+
 #exclamation {
     background-color: red;
     border-radius: 50%;

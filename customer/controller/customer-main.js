@@ -48,19 +48,18 @@ loadCart();
 /*---------- CONTROLLERS ----------*/
 
 // đóng / mở giỏ hàng bằng icon và tự đóng icon khi click bên ngoài
-$(document).ready(function(){
-    $(document).on('click', function(e){
-        if(!$(e.target).closest('#cartZone').length && !$(e.target).closest('#cartIcon').length && !$(e.target).closest('#cartAccordion').length && !$(e.target).hasClass('btn-add-to-cart') && !$(e.target).hasClass('btnRemoveOrder')){
-            //element clicked wasn't the div, a descendant of the div, the cartIcon, a descendant of the cartAccordion, an add-to-cart button, or a btnRemoveOrder button; hide the div
-            $('#cartZone').hide();
-        }
-    });
-    $('#cartIcon, #cartIcon .fa-shopping-cart').on('click', function(){
-        cart = Cart.localStorageLoad();
-        renderCartItems();
-        renderCartTotal();
-        $('#cartZone').toggle();
-    });
+$(document).ready(function () {
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('#cartZone').length && !$(e.target).closest('#cartIcon').length && !$(e.target).closest('#cartAccordion').length && !$(e.target).hasClass('btn-add-to-cart') && !$(e.target).hasClass('btnRemoveOrder')) {
+      $('#cartZone').hide();
+    }
+  });
+  $('#cartIcon, #cartIcon .fa-shopping-cart').on('click', function () {
+    cart = Cart.localStorageLoad();
+    renderCartItems();
+    renderCartTotal();
+    $('#cartZone').toggle();
+  });
 });
 
 
@@ -84,7 +83,6 @@ function addToCart(productId) {
     const price = parseFloat(product.price);
     const quantity = parseInt($('#quantity-input').val());
     const image = product.image;
-
     const existingCartItem = cart.items.find(
       (item) => item.name === productName && item.status === 'chưa đặt hàng'
     );
@@ -98,23 +96,15 @@ function addToCart(productId) {
     renderCartItems();
     const productDiv = $(`.product[data-name="${productName}"]`);
     productDiv.addClass('product-saved');
-    
-    // Force the cartZone div to be visible
     $('#cartZone').show();
-    
     cart.localStorageSave();
-    
-    // Close the addProductModal modal window
     $('#addProductModal').modal('hide');
-    
-    // Show the contents linked with the cartAdd button
     $('#cartAddCollapse').collapse('show');
-    
+
   } else {
     console.error('Error');
   }
 }
-
 
 $(document).on('click', '.btn-add-to-cart', function (event) {
   const productId = $(this).data('productId');
@@ -125,18 +115,20 @@ $(document).on('click', '.btn-add-to-cart', function (event) {
 
 
 
-
-
 //nút reset giỏ hàng
 $('#btnReset').click(function () {
-  if (confirm('Xác nhận xoá giỏ hàng?')) {
+  if (confirm('Xác nhận reset?')) {
     cart.items = [];
     cart.localStorageSave();
     renderCartItems();
+    $('#cartIcon').removeClass('ani-tumbler');
+    $('#cartIcon').addClass('paused');
+    $('#exclamation').hide();
   }
 });
 
-// nút reset sản phẩm trong giỏ hàng
+
+// xóa sản phẩm trong giỏ hàng
 $(document).on('click', '.btnRemoveAdd', function (e) {
   e.stopPropagation();
   const productName = $(this).data('name');
@@ -147,7 +139,7 @@ $(document).on('click', '.btnRemoveAdd', function (e) {
   }
 });
 
-// nút reset sản phẩm đã đặt hàng 
+// xóa sản phẩm đã đặt hàng 
 $(document).on('click', '.btnRemoveOrder', function () {
   const productName = $(this).data('name');
   const index = cart.items.findIndex((item) => item.name === productName && item.status === 'đã đặt hàng');
@@ -159,15 +151,12 @@ $(document).on('click', '.btnRemoveOrder', function () {
   }
 });
 
-
-
-
 //đặt hàng
 $('#btnOrder').click(function () {
   const addedItems = $('.cart-item');
   const orderedItems = $('.order-item');
-  const invoiceTable = $('.cart-table-order');
-  if (addedItems.children().length === 0 || orderedItems.children().length === 0) {
+  const orderTable = $('.cart-table-order');
+  if (addedItems.children().length === 0) {
     alert('Không có sản phẩm trong giỏ hàng');
     return;
   }
@@ -186,7 +175,7 @@ $('#btnOrder').click(function () {
     }
     $('.order-total').text(formatPrice(totalOrderPrice));
     addedItems.empty();
-    invoiceTable.show();
+    orderTable.show();
     $('#cartOrderHeading > button').click();
     cart.localStorageSave();
   }

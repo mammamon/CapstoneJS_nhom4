@@ -12,6 +12,10 @@
     .price {
         color: red;
     }
+    
+    #btnOrder {
+        background-color: $green;
+    }
     .cart-total, .cart-total-order {
         font-weight: 700;
         font-size: 18px;
@@ -58,19 +62,26 @@
         background-color: white;
     }
     .accordion-body {
-        padding: 1rem 1rem 0 1rem;
+        padding: 0 1rem 0 1rem;
         max-height: 400px;
         overflow-y: auto;
     }
 
     .accordion-button {
         min-width: 511.333px;
+        color: $green;
         max-width: 550px;
         padding-top: .75rem;
         padding-bottom: .75rem;
-        font-weight: 800;
+        font-weight: 700;
         background-color: $grey;
         box-shadow  : 1px solid #fff;
+        &:focus, &:hover {
+            box-shadow: none;
+            color: $green;
+            background-color: #fff;
+            transition: all ease .3s;
+        }
     }
 
 }

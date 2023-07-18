@@ -152,8 +152,6 @@ function renderProductInfo(product) {
 }
 
 
-
-
 // Render tổng tiền trong giỏ hàng
 function renderCartTotal() {
   $('#cartTotal').text(formatPrice(cart.totalPrice()));

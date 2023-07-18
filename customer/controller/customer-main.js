@@ -126,16 +126,21 @@ $(document).on('click', '.btn-add-to-cart', function (event) {
 });
 
 
+//reset animation của icon giỏ hàng
+function resetIconAnimation() {
+  const cartIcon = $('#cartIcon');
+  cartIcon.removeClass('ani-tumbler');
+  cartIcon.addClass('paused');
+  $('#exclamation').remove();
+}
+
 //nút reset toàn bộ giỏ hàng
 $('#btnReset').click(function () {
   if (confirm('Xác nhận reset?')) {
     cart.items = [];
     cart.localStorageSave();
     renderCartItems();
-    // ẩn animation của cart icon
-    $('#cartIcon').removeClass('ani-tumbler');
-    $('#cartIcon').addClass('paused');
-    $('#exclamation').hide();
+    resetIconAnimation();
   }
 });
 
@@ -186,11 +191,12 @@ $('#btnOrder').click(function () {
         totalOrderPrice += orderItem.price * orderItem.quantity;
       }
     }
-    $('.order-total').text(formatPrice(totalOrderPrice));
+    $('.order-total').text(formatPrice(totalOrderPrice)); 
     addedItems.empty();
     orderTable.show();
     $('#cartOrderHeading > button').click();
     cart.localStorageSave();
+    resetIconAnimation();
   }
 });
 

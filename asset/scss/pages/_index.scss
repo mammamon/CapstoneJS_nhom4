@@ -1,0 +1,32 @@
+/* INDEX PAGE */
+#searchZone {
+    max-height: 500px;
+    background-color: $primaryColor;
+
+    form {
+        @include center;
+
+        input {
+            width: 55vw;
+        }
+    }
+    .search-title {
+        display: block;
+        flex-wrap: nowrap;
+    }
+    #toggleFilterTable {
+        font-size: 20px;
+        color: #fff;
+        cursor: pointer;   
+    }
+    .form-select {
+        width: 120px;
+        background-color: #eee;
+    }
+}
+#filterTable {
+    background-color: #fff;
+    height: 85px;
+    font-weight: 500;
+    color: $secondaryColor;
+}

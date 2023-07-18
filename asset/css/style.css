@@ -187,6 +187,16 @@ form {
   align-items: center;
 }
 
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
 /* HEADER */
 #frameHead {
   display: flex;
@@ -439,6 +449,24 @@ form {
   justify-content: center;
   align-items: center;
 }
+.cart-icon::before, .cart-icon::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-radius: 50%;
+  border: 2px solid #15172b;
+  z-index: -1;
+}
+.cart-icon::before {
+  animation: ripple 1.2s linear infinite;
+}
+.cart-icon::after {
+  animation: ripple 1.2s linear infinite;
+  animation-delay: 0.4s;
+}
 .cart-icon i {
   font-size: 1.2rem;
   color: #fff;
@@ -447,15 +475,18 @@ form {
 /* ADD-TO-CART MODAL */ /* PRODUCT-ZONE */
 .product-wrapper {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  background-color: #e8e8e8;
+  width: 1100px;
+  margin: auto;
 }
 
 .product-show {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 1005px;
+  height: 900px;
 }
 
 .product {
@@ -465,8 +496,8 @@ form {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 244px;
-  height: 315px;
+  width: 240px;
+  height: 280px;
 }
 .product p {
   color: red;
@@ -489,8 +520,8 @@ form {
 .product-img {
   position: relative;
   overflow: hidden;
-  width: 220px;
-  height: 190px;
+  width: 160px;
+  height: 140px;
   object-fit: cover;
   margin: auto;
   background-size: cover;
@@ -809,6 +840,40 @@ form {
   display: flex;
 }
 
+/* INDEX PAGE */
+#searchZone {
+  max-height: 500px;
+  background-color: #e8c400;
+}
+#searchZone form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#searchZone form input {
+  width: 55vw;
+}
+#searchZone .search-title {
+  display: block;
+  flex-wrap: nowrap;
+}
+#searchZone #toggleFilterTable {
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+#searchZone .form-select {
+  width: 120px;
+  background-color: #eee;
+}
+
+#filterTable {
+  background-color: #fff;
+  height: 85px;
+  font-weight: 500;
+  color: #1f1f1f;
+}
+
 /*ADMIN PAGE*/
 .admin__header__wrapper {
   background-color: #1f1f1f;
@@ -922,7 +987,7 @@ form {
   margin-top: 1rem;
 }
 #pagination li {
-  font-size: 12px;
+  font-size: 16px;
   margin-right: 2rem;
   font-weight: 600;
   position: relative;
@@ -932,8 +997,8 @@ form {
   position: absolute;
   background-color: #ff8080;
   opacity: 0.95;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -944,4 +1009,7 @@ form {
 }
 #pagination .active {
   color: #fff;
+}
+#pagination .prev, #pagination .next {
+  font-size: 16px;
 }/*# sourceMappingURL=style.css.map */

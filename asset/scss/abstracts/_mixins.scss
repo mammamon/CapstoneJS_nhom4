@@ -22,7 +22,7 @@
     border-style: $style;
     border-color: $color;
     border-radius: $round;
-  }
+}
 
 @mixin transform($property) {
     -webkit-transform: $property;
@@ -83,3 +83,27 @@
     color: inherit;
 }
 
+@mixin ripple {
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        border-radius: 50%;
+        border: 2px solid #15172b;
+        z-index: -1;
+    }
+
+    &::before {
+        animation: ripple 1.2s linear infinite;
+    }
+
+    &::after {
+        animation: ripple 1.2s linear infinite;
+        animation-delay: 0.4s;
+    }
+}

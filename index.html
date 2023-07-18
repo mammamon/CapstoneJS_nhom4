@@ -37,7 +37,7 @@
     <!-- CSS STYLE -->
     <link rel="stylesheet" href="./asset/css/style.css">
 
-<body>
+<body style="background-color: #fff;">
     <!-- HEADER -->
     <div class="container-fluid header-wrapper">
         <header class="container" id="movetop">
@@ -67,9 +67,82 @@
                     </ul>
                 </div>
             </div>
-            <div></div>
         </header>
     </div>
+    <!-- SEARCHBOX -->
+    <div class="searchbox container-fluid sticky-top px-0" id="searchZone">
+        <div class="d-flex justify-content-center align-items-center">
+            <form class="form-inline d-flex py-2">
+                <input class="form-control rounded-0" id="searchTool-index" type="text"
+                    placeholder="Tìm kiếm sản phẩm (nhập tên, model, giá, hãng,...)" aria-label="Search">
+            </form>
+            <div class="d-flex flex-column">
+                <h5 class="search-title pb-1 text-white">tìm kiếm nâng cao</h5>
+                <i class="fa-solid fa-angles-down" id="toggleFilterTable" title="tìm kiếm nâng cao"></i>
+            </div>
+        </div>
+        <div class="sticky-top py-2 d-none" id="filterTable">
+            <form class="container filter-table">
+                <div class="row">
+                    <div class="col">
+                        <label for="branchSelect" class="form-label">Hãng sản xuất</label>
+                        <select class="form-select" id="branchSelect">
+                            <option value="" selected>Tất cả</option>
+                            <option value="SHARP">SHARP</option>
+                            <option value="RICOH">RICOH</option>
+                            <option value="HP">HP</option>
+                            <option value="other">Hãng khác</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="priceSelect" class="form-label">Giá</label>
+                        <select class="form-select" id="priceSelect">
+                            <option value="" selected>Tất cả</option>
+                            <option value="under 30">Dưới 30 triệu</option>
+                            <option value="30 to 60">Từ 30 đến 60 triệu</option>
+                            <option value="60 to 100">Từ 60 đến 100 triệu</option>
+                            <option value="above 100">Trên 100 triệu</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="typeSelect" class="form-label">Loại</label>
+                        <select class="form-select" id="typeSelect">
+                            <option value="" selected>Tất cả</option>
+                            <option value="máy photocopy">Máy photocopy</option>
+                            <option value="máy in">Máy in</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="speedSelect" class="form-label">Tốc độ in</label>
+                        <select class="form-select" id="speedSelect">
+                            <option value="" selected>Tất cả</option>
+                            <option value="21-30">21-30</option>
+                            <option value="31-45">31-45</option>
+                            <option value="46-55">46-55</option>
+                            <option value="56-70">56-70</option>
+                            <option value=">70">>70</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="colorSelect" class="form-label">Màu</label>
+                        <select class="form-select" id="colorSelect">
+                            <option value="" selected>Tất cả</option>
+                            <option value="trắng đen">Trắng đen</option>
+                            <option value="màu">Có màu</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="paperSelect" class="form-label">Khổ giấy</label>
+                        <select class="form-select" id="paperSelect">
+                            <option value="" selected>Tất cả</option>
+                            <option value="tối đa A3">Tối đa A3</option>
+                            <option value="tối đa A4">Tối đa A4</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> ;
     <!-- CAROUSEL -->
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
@@ -104,149 +177,16 @@
     </div>
     <div class="product-container">
         <div class="container-fluid d-flex">
-            <!-- SORT-TABLE -->
-            <section class="sort-table">
-                <table>
-                    <div class="container mt-3">
-                        <form action="/action_page.php">
-                            <div class="form-check-label">
-                                <nav class="nav justify-content-left">
-                                    <a>HÃNG</a>
-                                </nav>
-                                <hr width="80%" style="margin:5px;">
-                                <div style="padding-left: 30px;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="branch_sharp" name="branch"
-                                            value="SHARP" checked>
-                                        <label class="form-check-label" for="branch_sharp">SHARP</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="branch_ricoh" name="branch"
-                                            value="RICOH">
-                                        <label class="form-check-label" for="branch_ricoh">RICOH</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="branch_hp" name="branch"
-                                            value="HP">
-                                        <label class="form-check-label" for="branch_hp">HP</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-check-label">
-                                <nav class="nav justify-content-left">
-                                    <a>TỐC ĐỘ</a>
-                                </nav>
-                                <hr width="80%" style="margin:5px;">
-                                <div style="padding-left: 30px;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="speed_21_30" name="speed"
-                                            value="21-30" checked>
-                                        <label class="form-check-label" for="speed_21_30">21-30 PPM</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="speed_31_45" name="speed"
-                                            value="31-45">
-                                        <label class="form-check-label" for="speed_31_45">31-45 PPM</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="speed_46_55" name="speed"
-                                            value="46-55">
-                                        <label class="form-check-label" for="speed_46_55">46-55 PPM</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="speed_56_70" name="speed"
-                                            value="56-70">
-                                        <label class="form-check-label" for="speed_56_70">56-70 PPM</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="speed_71_plus" name="speed"
-                                            value="71-plus">
-                                        <label class="form-check-label" for="speed_71_plus">LỚN HƠN 71 PPM</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-check-label">
-                                <nav class="nav justify-content-left">
-                                    <a>MÀU SẴC</a>
-                                </nav>
-                                <hr width="80%" style="margin:5px;">
-                                <div style="padding-left: 30px;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="color_color" name="color"
-                                            value="color" checked>
-                                        <label class="form-check-label" for="color_color">MÀU</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="color_bw" name="color"
-                                            value="bw">
-                                        <label class="form-check-label" for="color_bw">TRẮNG ĐEN</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-check-label">
-                                <nav class="nav justify-content-left">
-                                    <a>KHỔ GIẤY</a>
-                                </nav>
-                                <hr width="80%" style="margin:5px;">
-                                <div style="padding-left: 30px;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="paper_a4" name="paper"
-                                            value="a4" checked>
-                                        <label class="form-check-label" for="paper_a4">TỐI ĐA A4</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="paper_a3" name="paper"
-                                            value="a3">
-                                        <label class="form-check-label" for="paper_a3">TỐI ĐA A3</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-check-label">
-                                <nav class="nav justify-content-left">
-                                    <a>GIÁ</a>
-                                </nav>
-                                <hr width="80%" style="margin:5px;">
-                                <div style="padding-left: 30px;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="price_under_30" name="price"
-                                            value="under_30" checked>
-                                        <label class="form-check-label" for="price_under_30">DƯỚI 30,000,000 VNĐ</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="price_31_60" name="price"
-                                            value="31_60">
-                                        <label class="form-check-label" for="price_31_60">TỪ 31,000,000 VNĐ - 60,000,000
-                                            VNĐ</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="price_61_99" name="price"
-                                            value="61_99">
-                                        <label class="form-check-label" for="price_61_99">TỪ 61,000,000 VNĐ - 99,000,000
-                                            VNĐ</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="price_above_100"
-                                            name="price" value="above_100">
-                                        <label class="form-check-label" for="price_above_100">TRÊN 100,000,000
-                                            VNĐ</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                </table>
-            </section>
-
             <!-- PRODUCT-ZONE -->
-            <div class="container product-wrapper">
+            <div class="product-wrapper">
                 <div class="container title w-100 text-center py-5">
-                    <h1>SẢN PHẨM CỦA CHÚNG TÔI</h1>
+                    <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
                 </div>
                 <section class="product-show" id="product-show">
                     <!-- product được tạo tự động từ API -->
                 </section>
-                <div id="pagination" mt-3></div>
+                <!-- pagination tạo bởi Bootpag -->
+                <div id="pagination"></div>
             </div>
         </div>
     </div>

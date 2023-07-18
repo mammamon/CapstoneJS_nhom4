@@ -11,6 +11,7 @@ function formatPrice(price) {
 
 // load sản phẩm từ API (kết hợp Bootpag)
 let products = [];
+
 function getProductList() {
   let promise = axios({
     url: 'https://649d36a19bac4a8e669d62a2.mockapi.io/product',
@@ -28,6 +29,7 @@ function getProductList() {
       console.log(error);
     });
 }
+
 getProductList();
 
 // load giỏ hàng từ local storage
@@ -48,6 +50,21 @@ loadCart();
 
 
 /*---------- CONTROLLERS ----------*/
+
+// reset toàn bộ select về mặc định
+$(document).ready(function () {
+  $("select").val("");
+});
+
+// đóng mở bảng filter
+$("#toggleFilterTable").on("click", function () {
+  $("#filterTable").toggleClass("d-none");
+});
+
+//đổi icon nút filter
+$("#toggleFilterTable").on("click", function () {
+  $(this).toggleClass("fa-angles-down fa-angles-up");
+});
 
 // đóng mở giỏ hàng
 $(document).ready(function () {
@@ -191,7 +208,7 @@ $('#btnOrder').click(function () {
         totalOrderPrice += orderItem.price * orderItem.quantity;
       }
     }
-    $('.order-total').text(formatPrice(totalOrderPrice)); 
+    $('.order-total').text(formatPrice(totalOrderPrice));
     addedItems.empty();
     orderTable.show();
     $('#cartOrderHeading > button').click();
@@ -201,6 +218,101 @@ $('#btnOrder').click(function () {
 });
 
 
+//search sản phẩm trong trong ô input
+$("#searchTool-index").on("input", function () {
+  let searchValue = $("#searchTool-index").val().toLowerCase().replace(/[\.,]/g, "");
+  let searchNumber = parseFloat(searchValue);
+  let filteredProducts = products.filter(product => {
+    let productInfo = Object.values(product).join(" ").toLowerCase().replace(/[\.,]/g, "");
+    if (productInfo.includes(searchValue)) {
+      return true;
+    } else if (!isNaN(searchNumber)) {
+      let numbersInProduct = productInfo.match(/\d+(\.\d+)?/g);
+      if (numbersInProduct) {
+        return numbersInProduct.some(num => {
+          num = parseFloat(num);
+          return num >= searchNumber * 0.9 && num <= searchNumber * 1.1;
+        });
+      }
+    }
+    return false;
+  });
+  renderProductList(filteredProducts, 1);
+});
+
+
+//filter sản phẩm 
+function filterProducts() {
+  let branchValue = $("#branchSelect").val();
+  let priceValue = $("#priceSelect").val();
+  let typeValue = $("#typeSelect").val();
+  let speedValue = $("#speedSelect").val();
+  let colorValue = $("#colorSelect").val();
+  let paperValue = $("#paperSelect").val();
+  let filteredProducts = products.filter(product => {
+    if (branchValue) {
+      if (branchValue === "other") {
+        if (["SHARP", "RICOH", "HP"].includes(product.branch)) {
+          return false;
+        }
+      } else if (product.branch !== branchValue) {
+        return false;
+      }
+    }
+    if (priceValue) {
+      switch (priceValue) {
+        case "under 30":
+          if (product.price > 30e+6) {
+            return false;
+          }
+          break;
+        case "30 to 60":
+          if (product.price < 30e+6 || product.price > 60e+6) {
+            return false;
+          }
+          break;
+        case "60 to 100":
+          if (product.price < 60e+6 || product.price > 100e+6) {
+            return false;
+          }
+          break;
+        case "above 100":
+          if (product.price < 100e+6) {
+            return false;
+          }
+          break;
+      }
+    }
+    if (typeValue && product.type !== typeValue) {
+      return false;
+    }
+    if (speedValue) {
+      let [minSpeed, maxSpeed] = speedValue.split("-");
+      if (minSpeed && product.speed < minSpeed) {
+        return false;
+      }
+      if (maxSpeed && product.speed > maxSpeed) {
+        return false;
+      }
+    }
+    if (colorValue && product.color !== colorValue) {
+      return false;
+    }
+    if (paperValue && product.paper !== paperValue) {
+      return false;
+    }
+    return true;
+  });
+  if (filteredProducts.length === 0) {
+    $(".product-show").html("<p>Không có sản phẩm nào phù hợp với tiêu chí đã chọn.</p>");
+    return;
+  }
+  else {
+    renderProductList(filteredProducts, 1);
+  }
+}
+
+$("select").on("change", filterProducts);
 
 
 

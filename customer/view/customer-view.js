@@ -55,8 +55,6 @@ function renderPagination() {
 function renderProductInfo(product) {
   const { name, id, price, speed, branch, type, color, paper, image, description, spec, option } = product;
   const modal = $('#addProductModal');
-  modal.find('.modal-title').text('Thông tin sản phẩm');
-
   let specContent = '';
   for (const key in spec) {
     if (spec.hasOwnProperty(key)) {
@@ -70,7 +68,6 @@ function renderProductInfo(product) {
       `;
     }
   }
-
   let optionContent = '';
   for (const key in option) {
     if (option.hasOwnProperty(key)) {
@@ -84,7 +81,6 @@ function renderProductInfo(product) {
       `;
     }
   }
-
   modal.find('.product-info').html(`
     <table class="product-attributes">
       <tr>

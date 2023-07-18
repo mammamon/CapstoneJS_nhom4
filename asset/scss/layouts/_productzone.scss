@@ -2,15 +2,18 @@
 
 .product-wrapper {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    background-color: $grey;
+    width: 1100px;
+    margin: auto;
 }
 
 .product-show {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 1005px;
+    height: 900px;
 }
 
 .product {
@@ -18,8 +21,8 @@
     margin: 10px;
     @include center;
     flex-direction: column;
-    width: 244px;
-    height: 315px;
+    width: 240px;
+    height: 280px;
 
     p {
         color: red;
@@ -43,8 +46,8 @@
 .product-img {
     position: relative;
     overflow: hidden;
-    width: 220px;
-    height: 190px;
+    width: 160px;
+    height: 140px;
     object-fit: cover;
     margin:auto;
     background-size: cover;

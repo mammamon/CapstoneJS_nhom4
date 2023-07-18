@@ -142,11 +142,6 @@ form {
 }
 
 /*COMPONENTS*/
-.logo img {
-  max-width: 250px;
-  max-height: 60px;
-}
-
 .check {
   font-size: 0.8rem;
   color: #ff0000;
@@ -193,11 +188,8 @@ form {
 }
 
 /* HEADER */
-/* HEADER */
 #frameHead {
   display: flex;
-  width: 100%;
-  min-width: 800px;
   top: 0px;
   left: 0px;
   z-index: 10;
@@ -500,7 +492,7 @@ form {
   width: 220px;
   height: 190px;
   object-fit: cover;
-  margin-bottom: 10px;
+  margin: auto;
   background-size: cover;
   transition: all 0.1s;
   display: flex;
@@ -524,6 +516,79 @@ form {
   scale: 1.1;
   transition: 0.5s;
   background-color: red;
+}
+
+#addProductModal .modal-dialog {
+  max-width: 600px;
+}
+#addProductModal .modal-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+#addProductModal .product-img {
+  width: 320px;
+  height: 280px;
+}
+
+.product-attributes {
+  border-collapse: collapse;
+  max-width: 500px;
+  text-align: center;
+}
+.product-attributes .price {
+  color: red;
+  font-weight: 600;
+  font-size: 18px;
+}
+.product-attributes .attribute {
+  width: 100px;
+  background-color: #e8e8e8;
+}
+.product-attributes tr td {
+  border: 2px solid #333;
+  padding: 8px;
+}
+.product-attributes tr.sub-info td {
+  border: none;
+  padding: 0;
+}
+.product-attributes .sub-wrapper td {
+  padding: 0;
+}
+.product-attributes .sub-wrapper td table {
+  width: 100%;
+}
+.product-attributes .sub-wrapper td table td {
+  border: 2px solid #333;
+  padding: 8px;
+}
+.product-attributes .sub-wrapper td table td.sub-column {
+  border-right: 2px solid #333;
+}
+.product-attributes .sub-wrapper td table td.sub-column:last-child {
+  border-right: none;
+}
+.product-attributes .sub-attributes {
+  padding: 0;
+}
+.product-attributes .sub-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.product-attributes .sub-table td {
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+.product-attributes .sub-table td:first-child {
+  border-right: 2px solid #333;
+  width: 50%;
+}
+.product-attributes .sub-table td:last-child {
+  width: 50%;
+}
+.product-attributes .sub-table tr:last-child td {
+  border-bottom: none;
 }
 
 /* SERVICES */
@@ -853,18 +918,18 @@ form {
   margin-top: 1rem;
 }
 #pagination li {
-  font-size: 20px;
-  margin-right: 3rem;
+  font-size: 12px;
+  margin-right: 2rem;
   font-weight: 600;
   position: relative;
 }
 #pagination li:not(:first-child):not(:last-child)::before {
   content: "";
   position: absolute;
-  background-color: red;
+  background-color: #ff8080;
   opacity: 0.95;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   top: 50%;
   left: 50%;

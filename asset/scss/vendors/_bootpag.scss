@@ -1,17 +1,17 @@
 #pagination {
     margin-top: 1rem;
     li {
-        font-size: 20px;
-        margin-right: 3rem;
+        font-size: 12px;
+        margin-right: 2rem;
         font-weight: 600;
         position: relative;
       
         &:not(:first-child):not(:last-child)::before {
           content: '';
           position: absolute;
-          background-color: red;
+          background-color: #ff8080;
           opacity: .95;
-          @include square(30px);
+          @include square(24px);
           border-radius: 50%;
           top: 50%;
           left: 50%;

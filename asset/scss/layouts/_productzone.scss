@@ -1,9 +1,11 @@
 /* PRODUCT-ZONE */
+
 .product-wrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 .product-show {
     display: flex;
     flex-wrap: wrap;
@@ -24,9 +26,10 @@
         font-size: 18px;
         font-weight: 600;
     }
+
     .product-info {
         @include center;
-        width: 100% ;
+        width: 100%;
         flex-direction: column;
         background-color: $grey;
     }
@@ -43,10 +46,11 @@
     width: 220px;
     height: 190px;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin:auto;
     background-size: cover;
     transition: all .1s;
     @include center;
+
     img {
         @include square(inherit);
     }
@@ -60,9 +64,106 @@
 .btn-purchase {
     background-color: red;
     border-radius: 20px;
+
     &:hover {
         scale: 1.1;
         transition: .5s;
         background-color: red;
+    }
+}
+
+#addProductModal {
+    .modal-dialog {
+        max-width: 600px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .product-img {
+        width: 320px;
+        height: 280px;
+    }
+}
+
+.product-attributes {
+    border-collapse: collapse;
+    max-width: 500px;
+    text-align: center;
+    .price {
+        color: red;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .attribute {
+        width: 100px;
+        background-color: $grey;
+    }
+
+    tr {
+        td {
+            border: 2px solid #333;
+            padding: 8px;
+        }
+    }
+
+    tr.sub-info {
+        td {
+            border: none;
+            padding: 0;
+        }
+    }
+
+    .sub-wrapper {
+        td {
+            padding: 0;
+
+            table {
+                width: 100%;
+
+                td {
+                    border: 2px solid #333;
+                    padding: 8px;
+                }
+
+                td.sub-column {
+                    border-right: 2px solid #333;
+
+                    &:last-child {
+                        border-right: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .sub-attributes {
+        padding: 0;
+    }
+
+    .sub-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .sub-table td {
+        padding: 8px;
+        border: none;
+        border-bottom: 2px solid #333;
+    }
+
+    .sub-table td:first-child {
+        border-right: 2px solid #333;
+        width: 50%;
+    }
+
+    .sub-table td:last-child {
+        width: 50%;
+    }
+
+    .sub-table tr:last-child td {
+        border-bottom: none;
     }
 }

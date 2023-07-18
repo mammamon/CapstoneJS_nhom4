@@ -56,51 +56,102 @@ function renderProductInfo(product) {
   const { name, id, price, speed, branch, type, color, paper, image, description, spec, option } = product;
   const modal = $('#addProductModal');
   modal.find('.modal-title').text('Thông tin sản phẩm');
+
   let specContent = '';
   for (const key in spec) {
     if (spec.hasOwnProperty(key)) {
       const value = spec[key];
       const displayName = changeKeyNames[key] || key;
-      specContent += `<tr><td>${displayName}</td><td>${value}</td></tr>`;
+      specContent += `
+        <tr>
+          <td>${displayName}</td>
+          <td>${value}</td>
+        </tr>
+      `;
     }
   }
+
   let optionContent = '';
   for (const key in option) {
     if (option.hasOwnProperty(key)) {
       const value = option[key];
       const displayName = changeKeyNames[key] || key;
-      optionContent += `<tr><td>${displayName}</td><td>${value}</td></tr>`;
+      optionContent += `
+        <tr>
+          <td>${displayName}</td>
+          <td>${value}</td>
+        </tr>
+      `;
     }
   }
+
   modal.find('.product-info').html(`
     <table class="product-attributes">
-      <tr><img src="${image}" alt="" class="product-img"></tr>
-      <tr><td>Model</td><td>${name}</td></tr>
-      <tr><td>id</td><td>No. ${id}</td></tr>
-      <tr><td>Giá</td><td>${formatPrice(price)}</td></tr>
-      <tr><td>Tốc độ in</td><td>${speed}</td></tr>
-      <tr><td>Hãng</td><td>${branch}</td></tr>
-      <tr><td>Loại</td><td>${type}</td></tr>
-      <tr><td>Màu</td><td>${color}</td></tr>
-      <tr><td>Khổ giấy</td><td>${paper}</td></tr>
-      <tr><td>Mô tả</td><td>${description}</td></tr>
       <tr>
-        <td>Thông số</td>
-        <td colspan="3">
-          <table class="sub-attributes">${specContent}</table>
+        <td colspan="2" class="img-cell">
+          <img src="${image}" alt="" class="product-img">
         </td>
       </tr>
       <tr>
-        <td>Tùy chọn</td>
-        <td colspan="3">
-          <table class="sub-attributes">${optionContent}</table>
+        <td class="attribute">Model</td>
+        <td>${name}</td>
+      </tr>
+      <tr>
+        <td class="attribute">ID</td>
+        <td>No. ${id}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Tốc độ in</td>
+        <td>${speed}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Hãng</td>
+        <td>${branch}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Loại</td>
+        <td>${type}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Màu</td>
+        <td>${color}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Khổ giấy</td>
+        <td>${paper}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Mô tả</td>
+        <td>${description}</td>
+      </tr>
+      <tr>
+        <td class="attribute">Thông số</td>
+        <td class="sub-attributes">
+          <table class="sub-table">
+            ${specContent}
+          </table>
         </td>
+      </tr>
+      <tr>
+        <td class="attribute">Tùy chọn</td>
+        <td class="sub-attributes">
+          <table class="sub-table">
+            ${optionContent}
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="attribute">Giá</td>
+        <td class="price">${formatPrice(price)}</td>
       </tr>
     </table>
   `);
+
   modal.find('.btn-add-to-cart').data('productId', id);
   modal.modal('show');
 }
+
+
 
 
 // Render tổng tiền trong giỏ hàng
@@ -234,7 +285,7 @@ const changeKeyNames = {
   RSPF: 'RSPF',
   finisher: 'finisher',
   fax: 'Fax',
-  solution: 'solution',
+  solution: 'Solution',
   addHDD: 'Thêm HDD',
   addRam: 'Thêm RAM',
   addStand: 'Thêm stand',

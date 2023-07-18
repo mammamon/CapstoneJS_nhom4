@@ -39,36 +39,37 @@
 
 <body>
     <!-- HEADER -->
-    <header id="movetop">
-        <div id="frameHead">
-            <div id="logoArea">
-                <div id="logo">
-                    <h1
-                        style="color: red; font-weight: 500;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                        GIA THINH</h1>
-                    <i>Smart solution smart copier</i>
+    <div class="container-fluid header-wrapper">
+        <header class="container" id="movetop">
+            <div id="frameHead">
+                <div id="logoArea">
+                    <div id="logo">
+                        <h1>GIA THINH</h1>
+                        <i>Smart solution smart copier</i>
+                    </div>
+                </div>
+                <div id="rightArea" style="z-index:1000;">
+                    <div class="headerSlope"><img src="./asset/img/header/headerSlope.gif" width="140" height="48"
+                            alt="">
+                    </div>
+                    <ul class="float-r">
+                        <li>Trang chủ</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Về chúng tôi</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Sản phẩm</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Dịch vụ & Giải pháp</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Hỗ trợ</li>
+                        <img src="./asset/img/header/headerBGspline.gif" alt="">
+                        <li>Đăng nhập</li>
+                    </ul>
                 </div>
             </div>
-            <div id="rightArea" style="z-index:1000;">
-                <div class="headerSlope"><img src="./asset/img/header/headerSlope.gif" width="140" height="48" alt="">
-                </div>
-                <ul class="float-r">
-                    <li>Trang chủ</li>
-                    <img src="./asset/img/header/headerBGspline.gif" alt="">
-                    <li>Về chúng tôi</li>
-                    <img src="./asset/img/header/headerBGspline.gif" alt="">
-                    <li>Sản phẩm</li>
-                    <img src="./asset/img/header/headerBGspline.gif" alt="">
-                    <li>Dịch vụ & Giải pháp</li>
-                    <img src="./asset/img/header/headerBGspline.gif" alt="">
-                    <li>Hổ trợ</li>
-                    <img src="./asset/img/header/headerBGspline.gif" alt="">
-                    <li>Đăng nhập</li>
-                </ul>
-            </div>
-        </div>
-        <div></div>
-    </header>
+            <div></div>
+        </header>
+    </div>
     <!-- CAROUSEL -->
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
@@ -101,149 +102,154 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container-fluid d-flex">
-        <!-- SORT-TABLE -->
-        <section class="sort-table">
-            <table>
-                <div class="container mt-3">
-                    <form action="/action_page.php">
-                        <div class="form-check-label">
-                            <nav class="nav justify-content-left">
-                                <a>HÃNG</a>
-                            </nav>
-                            <hr width="80%" style="margin:5px;">
-                            <div style="padding-left: 30px;">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
-                                        value="something" checked>
-                                    <label class="form-check-label" for="check1">SHARP</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">RICOH</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">RICOH</label>
-                                </div>
+    <div class="product-container">
+        <div class="container-fluid d-flex">
+            <!-- SORT-TABLE -->
+            <section class="sort-table">
+                <table>
+                    <div class="container mt-3">
+                        <form action="/action_page.php">
+                            <div class="form-check-label">
+                                <nav class="nav justify-content-left">
+                                    <a>HÃNG</a>
+                                </nav>
+                                <hr width="80%" style="margin:5px;">
+                                <div style="padding-left: 30px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                            value="something" checked>
+                                        <label class="form-check-label" for="check1">SHARP</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">RICOH</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">RICOH</label>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-check-label">
-                            <nav class="nav justify-content-left">
-                                <a>TỐC ĐỘ</a>
-                            </nav>
-                            <hr width="80%" style="margin:5px;">
-                            <div style="padding-left: 30px;">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
-                                        value="something" checked>
-                                    <label class="form-check-label" for="check1">21-30 PPM</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">31-45 PPM</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">46-55 PPM</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">56-70 PPM</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">LỚN HƠN 71 PPM</label>
-                                </div>
+                            <div class="form-check-label">
+                                <nav class="nav justify-content-left">
+                                    <a>TỐC ĐỘ</a>
+                                </nav>
+                                <hr width="80%" style="margin:5px;">
+                                <div style="padding-left: 30px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                            value="something" checked>
+                                        <label class="form-check-label" for="check1">21-30 PPM</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">31-45 PPM</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">46-55 PPM</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">56-70 PPM</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">LỚN HƠN 71 PPM</label>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-check-label">
-                            <nav class="nav justify-content-left">
-                                <a>MÀU SẴC</a>
-                            </nav>
-                            <hr width="80%" style="margin:5px;">
-                            <div style="padding-left: 30px;">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
-                                        value="something" checked>
-                                    <label class="form-check-label" for="check1">MÀU</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">TRẮNG ĐEN</label>
-                                </div>
+                            <div class="form-check-label">
+                                <nav class="nav justify-content-left">
+                                    <a>MÀU SẴC</a>
+                                </nav>
+                                <hr width="80%" style="margin:5px;">
+                                <div style="padding-left: 30px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                            value="something" checked>
+                                        <label class="form-check-label" for="check1">MÀU</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">TRẮNG ĐEN</label>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-check-label">
-                            <nav class="nav justify-content-left">
-                                <a>KHỔ GIẤY</a>
-                            </nav>
-                            <hr width="80%" style="margin:5px;">
-                            <div style="padding-left: 30px;">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
-                                        value="something" checked>
-                                    <label class="form-check-label" for="check1">TỐI ĐA A4</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">TỐI ĐA A3</label>
-                                </div>
+                            <div class="form-check-label">
+                                <nav class="nav justify-content-left">
+                                    <a>KHỔ GIẤY</a>
+                                </nav>
+                                <hr width="80%" style="margin:5px;">
+                                <div style="padding-left: 30px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                            value="something" checked>
+                                        <label class="form-check-label" for="check1">TỐI ĐA A4</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">TỐI ĐA A3</label>
+                                    </div>
 
-                            </div>
-                        </div>
-                        <div class="form-check-label">
-                            <nav class="nav justify-content-left">
-                                <a>GIÁ</a>
-                            </nav>
-                            <hr width="80%" style="margin:5px;">
-                            <div style="padding-left: 30px;">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check1" name="option1"
-                                        value="something" checked>
-                                    <label class="form-check-label" for="check1">DƯỚI 30,000,000 VNĐ</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check2" name="option2"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">TỪ 31,000,000 VNĐ - 60,000,000
-                                        VNĐ</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">TỪ 61,000,000 VNĐ - 99,000,000
-                                        VNĐ</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="check3" name="option3"
-                                        value="something">
-                                    <label class="form-check-label" for="check2">TRÊN 100,000,000 VNĐ</label>
                                 </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-3">TÌM KIẾM</button>
-                    </form>
-                </div>
-            </table>
-        </section>
-        <!-- PRODUCT-ZONE -->
-        <div class="container product-wrapper">
-            <section class="product-show" id="product-show">
-                <!-- product được tạo tự động từ API -->
+                            <div class="form-check-label">
+                                <nav class="nav justify-content-left">
+                                    <a>GIÁ</a>
+                                </nav>
+                                <hr width="80%" style="margin:5px;">
+                                <div style="padding-left: 30px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                                            value="something" checked>
+                                        <label class="form-check-label" for="check1">DƯỚI 30,000,000 VNĐ</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check2" name="option2"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">TỪ 31,000,000 VNĐ - 60,000,000
+                                            VNĐ</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">TỪ 61,000,000 VNĐ - 99,000,000
+                                            VNĐ</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="check3" name="option3"
+                                            value="something">
+                                        <label class="form-check-label" for="check2">TRÊN 100,000,000 VNĐ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">TÌM KIẾM</button>
+                        </form>
+                    </div>
+                </table>
             </section>
-            <div id="pagination" mt-3></div>
+            <!-- PRODUCT-ZONE -->
+            <div class="container product-wrapper">
+                <div class="container title w-100 text-center py-5">
+                    <h1>SẢN PHẨM CỦA CHÚNG TÔI</h1>
+                </div>
+                <section class="product-show" id="product-show">
+                    <!-- product được tạo tự động từ API -->
+                </section>
+                <div id="pagination" mt-3></div>
+            </div>
         </div>
     </div>
     <!-- SERVICE -->
@@ -315,7 +321,7 @@
                     <div id="logo">
                         <h1
                             style="color: red; font-weight: 500;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                            HỔ TRỢ</h1>
+                            HỖ TRỢ</h1>
 
                         <i>Smart solution smart copier</i>
                     </div>
@@ -600,25 +606,23 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">Add to Cart</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="addProductModalLabel">Thêm vào giỏ hàng</h5>
                 </div>
-                <div class="modal-body">
-                    <div class="product-info">
-                        <h3></h3>
+                <div class="modal-body d-flex flex-column align-items-center">
+                    <div class="product-info d-flex flex-column align-items-center">
                         <img src="" alt="" class="product-img">
-                        <p></p>
-                        <div class="attributes"></div>
                     </div>
-                    <div class="quantity">
+                    <div class="attributes"></div>
+                    <div class="quantity mt-2">
                         <label for="quantity-input">Số lượng:</label>
-                        <input type="number" id="quantity-input" class="quantity-input" min="1" max="3" value="1">
+                        <input type="number" id="quantity-input" class="quantity-input" min="1" max="3" value="1" style="width: 80px;" disabled>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-add-to-cart">Add to Cart</button>
+                <div class="modal-footer d-flex">
+                    <button type="button" class="btn btn-success btn-add-to-cart"><i
+                            class="fa fa-cart-shopping me-2"></i>Thêm vào giỏ hàng</button>
+                    <button type="button" class="btn btn-danger close ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        X Hủy</button>
                 </div>
             </div>
         </div>

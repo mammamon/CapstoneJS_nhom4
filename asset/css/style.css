@@ -522,8 +522,11 @@ form {
   max-width: 600px;
 }
 #addProductModal .modal-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
+}
+#addProductModal .modal-header, #addProductModal .modal-footer {
+  height: 70px;
 }
 #addProductModal .product-img {
   width: 320px;

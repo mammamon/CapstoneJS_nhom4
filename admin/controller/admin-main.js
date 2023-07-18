@@ -86,7 +86,7 @@ $('#btnAdd').on('click', async function () {
 
 // Xóa sản phẩm
 function deleteProduct(id, name, event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   if (confirm(`Xác nhận xóa sản phẩm ${name}?`)) {
     axios({
@@ -95,7 +95,7 @@ function deleteProduct(id, name, event) {
     })
       .then(function () {
         getProductList();
-        alert('Xóa sản phẩm thành công'); 
+        alert('Xóa sản phẩm thành công');
       })
       .catch(function () {
         alert('Xóa sản phẩm thất bại');
@@ -199,11 +199,13 @@ $('#branch_other').on('click', function () {
   $('.branch').prop('checked', false);
 });
 
+
 // ẩn nút cập nhật hiện nút thêm
 $('#btn-modal').on('click', function () {
   $('#btnAdd').css('display', 'inline-block');
   $('#btnEdit').css('display', 'none');
 });
+
 
 // reset các đoạn text thông báo và input mỗi khi đóng modal
 const modal = $("#product-modal")[0];
@@ -216,6 +218,7 @@ const observer = new MutationObserver(function (mutations) {
   });
 });
 observer.observe(modal, { attributes: true });
+
 
 //tìm kiếm thông tin sản phẩm
 $("#searchTool").on("input", function () {

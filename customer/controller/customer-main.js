@@ -92,6 +92,10 @@ function addToCart(productId) {
     const existingCartItem = cart.items.find(
       (item) => item.name === productName && item.status === 'chưa đặt hàng'
     );
+    if (isNaN(quantity)) {
+      alert('Số lượng không hợp lệ');
+      return;
+    }
     if (existingCartItem) {
       existingCartItem.quantity += quantity;
     } else {

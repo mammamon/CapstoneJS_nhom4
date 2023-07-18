@@ -337,7 +337,7 @@ form {
   right: 1rem;
   max-width: 600px;
   padding: 1rem;
-  background-color: #1f1f1f;
+  background-color: #15172b;
   border-radius: 8px;
   max-width: 600px;
   z-index: 9999;
@@ -427,7 +427,7 @@ form {
 }
 
 .cart-icon {
-  background-color: #1f1f1f;
+  background-color: #15172b;
   position: fixed;
   cursor: pointer;
   bottom: 20px;

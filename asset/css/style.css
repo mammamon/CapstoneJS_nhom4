@@ -542,7 +542,7 @@ form {
 }
 .product-attributes .attribute {
   width: 100px;
-  background-color: #e8e8e8;
+  background-color: #bbb;
 }
 .product-attributes tr td {
   border: 2px solid #333;
@@ -583,6 +583,7 @@ form {
 .product-attributes .sub-table td:first-child {
   border-right: 2px solid #333;
   width: 50%;
+  background-color: #e8e8e8;
 }
 .product-attributes .sub-table td:last-child {
   width: 50%;

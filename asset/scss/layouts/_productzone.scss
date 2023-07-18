@@ -99,7 +99,7 @@
     }
     .attribute {
         width: 100px;
-        background-color: $grey;
+        background-color: #bbb;
     }
 
     tr {
@@ -157,6 +157,7 @@
     .sub-table td:first-child {
         border-right: 2px solid #333;
         width: 50%;
+        background-color: $grey;
     }
 
     .sub-table td:last-child {

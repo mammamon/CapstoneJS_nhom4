@@ -70,6 +70,8 @@ $admin-sidebar-width: 50px;
     }
 
     .table-responsive {
+        max-height: 84vh;
+        overflow: auto;
         background-color: #fff;
         width: 100%;
         h4 {
@@ -132,4 +134,20 @@ $admin-sidebar-width: 50px;
         width: 100%;
         @include center;
     }
+}
+#backToTop {
+    font-size: 20px;
+    position: fixed;
+    right: 1.8rem;
+    bottom: 1rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    color: #fff;
+    background: $primaryColor;
+    border-radius: 50%;
+    transition: all .2s;
+    box-shadow: -4px 4px 24px -10px $primaryColor;
+    display: none;
 }

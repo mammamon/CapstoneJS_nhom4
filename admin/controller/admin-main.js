@@ -252,3 +252,13 @@ $("#searchTool").on("input", function () {
 });
 
 
+// nút back-to-top
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', function () {
+  if (window.scrollY >= 800) {
+    backToTop.style.display = 'block';
+  } else {
+    backToTop.style.display = 'none';
+  }
+});
+

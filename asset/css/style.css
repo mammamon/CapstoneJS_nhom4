@@ -342,12 +342,14 @@ form {
 
 /* CART */
 #cartZone {
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   position: fixed;
   top: 1rem;
   right: 1rem;
   max-width: 600px;
   padding: 1rem;
-  background-color: #15172b;
+  background-color: #fff;
   border-radius: 8px;
   max-width: 600px;
   z-index: 9999;
@@ -436,7 +438,7 @@ form {
   background-color: antiquewhite;
 }
 
-.cart-icon {
+.cart-icon, .phone-icon {
   background-color: #15172b;
   position: fixed;
   cursor: pointer;
@@ -449,7 +451,7 @@ form {
   justify-content: center;
   align-items: center;
 }
-.cart-icon::before, .cart-icon::after {
+.cart-icon::before, .phone-icon::before, .cart-icon::after, .phone-icon::after {
   content: "";
   position: absolute;
   top: 0px;
@@ -460,16 +462,20 @@ form {
   border: 2px solid #15172b;
   z-index: -1;
 }
-.cart-icon::before {
+.cart-icon::before, .phone-icon::before {
   animation: ripple 1.2s linear infinite;
 }
-.cart-icon::after {
+.cart-icon::after, .phone-icon::after {
   animation: ripple 1.2s linear infinite;
   animation-delay: 0.4s;
 }
-.cart-icon i {
+.cart-icon i, .phone-icon i {
   font-size: 1.2rem;
   color: #fff;
+}
+
+.phone-icon {
+  bottom: 85px;
 }
 
 /* ADD-TO-CART MODAL */ /* PRODUCT-ZONE */
@@ -927,6 +933,8 @@ form {
   height: 140px;
 }
 .admin__main .table-responsive {
+  max-height: 84vh;
+  overflow: auto;
   background-color: #fff;
   width: 100%;
 }
@@ -981,6 +989,23 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#backToTop {
+  font-size: 20px;
+  position: fixed;
+  right: 1.8rem;
+  bottom: 1rem;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  color: #fff;
+  background: #e8c400;
+  border-radius: 50%;
+  transition: all 0.2s;
+  box-shadow: -4px 4px 24px -10px #e8c400;
+  display: none;
 }
 
 #pagination {

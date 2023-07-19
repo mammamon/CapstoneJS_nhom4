@@ -39,46 +39,66 @@
 
 <body style="background-color: #fff;">
     <!-- HEADER -->
-    <div class="container-fluid header-wrapper">
-        <header class="container" id="movetop">
-            <div id="frameHead">
-                <div id="logoArea">
-                    <div id="logo">
-                        <h1>GIA THINH</h1>
-                        <i>Smart solution smart copier</i>
-                    </div>
-                </div>
-                <div id="rightArea" style="z-index:1000;">
-                    <div class="headerSlope"><img src="./asset/img/header/headerSlope.gif" width="140" height="48"
-                            alt="">
-                    </div>
-                    <ul class="float-r">
-                        <li>Trang chủ</li>
-                        <img src="./asset/img/header/headerBGspline.gif" alt="">
-                        <li>Về chúng tôi</li>
-                        <img src="./asset/img/header/headerBGspline.gif" alt="">
-                        <li>Sản phẩm</li>
-                        <img src="./asset/img/header/headerBGspline.gif" alt="">
-                        <li>Dịch vụ & Giải pháp</li>
-                        <img src="./asset/img/header/headerBGspline.gif" alt="">
-                        <li>Hỗ trợ</li>
-                        <img src="./asset/img/header/headerBGspline.gif" alt="">
-                        <li>Đăng nhập</li>
-                    </ul>
-                </div>
+    <header class="container-fluid header-wrapper">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="logo-index py-2">
+                <h2 style="color:#e8c400">GIA THINH</h2>
+                <h4 style="color:#e8c400">Smart solution smart copier</h4>
             </div>
-        </header>
+            <div>
+                <ul class="d-flex mb-0">
+                    <li class="nav-item"><a href="#">Trang chủ</a></li>
+                    <li class="nav-item"><a href="#">Về chúng tôi</a></li>
+                    <li class="nav-item"><a href="#productZone">Sản phẩm</a></li>
+                    <li class="nav-item"><a href="#serviceZone">Dịch vụ</a></li>
+                    <li class="nav-item"><a href="#supportZone">Hỗ trợ</a></li>
+                    <li class="nav-item"><a href="./admin.html">Trang admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- CAROUSEL -->
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./asset/img/SHARP/carousel/top_bp_20m24l.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./asset/img/SHARP/carousel/top_bp_70m65.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./asset/img/SHARP/carousel/top_bp_70c65.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <!-- SEARCHBOX -->
-    <div class="searchbox container-fluid sticky-top px-0" id="searchZone">
+    <div class="searchbox container-fluid px-0" id="searchZone">
         <div class="d-flex justify-content-center align-items-center">
             <form class="form-inline d-flex py-2">
                 <input class="form-control rounded-0" id="searchTool-index" type="text"
                     placeholder="Tìm kiếm sản phẩm (nhập tên, model, giá, hãng,...)" aria-label="Search">
             </form>
-            <div class="d-flex flex-column">
-                <h5 class="search-title pb-1 text-white">tìm kiếm nâng cao</h5>
-                <i class="fa-solid fa-angles-down" id="toggleFilterTable" title="tìm kiếm nâng cao"></i>
+            <div class="d-flex flex-column align-items-center">
+                <h5 class="search-title pb-1 text-dark" style="font-weight: 500;">lọc sản phẩm</h5>
+                <i class="fa-solid fa-angles-down text-dark" id="toggleFilterTable" title="lọc sản phẩm"></i>
             </div>
         </div>
         <div class="sticky-top py-2 d-none" id="filterTable">
@@ -142,42 +162,10 @@
                 </div>
             </form>
         </div>
-    </div> ;
-    <!-- CAROUSEL -->
-    <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="./asset/img/SHARP/carousel/top_bp_20m24l.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./asset/img/SHARP/carousel/top_bp_50c65.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./asset/img/SHARP/carousel/top_bp_70c65.jpg" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-    <div class="product-container">
+    <!-- PRODUCT-ZONE -->
+    <div class="product-container" id="productZone">
         <div class="container-fluid d-flex">
-            <!-- PRODUCT-ZONE -->
             <div class="product-wrapper">
                 <div class="container title w-100 text-center py-5">
                     <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
@@ -191,7 +179,7 @@
         </div>
     </div>
     <!-- SERVICE -->
-    <section class="service">
+    <section class="service" id="serviceZone">
         <div id="frameService">
             <div id="logoArea">
                 <div id="logo">
@@ -253,15 +241,15 @@
     </section>
     <!-- SUPPORT -->
     <section class="support">
-        <div id="support">
+        <div id="supportZone">
             <div id="frameSupport">
                 <div id="logoArea">
                     <div id="logo">
-                        <h1
+                        <!-- <h1
                             style="color: red; font-weight: 500;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                            HỖ TRỢ</h1>
+                            HỖ TRỢ</h1> -->
 
-                        <i>Smart solution smart copier</i>
+                        <!-- <i>Smart solution smart copier</i> -->
                     </div>
                 </div>
                 <div id="rightArea" style="z-index:1000;">

@@ -142,6 +142,13 @@ form {
 }
 
 /*COMPONENTS*/
+/* LOGO */
+.logo-index h4, .logo-index p {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 12px;
+}
+
 .check {
   font-size: 0.8rem;
   color: #ff0000;
@@ -197,108 +204,30 @@ form {
     opacity: 0;
   }
 }
-/* HEADER */
-#frameHead {
-  display: flex;
-  top: 0px;
-  left: 0px;
-  z-index: 10;
+.header-wrapper {
+  background-image: url(https://www.artisjet.com/images/easyblog_articles/260/how-to-speed-up-the-printing-process.jpg);
+  background-position: bottom;
+  background-size: cover;
+  color: #fff;
 }
 
-#logoArea h1,
-#logoArea h2,
-#logoArea h3 {
-  display: inline;
-  vertical-align: bottom;
+.nav-item {
+  padding-right: 16px;
 }
-
-#logo {
-  position: absolute;
-  top: 8px;
-  left: 15px;
-  text-align: left;
-  height: 30px;
-  line-height: 30px;
+.nav-item:hover {
+  color: #e8c400;
+  font-weight: 600;
 }
-
-#logoArea {
-  background: #fff url(/CapstoneJS_nhom4-master/asset/img/header/logoBG.gif) repeat-x top left;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  min-width: 800px;
-  height: 68px;
-}
-
-#modelName {
-  padding: 0 10px;
-  color: #474747;
-  font: 900 normal 20px arial, helvetica;
-}
-
-#tradeName {
-  padding: 0;
-  color: #474747;
-  font: 16px arial, helvetica;
-  margin: 0;
-}
-
-/* =============== rightArea =============== */
-#rightArea {
-  background: url(/CapstoneJS_nhom4-master/asset/img/header/headerBG.gif) repeat-x left top;
-  height: 48px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  z-index: 100;
-}
-
-.headerSlope {
-  width: 140px;
-  display: inline;
-  float: left;
-}
-
-.float-r {
-  display: flex;
-  float: right;
-}
-
-.float-r > li::after {
+.nav-item::after {
   content: "";
-  width: 0%;
-  height: 2px;
-  background: #35a22c;
   display: block;
-  transition: all 0.5s;
+  width: 0;
+  height: 1px;
+  background-color: #e8c400;
+  transition: width 0.3s;
 }
-
-.float-r > li:hover:after {
+.nav-item:hover::after {
   width: 100%;
-}
-
-.float-r > li {
-  color: yellow;
-  padding-right: 20px;
-  padding-left: 20px;
-  list-style: none;
-}
-
-#carouselId {
-  height: 410px;
-}
-
-#frameProducts {
-  width: 100%;
-  top: 440px;
-  left: 0px;
-  position: absolute;
-  z-index: 100;
-}
-
-#searchProducts {
-  top: 60px;
-  position: relative;
 }
 
 /* FOOTER */
@@ -439,7 +368,7 @@ form {
 }
 
 .cart-icon, .phone-icon {
-  background-color: #15172b;
+  background-color: #27a2c9;
   position: fixed;
   cursor: pointer;
   bottom: 20px;
@@ -459,7 +388,7 @@ form {
   right: 0px;
   bottom: 0px;
   border-radius: 50%;
-  border: 2px solid #15172b;
+  border: 2px solid #27a2c9;
   z-index: -1;
 }
 .cart-icon::before, .phone-icon::before {
@@ -486,6 +415,7 @@ form {
   background-color: #e8e8e8;
   width: 1100px;
   margin: auto;
+  margin-top: 40px;
 }
 
 .product-show {
@@ -849,7 +779,7 @@ form {
 /* INDEX PAGE */
 #searchZone {
   max-height: 500px;
-  background-color: #e8c400;
+  background-color: #eee;
 }
 #searchZone form {
   display: flex;
@@ -870,14 +800,19 @@ form {
 }
 #searchZone .form-select {
   width: 120px;
-  background-color: #eee;
+  background-color: #fff;
 }
 
 #filterTable {
-  background-color: #fff;
+  background-color: #eee;
   height: 85px;
   font-weight: 500;
   color: #1f1f1f;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #27a2c9;
+  height: 4px;
 }
 
 /*ADMIN PAGE*/
@@ -982,7 +917,7 @@ form {
   font-size: 1.25rem;
 }
 .admin__main .product-group-manage #btnUrl {
-  color: #0cb1ee;
+  color: #33bbff;
 }
 .admin__main .product-img-container {
   width: 100%;

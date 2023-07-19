@@ -1,13 +1,14 @@
 /* INDEX PAGE */
 #searchZone {
     max-height: 500px;
-    background-color: #eee;
-
+    input {
+        border: 2px solid #27a2c9;
+    }
     form {
         @include center;
 
         input {
-            width: 55vw;
+            width: 60vw;
         }
     }
     .search-title {

@@ -1,14 +1,4 @@
 /* SERVICES */
-#frameService{
-	width: 100%;
-	// top:1350px;
-	position: absolute;
-	z-index: 100;
-}
-#iconService{
-	padding-top: 100px;
-	padding-left: 200px;
-}
 .services {
     padding-top: 115px;
     padding-bottom: 115px;
@@ -44,6 +34,7 @@
 
 .service__item {
     border-radius: 0.5rem;
+    height: 350px;
     background: #fff;
     box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.1);
     padding: 30px 45px;
@@ -53,12 +44,21 @@
     border: 3px solid transparent;
     align-items: center;
     text-align: center;
+    @include center;
+    flex-direction: column;
 }
 
 .service__item:hover {
-
     transform: translateY(-20px);
-    border-image: url(../img/br.png) 1 round;
-
-
+}
+.service__info {
+    display: block;
+    text-align: left;
+    a:hover {
+        color: #27a2c9;
+    } 
+}
+.service__info>* {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

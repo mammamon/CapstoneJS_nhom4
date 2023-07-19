@@ -232,9 +232,8 @@ form {
 
 /* FOOTER */
 #footer {
-  top: 890px;
   position: relative;
-  background-color: white;
+  background-color: rgb(205, 221, 216);
 }
 
 #GiaThinhFooter {
@@ -265,8 +264,12 @@ form {
   display: flex;
 }
 
-#tnContact > ul > li {
+#tnContact {
   padding-right: 20px;
+}
+#tnContact i, #tnContact img {
+  font-size: 20px;
+  margin-right: 8px;
 }
 
 /* CART */
@@ -278,7 +281,7 @@ form {
   right: 1rem;
   max-width: 600px;
   padding: 1rem;
-  background-color: #fff;
+  background-color: #27a;
   border-radius: 8px;
   max-width: 600px;
   z-index: 9999;
@@ -371,7 +374,7 @@ form {
   background-color: #27a2c9;
   position: fixed;
   cursor: pointer;
-  bottom: 20px;
+  bottom: 65px;
   right: 20px;
   z-index: 1998;
   width: 3rem;
@@ -404,7 +407,7 @@ form {
 }
 
 .phone-icon {
-  bottom: 85px;
+  bottom: 125px;
 }
 
 /* ADD-TO-CART MODAL */ /* PRODUCT-ZONE */
@@ -415,7 +418,7 @@ form {
   background-color: #e8e8e8;
   width: 1100px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .product-show {
@@ -563,17 +566,6 @@ form {
 }
 
 /* SERVICES */
-#frameService {
-  width: 100%;
-  position: absolute;
-  z-index: 100;
-}
-
-#iconService {
-  padding-top: 100px;
-  padding-left: 200px;
-}
-
 .services {
   padding-top: 115px;
   padding-bottom: 115px;
@@ -609,6 +601,7 @@ form {
 
 .service__item {
   border-radius: 0.5rem;
+  height: 350px;
   background: #fff;
   box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.1);
   padding: 30px 45px;
@@ -618,11 +611,27 @@ form {
   border: 3px solid transparent;
   align-items: center;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .service__item:hover {
   transform: translateY(-20px);
-  border-image: url(../img/br.png) 1 round;
+}
+
+.service__info {
+  display: block;
+  text-align: left;
+}
+.service__info a:hover {
+  color: #27a2c9;
+}
+
+.service__info > * {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* SORT-TABLE */
@@ -633,23 +642,16 @@ form {
 }
 
 /*****support*****/
-#frameSupport {
-  width: 100%;
-  top: 1700px;
-  z-index: 1;
-}
-
-.containerSupport {
-  top: 840px;
-  position: relative;
-  padding: auto;
+.support {
+  margin-top: 60px;
+  margin-bottom: 80px;
 }
 
 #downloadsList {
-  display: -ms-inline-grid;
-  grid-template-columns: auto auto auto auto;
-  padding: 10px;
-  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .brochures {
@@ -764,6 +766,7 @@ form {
 
 .downloadsBtn {
   transform: translateY(0);
+  margin-right: 20px;
 }
 
 .downloadsBtn:hover {
@@ -779,7 +782,9 @@ form {
 /* INDEX PAGE */
 #searchZone {
   max-height: 500px;
-  background-color: #eee;
+}
+#searchZone input {
+  border: 2px solid #27a2c9;
 }
 #searchZone form {
   display: flex;
@@ -787,7 +792,7 @@ form {
   align-items: center;
 }
 #searchZone form input {
-  width: 55vw;
+  width: 60vw;
 }
 #searchZone .search-title {
   display: block;

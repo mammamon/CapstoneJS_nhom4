@@ -6,7 +6,7 @@
     right: 1rem;
     max-width: 600px;
     padding: 1rem;
-    background-color: #fff;
+    background-color: #27a;
     border-radius: 8px;
     max-width: 600px;
     z-index: 9999;
@@ -100,7 +100,7 @@
     background-color: #27a2c9;
     position: fixed;
     cursor: pointer;
-    bottom: 20px;
+    bottom: 65px;
     right: 20px;
     z-index: 1998;
     @include square(3rem);
@@ -113,5 +113,5 @@
 }
 .phone-icon {
     @extend .cart-icon;
-    bottom: 85px;
+    bottom: 125px;
 }

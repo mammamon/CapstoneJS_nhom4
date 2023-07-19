@@ -56,15 +56,18 @@ $(document).ready(function () {
   $("select").val("");
 });
 
+
 // đóng mở bảng filter
 $("#toggleFilterTable").on("click", function () {
   $("#filterTable").toggleClass("d-none");
 });
 
+
 //đổi icon nút filter
 $("#toggleFilterTable").on("click", function () {
   $(this).toggleClass("fa-angles-down fa-angles-up");
 });
+
 
 // đóng mở giỏ hàng
 $(document).ready(function () {

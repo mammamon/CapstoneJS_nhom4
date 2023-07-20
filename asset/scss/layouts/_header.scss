@@ -24,5 +24,16 @@
 	  width: 100%;
 	}
   }
+  @media screen and (max-width: 1400px) {
+	.nav-item {
+		padding-right:10px;
+	}
+	.logo-index h2 {
+		font-size: 26px;
+	}
+	.logo-index h4 {
+		font-size: 9.5px;
+	}
+}
   
   

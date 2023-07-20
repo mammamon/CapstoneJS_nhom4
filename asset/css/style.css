@@ -204,6 +204,17 @@ form {
     opacity: 0;
   }
 }
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .header-wrapper {
   background-image: url(https://www.artisjet.com/images/easyblog_articles/260/how-to-speed-up-the-printing-process.jpg);
   background-position: bottom;
@@ -230,17 +241,6 @@ form {
   width: 100%;
 }
 
-@media screen and (max-width: 1400px) {
-  .nav-item {
-    padding-right: 10px;
-  }
-  .logo-index h2 {
-    font-size: 26px;
-  }
-  .logo-index h4, .logo-index p {
-    font-size: 9.5px;
-  }
-}
 /* FOOTER */
 #footer {
   position: relative;
@@ -583,7 +583,6 @@ form {
   background-image: url(../img/bg2.png);
   background-size: cover;
   background-position: top center;
-  text-align: center;
 }
 
 .section-inner {
@@ -636,6 +635,10 @@ form {
   display: block;
   text-align: left;
 }
+.service__info p {
+  cursor: pointer;
+  animation: scale 2s infinite;
+}
 .service__info a:hover {
   color: #27a2c9;
 }
@@ -643,6 +646,58 @@ form {
 .service__info > * {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+/* ABOUT */
+.about {
+  padding-bottom: 5rem;
+  background-image: url(../../img/1656623358_79_Background-Banner-Dep-Da-Dang-Danh-Cho-Moi-Chu-De.jpg);
+  background-size: 100%;
+  background-position: center right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.about__content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.about__left,
+.about__right {
+  width: 50%;
+}
+
+.about__right {
+  justify-content: left;
+}
+
+.about__left img {
+  width: 100%;
+  border-radius: 0 6.25rem 6.25rem 0;
+  transform: translate(-6.5rem, -1rem) scale(1.3);
+}
+
+.about__right i {
+  margin-right: 0.75rem;
+  font-size: 1.5rem;
+  color: #f55f8d;
+  vertical-align: middle;
+}
+
+.about__right p {
+  margin-bottom: 1rem;
+  width: 90%;
+}
+
+.about__right ul {
+  margin-bottom: 2rem;
+}
+
+.collapse {
+  padding-top: 40px;
+  display: block;
 }
 
 /* SORT-TABLE */
@@ -957,6 +1012,32 @@ form {
   transition: all 0.2s;
   box-shadow: -4px 4px 24px -10px #e8c400;
   display: none;
+}
+
+.content {
+  width: 50%;
+  top: 88px;
+  left: 100px;
+  position: absolute;
+}
+
+.trung {
+  bottom: -170px;
+  left: 300px;
+  position: absolute;
+}
+
+.fas .fa-facebook-f {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.sign {
+  bottom: 50px;
+  left: 350px;
+  position: absolute;
+  opacity: 70%;
+  width: 20%;
 }
 
 #pagination {

@@ -98,7 +98,7 @@ function renderProductInfo(product) {
       </tr>
       <tr>
         <td class="attribute">Tốc độ in</td>
-        <td>${speed} ppm</td>
+        <td>${speed}</td>
       </tr>
       <tr>
         <td class="attribute">Hãng</td>

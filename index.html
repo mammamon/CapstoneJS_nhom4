@@ -29,6 +29,8 @@
     <!-- BOOTSTRAP V5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- BOOTSTRAP ICON -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- FANCYBOX v4.0.31 -->
     <link rel="stylesheet" href="./asset/css/fancybox.css">
     <!-- ANIMATE v4.1.1 -->
@@ -37,7 +39,7 @@
     <!-- CSS STYLE -->
     <link rel="stylesheet" href="./asset/css/style.css">
 
-<body style="background-color: #fff;">
+<body id="home" style="background-color: #fff;">
     <!-- HEADER -->
     <header class="container-fluid header-wrapper">
         <div class="container d-flex align-items-center justify-content-between">
@@ -47,8 +49,8 @@
             </div>
             <div>
                 <ul class="d-flex mb-0">
-                    <li class="nav-item"><a href="#">Trang chủ</a></li>
-                    <li class="nav-item"><a href="#">Về chúng tôi</a></li>
+                    <li class="nav-item"><a href="#home">Trang chủ</a></li>
+                    <li class="nav-item"><a href="./aboutus.html">Về chúng tôi</a></li>
                     <li class="nav-item"><a href="#productZone">Sản phẩm</a></li>
                     <li class="nav-item"><a href="#serviceZone">Dịch vụ</a></li>
                     <li class="nav-item"><a href="#supportZone">Hỗ trợ</a></li>
@@ -182,7 +184,7 @@
     <section class="service" id="serviceZone">
         <section class="services section-inner">
             <div class="services__container container">
-                <div class="title">
+                <div class="title text-center">
                     <h2 class="py-5">DỊCH VỤ & GIẢI PHÁP</h2>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -191,10 +193,14 @@
                             <div class="service__info">
                                 <img src="./asset/img/solution & service/rent.png" alt="pic1_3">
                                 <h3>Dịch vụ cho thuê máy</h3>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Cho thuê
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#rentColor" aria-expanded="false"
+                                        aria-controls="rentColor">Cho thuê
                                         máy
                                         màu</a></p>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Cho thuê
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#rentBw" aria-expanded="false"
+                                        aria-controls="rentBw">Cho thuê
                                         máy
                                         trắng đen</a></p>
                             </div>
@@ -203,30 +209,305 @@
                             <div class="service__info">
                                 <img src="./asset/img/solution & service/sec.png" alt="pic1_3">
                                 <h3>Giải pháp bảo mật</h3>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Dùng User
-                                        Control</a></p>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Dùng
-                                        LDAP</a>
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#userControl" aria-expanded="false"
+                                        aria-controls="userControl">Dùng User
+                                        Authentication</a></p>
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#documentControl"
+                                        aria-expanded="false" aria-controls="documentControl">Dùng Document Control
+                                    </a>
                                 </p>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Dùng Card
-                                        Reader</a></p>
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#dataEncryption" aria-expanded="false"
+                                        aria-controls="dataEncryption">Dùng Data Encryption
+                                    </a></p>
                             </div>
                         </div>
                         <div class="service__item">
                             <div class="service__info">
                                 <img src="./asset/img/solution & service/Followme.png" alt="pic1_3">
                                 <h3>Phần mềm quản lý</h3>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Kayleigh
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#kayleighSolution"
+                                        aria-expanded="false" aria-controls="kayleighSolution">Kayleigh
                                         Solution</a></p>
-                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a href="#">Papercut
+                                <p><i class="fa-solid fa-check me-2" style="color: #f40101;"></i><a
+                                        data-bs-toggle="collapse" data-bs-target="#papercutSolution"
+                                        aria-expanded="false" aria-controls="papercutSolution">Papercut
                                         Solution</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <!-- collapse -->
+            <div class="collapse" id="rentColor">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/SHARP/carousel/top_bp_50c65.jpg" width="100%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Tại sao cần thuê máy màu?</p>
+                                <h2>THUÊ MÁY<br>PHOTOCOPY MÀU<br>ĐANG LÀ XU HƯỚNG</h2>
+                            </div>
+                            <p>Việc sử dụng máy photocopy màu đang là xu hướng hiện tại. Với việc nhiều công ty đa quốc
+                                gia
+                                hay các tập đoàn lớn
+                                đầu tư vào Việt Nam ngày càng nhiều thì nhu cầu này càng cần thiết hơn bao giờ hết bởi
+                                các
+                                ưu điểm sau :
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    In ấn catalog màu hay bản vẽ trở nên dễ dàng nhanh chóng
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Các báo giá có màu sắc góp phần tăng sự chú ý của khách hàng.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Không lo chi phí đầu tư mua máy mới.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Được miễn phí mực, linh kiện tiêu hao và công sửa chữa
+                                </li>
+                            </ul>
+                            <button class="btn btn-success">Báo giá</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="rentBw">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/SHARP/carousel/top_bp_50c65.jpg" width="100%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Tại sao cần thuê máy trắng đen?</p>
+                                <h2>THUÊ MÁY<br>PHOTOCOPY TRẮNG ĐEN<br>LÀ GIẢI PHÁP TỐI ƯU</h2>
+                            </div>
+                            <p>Việc sử dụng máy photocopy trắng đen đa năng đang là xu hướng hiện tại. Với việc nhiều
+                                công
+                                ty đa quốc gia
+                                hay các tập đoàn lớn
+                                đầu tư vào Việt Nam ngày càng nhiều thì nhu cầu này càng cần thiết hơn bao giờ hết bởi
+                                các
+                                ưu điểm sau :
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    In được khổ A3, công suất in lớn, đa năng với chức năng copy/in/scan màu
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Bền bỉ hơn máy in, giao diện dễ sử dụng hơn máy in.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Không lo chi phí đầu tư mua máy mới.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Được miễn phí mực, linh kiện tiêu hao và công sửa chữa
+                                </li>
+                            </ul>
+                            <button class="btn btn-success">Báo giá</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="userControl">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/solution & service/MFP4.png" width="50%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Bảo mật với tính năng User Authentication</p>
+                                <h2>BẢO MẬT<br>LÀ GIẢI PHÁP<br>TRÁNH MẤT TÀI LIỆU</h2>
+                            </div>
+                            <p>Để hạn chế truy cập và sử dụng máy, Sharp MFP có thể sử dụng mã tài khoản, tập tin người
+                                dùng/nhóm, mật khẩu hoặc tài khoản người dùng bên ngoài có trong LDAP hoặc máy chủ AD
+                                Server.
+                                Lợi ích khi có tính năng bảo mật:
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Bảo vệ được nội dung in ấn.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Truy vấn, phân quyền hạn cho người dùng.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Quản lý tập trung, báo cáo chi tiết rõ ràng theo người dùng.
+                                </li>
+                            </ul>
+                            <!-- <button class="btn btn-success">Báo giá</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="documentControl">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/solution & service/MFP3.png" width="50%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Bảo mật với tính năng Document Control</p>
+                                <h2>BẢO MẬT DOCUMENT CONTROL<br>LÀ GIẢI PHÁP<br>CHỐNG SAO CHÉP TÀI LIỆU</h2>
+                            </div>
+                            <p>Chức năng Kiểm soát Tài liệu, khả dụng để sử dụng trên các MFP Sharp với Bộ công cụ Bảo
+                                mật
+                                Dữ liệu, ngăn chặn việc sao chép, quét, fax và gửi trái phép các tài liệu bí mật bằng
+                                cách
+                                nhúng dữ liệu ngăn chặn sao chép vào tài liệu.
+                                Lợi ích khi có tính năng bảo mật Document Control:
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Chống sao chép các văn bằng, chứng chỉ .
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Chống sao chép tài liệu nếu được nhúng kèm mã bảo mật.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Mã hóa hoặc xóa dữ liệu nếu cố tình sao chép.
+                                </li>
+                            </ul>
+                            <!-- <button class="btn btn-success">Báo giá</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="dataEncryption">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/solution & service/MFP1.png" width="50%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Bảo mật với tính năng Data Encryption and Overwriting</p>
+                                <h2>BẢO MẬT DATA ENCRYPTION & OVERWRITING<br>LÀ GIẢI PHÁP<br>MÃ HÓA TÀI LIỆU</h2>
+                            </div>
+                            <p>Máy đa chức năng kỹ thuật số giữ lại một lượng lớn dữ liệu từ các tác vụ sao
+                                chép/in/quét/fax
+                                trong bộ nhớ trong. Để bảo vệ dữ liệu bí mật khỏi bị truy cập trái phép, Sharp MFP tự
+                                động
+                                mã hóa dữ liệu lệnh in trước khi lưu vào bộ nhớ trong; sau đó xóa nó thông qua nhiều lần
+                                ghi
+                                đè tự động, điều đó giúp bạn yên tâm.
+                                Lợi ích khi có tính năng bảo mật Document Control:
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Chống sao chép nội dung trên đĩa cứng .
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Chống sao chép tài liệu nếu được mã hóa.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Trả về dữ liệu trắng nếu cố tình truy cập.
+                                </li>
+                            </ul>
+                            <!-- <button class="btn btn-success">Báo giá</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="kayleighSolution">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/solution & service/software_tab4a.jpg" width="50%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Phần mềm quản lý chi phí in ấn</p>
+                                <h2>PHẦN MỀM KAYLEIGH<br>LÀ GIẢI PHÁP<br>DO SHARP TỰ THIẾT KẾ</h2>
+                            </div>
+                            <p>Nó cung cấp cho mọi người trong văn phòng của bạn một cách in thông minh hơn và an toàn
+                                hơn.
+                                Nó hoạt động bằng cách lưu trữ tài liệu trên máy chủ cho đến khi chúng được yêu cầu,
+                                thay vì
+                                in chúng ra ngay lập tức. Và điều đó có nghĩa là ít lượt truy cập vào MFP hơn, ít phải
+                                chờ
+                                đợi hơn, bảo mật tài liệu được cải thiện và giảm lãng phí.
+                                Lợi ích khi dùng phần mềm quản lý:
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Quản lý tập trung, báo cáo chi tiết theo user & department .
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Charge tiền trên từng user hay department.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Chức năng print follow me giúp người dùng thuận tiện hơn.
+                                </li>
+                            </ul>
+                            <!-- <button class="btn btn-success">Báo giá</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="papercutSolution">
+                <div class="container">
+                    <div class="about__content">
+                        <div class="about__left wow animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <img src="./asset/img/solution & service/software_tab4c.jpg" width="50%">
+                        </div>
+                        <div class="about__right wow animate__animated animate__fadeInRight " data-wow-duration="1s"
+                            data-wow-delay="0.2s">
+                            <div class="title">
+                                <p>Phần mềm quản lý chi phí in ấn</p>
+                                <h2>PHẦN MỀM PAPERCUT<br>LÀ GIẢI PHÁP<br>DO BÊN THỨ 3 THIẾT KẾ</h2>
+                            </div>
+                            <p>Quyền truy cập quản lý in mạnh mẽ từ bất kỳ vị trí mạng nào để cho phép quản lý tập trung
+                                mọi
+                                người dùng và thiết bị in. Quản trị tích hợp, dựa trên trình duyệt cho phép truy cập từ
+                                bất
+                                kỳ vị trí mạng nào để quản lý tập trung người dùng và thiết bị. Bảng điều khiển cung cấp
+                                chế
+                                độ xem một trang, dễ đọc về môi trường in trong thời gian thực.
+                                Lợi ích khi dùng phần mềm quản lý:
+                            </p>
+                            <ul>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Quản lý tập trung, báo cáo chi tiết theo user & department .
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Charge tiền trên từng user hay department.
+                                </li>
+                                <li><i class="bi bi-check-circle-fill"></i>
+                                    Chức năng print follow me giúp người dùng thuận tiện hơn.
+                                </li>
+                            </ul>
+                            <!-- <button class="btn btn-success">Báo giá</button> -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        </div>
+
     </section>
     <!-- SUPPORT -->
     <section class="support container-fluid py-5" id="supportZone">

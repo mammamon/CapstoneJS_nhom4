@@ -5,7 +5,7 @@
     background-image: url(../img/bg2.png);
     background-size: cover;
     background-position: top center;
-    text-align: center;
+    // text-align: center;
 }
 
 .section-inner {
@@ -54,6 +54,10 @@
 .service__info {
     display: block;
     text-align: left;
+    p {
+        cursor: pointer;
+        animation: scale 2s infinite;
+    }
     a:hover {
         color: #27a2c9;
     } 
@@ -61,4 +65,53 @@
 .service__info>* {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+/* ABOUT */
+.about {
+    padding-bottom: 5rem;
+    background-image: url(../../img/1656623358_79_Background-Banner-Dep-Da-Dang-Danh-Cho-Moi-Chu-De.jpg);
+    background-size: 100%;
+    background-position: center right;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.about__content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.about__left,
+.about__right {
+    width: 50%;
+}
+.about__right{
+    justify-content: left;
+}
+
+.about__left img {
+    width: 100%;
+    border-radius: 0 6.25rem 6.25rem 0;
+    transform: translate(-6.5rem, -1rem) scale(1.3);
+}
+
+.about__right i {
+    margin-right: .75rem;
+    font-size: 1.5rem;
+    color: #f55f8d;
+    vertical-align: middle;
+}
+
+.about__right p {
+    margin-bottom: 1rem;
+    width: 90%;
+}
+
+.about__right ul {
+    margin-bottom: 2rem;
+}
+.collapse{
+    padding-top: 40px;
+    display: block;
 }
